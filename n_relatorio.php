@@ -12,7 +12,7 @@
 
     <!-- Meu CSS -->
     <link rel="stylesheet" href="css/style.css">
-    <title>Hospital Veterinário</title>
+    <title>boxhub</title>
 </head>
 
 <body>

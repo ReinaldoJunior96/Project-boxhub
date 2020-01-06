@@ -11,7 +11,7 @@
     <!-- Meu CSS -->
     <link rel="stylesheet" href="css/style.css">
 
-    <title>Hospital Veterinário</title>
+    <title>boxhub</title>
     <script type="text/javascript">
         function SubstituiVirgulaPorPonto(campo) {
             campo.value = campo.value.replace(/,/gi, ".");
