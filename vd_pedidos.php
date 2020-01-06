@@ -15,7 +15,7 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-nav">
-    <a class="navbar-brand" href="index.php">
+        <a class="navbar-brand" href="index.php">
             <img src="images/icon-box.png" width="37" height="32" alt="">
         </a>
         <!-- <a class="navbar-brand exo text-white" href="index.php">Hospital Veterinário</a> -->
@@ -42,7 +42,7 @@
                         $s = new ConfigCRUD();
                         $setores = $s->ver_setores();
                         foreach ($setores as $v) {
-                            ?>
+                        ?>
                             <?php echo "<a class='dropdown-item font-weight-light' href='n_saida_setor.php?setor=" . $v->id_setor . "&nomesetor=" . str_replace("-", " ", $v->setor_s) . "'>" . str_replace("-", " ", $v->setor_s) . "</a>" ?>
                         <?php } ?>
 
@@ -63,45 +63,54 @@
             </ul>
         </form>
     </nav>
-    <div class="container">
+    <div class="container">        
+        <div class="row d-flex justify-content-center">
+            <img src="images/construct.png" class="img-fluid col-sm-8" alt="Imagem responsiva">
+        </div>
+        <div class="row text-center mt-4">
+            <h3 class="comfortaa col-sm-12">Estamos trabalhando para você</h3>
+        </div>
+    </div>
+    <!-- <div class="container">
         <h3 class='exo titulo-1 mt-5'>Pedidos pendentes <i class="fas fa-ticket-alt mt-2 color-icon"></i><a href='vd_historico_saida.php' class='link-basico float-right'>Histórico de pedidos <i class='fas fa-history '></i></a></h3>
         <hr class='bg-nav'>
-    </div>
-    <div class="container mt-5">
-        <table id="example" class="table table-sm xo text-center">
-            <thead class="bg-shadow-it bg-table">
-                <tr class="text-light">
-                    <th class="">Cod.</th>
-                    <th class="">Item</th>
-                    <th class="">Quantidade</th>
-                    <th class="">Setor</th>
-                    <th class="">Data</th>
-                    <th class="">Solicitante</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                require_once('back/crud/farmaciaCRUD.php');
-                $view_pedidos = new FarmaciaCRUD();
-                $pedidos = $view_pedidos->v_pedidos();
-                foreach ($pedidos as $v) {
-                    ?>
-                    <tr>
-                        <td><?= $v->id_req ?></td>
-                        <td><?= $v->produto_e ?></td>
-                        <td><?= $v->qtde_req ?></td>
-                        <td><?= $v->setor_req ?></td>
-                        <td><?= date("d/m/Y H:i:s", strtotime($v->data_req)) ?></td>
-                        <td><?= $v->solicitante_req ?></td>
-                        <td> <?php echo "<a href=back/response/pedidos_r.php?id=".$v->id_req."&p=aceitar&ide=".$v->item_req." class='badge badge-success'><i class='fas fa-check-square'></i></a></td>";?>
-                        <td> <?php echo "<a href=back/response/pedidos_r.php?id=".$v->id_req."&p=cancelar class='badge badge-danger'><i class='fas fa-minus-square'></i></a></td>";?>
-                    </tr>
+    </div> -->
+    <div class="container mt-5 ">
 
-                <?php } ?>
-            </tbody>
-        </table>
+        <!-- <table id="example" class="table table-sm exo text-center">
+                <thead class="bg-shadow-it bg-table">
+                    <tr class="text-light">
+                        <th class="">Cod.</th>
+                        <th class="">Item</th>
+                        <th class="">Quantidade</th>
+                        <th class="">Setor</th>
+                        <th class="">Data</th>
+                        <th class="">Solicitante</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    require_once('back/crud/farmaciaCRUD.php');
+                    $view_pedidos = new FarmaciaCRUD();
+                    $pedidos = $view_pedidos->v_pedidos();
+                    foreach ($pedidos as $v) {
+                    ?>
+                        <tr>
+                            <td><?= $v->id_req ?></td>
+                            <td><?= $v->produto_e ?></td>
+                            <td><?= $v->qtde_req ?></td>
+                            <td><?= $v->setor_req ?></td>
+                            <td><?= date("d/m/Y H:i:s", strtotime($v->data_req)) ?></td>
+                            <td><?= $v->solicitante_req ?></td>
+                            <td> <?php echo "<a href=back/response/pedidos_r.php?id=" . $v->id_req . "&p=aceitar&ide=" . $v->item_req . " class='badge badge-success'><i class='fas fa-check-square'></i></a></td>"; ?>
+                            <td> <?php echo "<a href=back/response/pedidos_r.php?id=" . $v->id_req . "&p=cancelar class='badge badge-danger'><i class='fas fa-minus-square'></i></a></td>"; ?>
+                        </tr>
+
+                    <?php } ?>
+                </tbody>
+            </table> -->
     </div>
     <!-- JavaScript (Opcional) -->
     <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->

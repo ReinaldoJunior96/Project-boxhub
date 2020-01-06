@@ -76,7 +76,7 @@
                 <input type="hidden" name="edit" value="1">
                 <input type="hidden" name="id" value="<?= $_GET['idp'] ?>">
                 <div class="form-row">
-                    <div class="form-group col-md-10">
+                    <div class="form-group col-md-8">
                         <label for="inputEmail4" class="exo">Produto</label>
                         <input type="text" class="form-control" value="<?= $v->produto_e ?>" name="produto_e" id="inputEmail4" placeholder="">
                     </div>
@@ -84,6 +84,10 @@
                         <label for="inputPassword4" class="exo">Valor (UN)</label>
                         <input type="text" class="form-control" value="<?= $v->valor_un_e ?>" name="valor_un" id="inputPassword4" placeholder="">
                     </div>
+                    <div class="form-group col-md-2">
+                    <label for="inputEmail4" class="exo">Estoque Mínimo</label>
+                    <input type="text" class="form-control" name="estoque_minimo_e" id="inputEmail4" value="<?=$v->estoque_minimo_e?>" placeholder="">
+                </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-3">

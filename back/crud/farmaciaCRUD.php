@@ -470,7 +470,7 @@ class FarmaciaCRUD
 
 	public function contar_notificacao()
 	{
-		$contar = $this->conn->prepare("SELECT * FROM tbl_estoque WHERE quantidade_e<=60");
+		$contar = $this->conn->prepare("SELECT * FROM tbl_estoque WHERE quantidade_e<=estoque_minimo_e");
 		$contar->execute();
 		$quantidade = $contar->rowCount();
 		return $quantidade;
@@ -478,7 +478,7 @@ class FarmaciaCRUD
 
 	public function ver_notificacoes()
 	{
-		$ver = $this->conn->prepare("SELECT * FROM tbl_estoque WHERE quantidade_e<=60");
+		$ver = $this->conn->prepare("SELECT * FROM tbl_estoque WHERE quantidade_e<=estoque_minimo_e");
 		$ver->execute();
 		$notificacoes = $ver->fetchAll(PDO::FETCH_OBJ);
 		return $notificacoes;

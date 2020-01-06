@@ -71,7 +71,7 @@
                 $f = new FarmaciaCRUD();
                 $alert = $f->contar_notificacao();
                 ?>
-                <i class="fas fa-bell text-white"></i> &nbsp<span class="badge badge-light"><?= $alert ?></span>
+                <i class="fas fa-bell text-white"></i> &nbsp<span class="badge badge-light"><?=$alert?></span>
             </button>
         </h3>
 
@@ -204,7 +204,7 @@
                             
                             <img src="images/avatar.jpg" class="rounded-circle float-left mt-3 mr-3 ml-2" width="45" height="40" alt="...">
                             <p class="exo align-self-center mt-3">
-                                O seu produto/material <strong class="font-weight-bold"><?=$c->produto_e?></strong> está com quantitativo baixo, que repor ?</p>
+                                O seu produto/material <strong class="font-weight-bold"><?=$c->produto_e?></strong> está com quantitativo baixo.</p>
                         </div>
                     <?php } ?>
                 </div>
