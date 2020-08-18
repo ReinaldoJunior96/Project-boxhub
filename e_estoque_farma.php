@@ -96,7 +96,7 @@
                     </div>
                     <div class="form-group col-sm-3">
                         <label for="exampleFormControlSelect1">Categoria</label>
-                        <select class="form-control" id="exampleFormControlSelect1" name="categoria_e" required="">
+                        <select class="form-control" id="exampleFormControlSelect1" name="categoria_e">
                             <?php echo "<option value='$v->categoria_e'>$v->categoria_e</option>"; ?>
                             <?php
                                 require_once('back/crud/configCRUD.php');
@@ -110,7 +110,7 @@
                     </div>
                     <div class="form-group col-sm-3">
                         <label for="exampleFormControlSelect1">Unidade de medida</label>
-                        <select class="form-control" id="exampleFormControlSelect1" name="unidade_e" required="">
+                        <select class="form-control" id="exampleFormControlSelect1" name="unidade_e" >
                             <?php echo "<option value='$v->unidade_e'>$v->unidade_e</option>"; ?>
                             <?php
                                 require_once('back/crud/configCRUD.php');
@@ -124,7 +124,7 @@
                     </div>
                     <div class="form-group col-sm-3">
                         <label for="exampleFormControlSelect1">Marca</label>
-                        <select class="form-control" id="exampleFormControlSelect1" name="marca_e" required="">
+                        <select class="form-control" id="exampleFormControlSelect1" name="marca_e">
                             <?php echo "<option value='$v->marca_e'>$v->marca_e</option>"; ?>
                             <?php
                                 require_once('back/crud/configCRUD.php');

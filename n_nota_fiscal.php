@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -10,7 +9,6 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4-4.1.1/dt-1.10.18/datatables.min.css" />
     <!-- Meu CSS -->
     <link rel="stylesheet" href="css/style.css">
-
     <title>boxhub</title>
     <script type="text/javascript">
         function SubstituiVirgulaPorPonto(campo) {
@@ -18,20 +16,15 @@
         }
     </script>
 </head>
-
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-nav ">
+    <nav class="navbar navbar-expand-lg navbar-light bg-nav ">
         <a class="navbar-brand" href="index.php">
             <img src="images/icon-box.png" width="37" height="32" alt="">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
             <span class="navbar-toggler-icon"></span>
         </button>
-
-        <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
-
-
-        </div>
+        <div class="collapse navbar-collapse" id="conteudoNavbarSuportado"></div>
         <form class="form-inline">
             <ul class="nav justify-content-end">
                 <li class="nav-item active">
@@ -117,87 +110,87 @@
                 <label class="form-check-label exo" for="exampleCheck1">Confirmo que revisei os dados inseridos</label>
             </div>
             <button type="submit" class="btn bg-color-btn col-sm-2 exo mt-1">Gerar NF <i class="fas fa-plus ml-2"></i>
-        </form>
-    </div>
-    <div class="container mt-5">
-        <table id="example" class="table table-striped exo text-center">
-            <thead class="bg-shadow-it bg-table">
-                <tr class="">
-                    <th class="">NF</th>
-                    <th class="">Fornecedor</th>
-                    <th class="">Data de Emissão</th>
-                    <th class="">Data Lançamento</th>
-                    <th class="">Valor</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                require_once('back/crud/farmaciaCRUD.php');
-                $view_nf = new FarmaciaCRUD();
-                $allnf = $view_nf->index();
-                foreach ($allnf as $v) {
-                    ?>
-                    <tr>
-                        <?php echo "<td class=''><a class='link' href=n_produtos_nota_fiscal.php?idnf=" . $v->id_nf . ">" . $v->numero_nf . "</a></td>" ?>
-                        <td><?= $v->fornecedor ?></td>
-                        <td><?= $v->data_emissao ?></td>
-                        <td><?= $v->data_lancamento ?></td>
-                        <td>R$ <?= $v->valor_nf ?></td>
-                        <?php echo "<td><a href=e_entrada_farma.php?idnf=" . $v->id_nf . "><i class='fas fa-pen-square fa-lg color-icon-nf'></i></a></td>" ?>
-                        <?php echo "<td><a href=back/response/d_nf_r.php?idnf=" . $v->id_nf . "><i class='fas fa-window-close fa-1x' style='color: red;'></i></a></td>" ?>
+            </form>
+        </div>
+        <div class="container mt-5">
+            <table id="example" class="table table-striped exo text-center">
+                <thead class="bg-shadow-it bg-table">
+                    <tr class="">
+                        <th class="">NF</th>
+                        <th class="">Fornecedor</th>
+                        <th class="">Data de Emissão</th>
+                        <th class="">Data Lançamento</th>
+                        <th class="">Valor</th>
+                        <th></th>
+                        <th></th>
                     </tr>
-                <?php } ?>
-            </tbody>
-        </table>
-    </div>
-    <!-- JavaScript (Opcional) -->
-    <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4-4.1.1/dt-1.10.18/datatables.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#example').DataTable({
-                "language": {
-                    "sEmptyTable": "Nenhum registro encontrado",
-                    "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
-                    "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
-                    "sInfoFiltered": "(Filtrados de _MAX_ registros)",
-                    "sInfoPostFix": "",
-                    "sInfoThousands": ".",
-                    "sLengthMenu": "_MENU_ <r class='varela-round azul-mateus'>resultados por página</r>",
-                    "sLoadingRecords": "Carregando...",
-                    "sProcessing": "Processando...",
-                    "sZeroRecords": "Nenhum registro encontrado",
-                    "sSearch": "<r class='varela-round azul-mateus'>Buscar</r>",
-                    "oPaginate": {
-                        "sNext": "Próximo",
-                        "sPrevious": "Anterior",
-                        "sFirst": "Primeiro",
-                        "sLast": "Último"
-                    },
-                    "oAria": {
-                        "sSortAscending": ": Ordenar colunas de forma ascendente",
-                        "sSortDescending": ": Ordenar colunas de forma descendente"
+                </thead>
+                <tbody>
+                    <?php
+                    require_once('back/crud/farmaciaCRUD.php');
+                    $view_nf = new FarmaciaCRUD();
+                    $allnf = $view_nf->index();
+                    foreach ($allnf as $v) {
+                        ?>
+                        <tr>
+                            <?php echo "<td class=''><a class='link' href=n_produtos_nota_fiscal.php?idnf=" . $v->id_nf . ">" . $v->numero_nf . "</a></td>" ?>
+                            <td><?= $v->fornecedor ?></td>
+                            <td><?= $v->data_emissao ?></td>
+                            <td><?= $v->data_lancamento ?></td>
+                            <td>R$ <?= $v->valor_nf ?></td>
+                            <?php echo "<td><a href=e_entrada_farma.php?idnf=" . $v->id_nf . "><i class='fas fa-pen-square fa-lg color-icon-nf'></i></a></td>" ?>
+                            <?php echo "<td><a href=back/response/d_nf_r.php?idnf=" . $v->id_nf . "><i class='fas fa-window-close fa-1x' style='color: red;'></i></a></td>" ?>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
+        <!-- JavaScript (Opcional) -->
+        <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/popper.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/v/bs4-4.1.1/dt-1.10.18/datatables.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('#example').DataTable({
+                    "language": {
+                        "sEmptyTable": "Nenhum registro encontrado",
+                        "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                        "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+                        "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+                        "sInfoPostFix": "",
+                        "sInfoThousands": ".",
+                        "sLengthMenu": "_MENU_ <r class='varela-round azul-mateus'>resultados por página</r>",
+                        "sLoadingRecords": "Carregando...",
+                        "sProcessing": "Processando...",
+                        "sZeroRecords": "Nenhum registro encontrado",
+                        "sSearch": "<r class='varela-round azul-mateus'>Buscar</r>",
+                        "oPaginate": {
+                            "sNext": "Próximo",
+                            "sPrevious": "Anterior",
+                            "sFirst": "Primeiro",
+                            "sLast": "Último"
+                        },
+                        "oAria": {
+                            "sSortAscending": ": Ordenar colunas de forma ascendente",
+                            "sSortDescending": ": Ordenar colunas de forma descendente"
+                        }
                     }
-                }
+                });
             });
-        });
-    </script>
-    <script type='text/javascript'>
-        (function() {
-            if (window.localStorage) {
-                if (!localStorage.getItem('firstLoad')) {
-                    localStorage['firstLoad'] = true;
-                    window.location.reload();
-                } else
+        </script>
+        <script type='text/javascript'>
+            (function() {
+                if (window.localStorage) {
+                    if (!localStorage.getItem('firstLoad')) {
+                        localStorage['firstLoad'] = true;
+                        window.location.reload();
+                    } else
                     localStorage.removeItem('firstLoad');
-            }
-        })();
-    </script>
-</body>
+                }
+            })();
+        </script>
+    </body>
 
-</html>
+    </html>

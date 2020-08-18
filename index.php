@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -11,21 +10,14 @@
     <!-- Meu CSS -->
     <link rel="stylesheet" href="css/style.css">
     <title>Box Hub</title>
-    <link rel="icon" href="images/icon-box.png" type="image/x-icon" />
+    <!-- <link rel="icon" class="rounded" href="images/icon-box.png" type="image/x-icon" /> -->
 </head>
-
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-nav">
-        
         <!-- <a class="navbar-brand exo text-white" href="index.php">Hospital Veterinário</a> -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
             <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
-
-
-        </div>
+        </button>        
         <form class="form-inline">
             <ul class="nav justify-content-end animated fadeInLeft delay-1s">
                 <li class="nav-item active">
@@ -42,9 +34,8 @@
                         $setores = $s->ver_setores();
                         foreach ($setores as $v) {
                             ?>
-                            <?php echo "<a class='dropdown-item font-weight-light' href='n_saida_setor.php?setor=" . $v->id_setor . "&nomesetor=" . str_replace("-", " ", $v->setor_s) . "'>" . str_replace("-", " ", $v->setor_s) . "</a>" ?>
+                            <?php echo "<a style='z-index: 1; position: relative;' class='dropdown-item font-weight-light' href='n_saida_setor.php?setor=" . $v->id_setor . "&nomesetor=" . str_replace("-", " ", $v->setor_s) . "'>" . str_replace("-", " ", $v->setor_s) . "</a>" ?>
                         <?php } ?>
-
                     </div>
                 </li>
                 <li class="nav-item active">
@@ -70,7 +61,5 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-
 </body>
-
 </html>
