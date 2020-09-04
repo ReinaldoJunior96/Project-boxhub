@@ -103,8 +103,6 @@ switch ($_SESSION['user']) {
             </div>
         </div>
     </div>
-
-
 </div>
 <!-- JavaScript (Opcional) -->
 <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
