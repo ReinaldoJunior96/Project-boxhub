@@ -1,0 +1,26 @@
+{
+  "name": "Project-boxhub",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "jquery": "^3.5.1",
+    "popper.js": "^1.16.1",
+    "bootstrap": "^4.5.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "r-sass": "node-sass --watch css/style.scss css/style.min.css --output-style compressed"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ReinaldoJunior96/Project-boxhub.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ReinaldoJunior96/Project-boxhub/issues"
+  },
+  "homepage": "https://github.com/ReinaldoJunior96/Project-boxhub#readme"
+}

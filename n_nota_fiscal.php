@@ -17,7 +17,7 @@
     </script>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-nav ">
+    <nav class="navbar navbar-expand-lg navbar-light bg-nav">
         <a class="navbar-brand" href="index.php">
             <img src="images/icon-box.png" width="37" height="32" alt="">
         </a>

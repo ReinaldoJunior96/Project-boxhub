@@ -1,0 +1,192 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Comfortaa&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Varela+Round&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Exo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+$theme-colors: (
+        "primary": #DA4453,
+        "secondary": #89216B
+);
+/* Fontes */
+
+
+.roboto-condensed{
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+.exo {
+  font-family: 'Exo', sans-serif;
+}
+
+.roboto-slab {
+  font-family: 'Roboto Slab', serif;
+}
+
+.comfortaa {
+  font-family: 'Comfortaa', cursive;
+}
+
+.varela-round {
+  font-family: 'Varela Round', sans-serif;
+}
+
+.links-requisicao {
+  color: #00c4cc;
+}
+
+
+/* Backgrounds */
+
+.bg-nav {
+  background-image: linear-gradient(to right, #DA4453, #89216B);
+}
+
+.input-background{
+  background-color: #DA4453;
+  opacity: 0.8;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.bg-color-btn {
+  /* Para botões */
+  background-color: #11998e;
+  color: #ffffff;
+}
+
+.bg-color-btn:hover {
+  /* Para botões */
+  background-color: #0d746b;
+  color: #ffffff;
+}
+
+.bg-table {
+  /* Header da table */
+  background-image: linear-gradient(to right, #11998e, #11998e);
+  color: #ffffff;
+}
+
+
+/* Links */
+
+a:link {
+  text-decoration: none !important;
+  color: #11998e;
+}
+
+a:visited {
+  color: #11998e;
+}
+
+.link-basico {
+  color: #11998e;
+  font-size: 18px;
+  margin-top: 15px;
+}
+
+.link-basico:hover {
+  color: #1bb9ac;
+}
+
+
+/* Textos */
+
+.text-nav {
+  color: #FEFBFE;
+}
+
+.color-icon {
+  color: #38ef7d;
+}
+
+.color-verde {
+  color: #11998e;
+}
+
+.color-icon-nf {
+  color: #000000;
+}
+
+.titulo-1 {
+  color: #204B30;
+  font-size: 1.3em;
+}
+
+.titulo-index {
+  margin-top: -30px;
+}
+
+.mgs-passando {
+  font-size: 3.9em;
+}
+
+.font-senha {
+  font-size: 4.2em;
+  color: #204B30;
+}
+
+.font-senha-2 {
+  font-size: 13.0em;
+  color: #A7D036;
+}
+
+
+/* Images */
+
+.img-logo {
+  margin-top: 50px;
+  width: 30%;
+  position: relative;
+  z-index: 1;
+}
+
+.logo-pixel {
+  margin-top: -2px;
+}
+
+.logo-requisicao {
+  width: 25%;
+  margin-top: -20px;
+}
+
+.form-control {
+  border-style: solid;
+  border-color: #acacac;
+}
+
+.btn-baixo {
+  margin-top: 33px;
+}
+
+.drop-position {
+  margin-top: -10px;
+}
+
+.notificacao {
+  background-image: linear-gradient(to right, #218d4b, #11998e);
+  color: #ffffff;
+}
+
+.titulo-notificacao {
+  color: #11998e;
+}
+
+
+
+
+
+
+@import '../node_modules/bootstrap/scss/bootstrap';
