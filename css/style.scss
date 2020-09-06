@@ -5,7 +5,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
 $theme-colors: (
         "primary": #DA4453,
-        "secondary": #89216B
+        "secondary": #89216B,
+        "menu-color": #F9CD74,
+        "menu-color-2": #6B968B,
 );
 /* Fontes */
 
@@ -32,6 +34,12 @@ $theme-colors: (
 
 .links-requisicao {
   color: #00c4cc;
+}
+.isDisabled {
+  color: currentColor;
+  cursor: not-allowed;
+  opacity: 0.5;
+  text-decoration: none;
 }
 
 

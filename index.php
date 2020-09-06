@@ -7,7 +7,7 @@ require_once('back/crud/configCRUD.php');
 $s = new ConfigCRUD();
 switch ($_SESSION['user']) {
     case 'farma.hvu':
-        $permissao = 'disabled';
+        $permissao = 'isDisabled';
         break;
     case 'compras.hvu':
         $permissao = '';
@@ -22,6 +22,7 @@ switch ($_SESSION['user']) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4-4.1.1/dt-1.10.18/datatables.min.css"/>
     <link rel="stylesheet" href="css/style.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
           integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -34,51 +35,80 @@ switch ($_SESSION['user']) {
     <div class="row">
         <div class="col-3">
             <div class="shadow p-3">
-                <?php
-
-                ?>
                 <div class="text-center">
                     <img src="images/box.png" class="img-fluid mt-2" width="100" alt="Imagem responsiva">
+                    <h4 class="roboto-condensed text-black-50">Box Hub</h4>
                 </div>
                 <ul class="list-group mt-5">
-                    <a href="n_nota_fiscal.php"
-                       class="list-group-item list-group-item-action border-top-0 border-right-0 border-left-0 <?= $permissao ?>"><i class="fas fa-cart-arrow-down"></i> Entrada</a>
-                    <a href="nv_estoque.php"
-                       class="list-group-item list-group-item-action border-top-0 border-right-0 border-left-0"><i class="fas fa-box-open"></i> Estoque</a>
+                    <li class="list-group-item border-0">
+                        <a href="n_nota_fiscal.php"
+                           class="border-top-0 border-right-0 border-left-0 text-menu-color-2 >">
+                            <i class="fas fa-cart-arrow-down"></i> Entrada</a>
+                    </li>
+                    <li class="list-group-item border-top border-right-0 border-left-0 border-bottom-0 ">
+                        <a href="nv_estoque.php"
+                           class="border-top-0 border-right-0 border-left-0 border-top-0 text-menu-color-2"><i
+                                    class="fas fa-box-open"></i> Estoque</a></li>
+
+
                     <!-- Botão dropright padrão -->
                     <div class="dropright">
-                        <a href="#"
-                           class="list-group-item list-group-item-action border-top-0 border-right-0 border-left-0"
-                           data-toggle="dropdown"><i class="fas fa-external-link-alt"></i> Saída</a>
-                        <div class="dropdown-menu">
+                        <li class="list-group-item border-top border-right-0 border-left-0 border-bottom-0 "  data-toggle="dropdown">
+                            <a href="#" class="border-top-0 border-right-0 border-left-0 text-menu-color-2"><i
+                                        class="fas fa-external-link-alt"></i> Saída</a></li>
+
+                        <div class="dropdown-menu border-0 shadow">
                             <ul class="list-group border-0">
                                 <?php
                                 $setores = $s->ver_setores();
                                 foreach ($setores as $v) {
                                     ?>
-                                    <a href="n_saida_setor.php?setor=<?= $v->id_setor ?>&nomesetor=<?= str_replace("-", " ", $v->setor_s) ?>"
-                                       class="list-group-item list-group-item-action border-top-0 border-right-0 border-left-0">
+                                   <li class="list-group-item list-group-item-action border-0 text-menu-color-2"><a href="n_saida_setor.php?setor=<?= $v->id_setor ?>&nomesetor=<?= str_replace("-", " ", $v->setor_s) ?>"
+                                       class="">
                                         <?= str_replace("-", " ", $v->setor_s) ?>
-                                    </a>
+                                    </a></li>
                                 <?php } ?>
                             </ul>
                         </div>
                     </div>
-                    <a href="n_relatorio.php"
-                       class="list-group-item list-group-item-action border-top-0 border-right-0 border-left-0 <?= $permissao ?>">Relatórios</a>
-                    <a href="vd_pedidos.php"
-                       class="list-group-item list-group-item-action border-top-0 border-right-0 border-left-0 >"><i class="fas fa-ticket-alt"></i> Solicitação</a>
-                    <a href="config_farma.php"
-                       class="list-group-item list-group-item-action border-top-0 border-right-0 border-left-0 <?= $permissao ?>"><i class="fas fa-cog"></i> Configurações</a>
-                    <a href="back/response/destroy_sessao.php"
-                       class="list-group-item list-group-item-action border-top-0 border-right-0 border-left-0 ">Sair</a>
+                    <li class="list-group-item border-top border-right-0 border-left-0 border-bottom-0 "><a
+                                href="n_relatorio.php"
+                                class="border-top-0 border-right-0 border-left-0 text-menu-color-2" <?= $permissao ?>
+                        "><i class="fas fa-file-pdf"></i> Relatórios</a></li>
+                    <li class="list-group-item border-top border-right-0 border-left-0 border-bottom-0 ">
+                        <a href="n_relatorio.php"
+                           class="border-top-0 border-right-0 border-left-0 text-menu-color-2 " <?= $permissao ?>
+                        "><i class="fas fa-bell"></i> Notificações <span class="float-right"><i
+                                    class="fas fa-exclamation-triangle text-primary"></i></span></a>
+                    </li>
+
+                    <li class="list-group-item border-top border-right-0 border-left-0 border-bottom-0 ">
+                        <a href="vd_pedidos.php"
+                           class="border-top-0 border-right-0 border-left-0 text-menu-color-2"><i
+                                    class="fas fa-ticket-alt"></i> Solicitação</a>
+
+                    </li>
+                    <li class="list-group-item border-top border-right-0 border-left-0 border-bottom-0 ">
+                        <a href="config_farma.php"
+                           class="text-menu-color-2" <?= $permissao ?>
+                        "><i
+                                class="fas fa-cog"></i> Configurações</a>
+                    </li>
+
+                    <li class="list-group-item border-top border-right-0 border-left-0 border-bottom-0 ">
+                        <a href="back/response/destroy_sessao.php"
+                           class="text-menu-color-2"><i
+                                    class="fas fa-power-off"></i> Sair</a>
+                    </li>
+
+
                 </ul>
             </div>
         </div>
         <div class="col-9">
             <div class="">
                 <nav class="navbar navbar-expand-lg navbar-light bg-nav">
-                    <a class="navbar-brand text-white roboto-condensed" href="#"><i class="fas fa-box-open"></i> Box Hub
+                    <a class="navbar-brand text-white roboto-condensed" href="#"><i class="fas fa-box-open"></i>
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado"
@@ -91,8 +121,8 @@ switch ($_SESSION['user']) {
 
                         </ul>
                         <div class="form-inline my-2 my-lg-0">
-                            <a href="#" class="badge badge-secondary"><i class="fas fa-bell text-white"></i> <span
-                                        class="badge text-white">5</span></a>
+                            <!--<a href="#" class="badge badge-secondary"><i class="fas fa-bell text-white"></i> <span
+                                        class="badge text-white">5</span></a>-->
                         </div>
                     </div>
                 </nav>

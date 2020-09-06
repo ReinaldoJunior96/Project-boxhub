@@ -128,8 +128,12 @@ switch ($_SESSION['user']) {
                                                 <div class="input-group-text bg-primary text-light roboto-condensed">R$
                                                 </div>
                                             </div>
-                                            <input type="text" class="form-control disabled" name="valor_un" id=""
-                                                    placeholder="" value="<?= $v->valor_un_e ?>">
+                                            <?php if ($_SESSION['user'] == 'farma.hvu') { ?>
+                                                <input type='text' class='form-control' disabled value="*******" name='valor_un' placeholder=''>
+                                            <?php } else { ?>
+                                                <input type='text' class='form-control disabled' name='valor_un' value="<?= $v->valor_un_e ?>" placeholder=''
+                                                       >
+                                            <?php } ?>
                                         </div>
                                     </div>
                                 <?php } ?>

@@ -23,9 +23,11 @@ switch ($_SESSION['user']) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4-4.1.1/dt-1.10.18/datatables.min.css"/>
     <link rel="stylesheet" href="css/style.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
           integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
     <!-- Meu CSS -->
     <title>Box Hub</title>
     <!-- <link rel="icon" class="rounded" href="images/icon-box.png" type="image/x-icon" /> -->
@@ -109,21 +111,23 @@ switch ($_SESSION['user']) {
                                 <input type="text" class="form-control" name="produto_e" id="inputEmail4"
                                        placeholder="" required>
                             </div>
-                            <?php
-                            if ($permissao != '') {
-                                ?>
-                                <div class="col-md-2">
-                                    <label for="inputEmail4" class="roboto-condensed">Valor</label>
-                                    <div class="input-group mb-2">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text bg-primary text-light roboto-condensed">R$
-                                            </div>
+
+                            <div class="col-md-2">
+                                <label for="inputEmail4" class="roboto-condensed">Valor</label>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text bg-primary text-light roboto-condensed">R$
                                         </div>
-                                        <input type="text" class="form-control disabled" name="valor_un" id=""
-                                               onkeyup="SubstituiVirgulaPorPonto(this)" placeholder="">
                                     </div>
+                                    <?php if ($_SESSION['user'] == 'compras.hvu') { ?>
+                                        <input type='text' class='form-control ' name='valor_un' placeholder=''>
+                                    <?php } else { ?>
+                                        <input type='text' class='form-control ' name='valor_un' placeholder=''
+                                               disabled>
+                                    <?php } ?>
+
                                 </div>
-                            <?php } ?>
+                            </div>
 
                             <div class="form-group col-md-2">
                                 <label for="inputEmail4" class="roboto-condensed">Quantidade</label>
