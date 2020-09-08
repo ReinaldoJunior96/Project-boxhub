@@ -2,19 +2,11 @@
 session_start();
 if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
     header("location: login.php");
+} elseif ($_SESSION['user'] != 'compras.hvu') {
+    header("location: index.php");
 }
 require_once('back/crud/configCRUD.php');
 $s = new ConfigCRUD();
-switch ($_SESSION['user']) {
-    case 'farma.hvu':
-        $permissao = 'disabled';
-        break;
-    case 'compras.hvu':
-        $permissao = '';
-        break;
-    default:
-        $permissao = '';
-}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -34,59 +26,7 @@ switch ($_SESSION['user']) {
 <body>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-3">
-            <div class="shadow p-3">
-                <div class="text-center">
-                    <img src="images/box.png" class="img-fluid mt-2" width="100" alt="Imagem responsiva">
-                    <h4 class="roboto-condensed text-black-50">Box Hub</h4>
-                </div>
-                <ul class="list-group mt-5">
-                    <a href="n_nota_fiscal.php"
-                       class="list-group-item list-group-item-action border-top-0 border-right-0 border-left-0 text-menu-color-2" <?= $permissao ?>
-                    "><i
-                            class="fas fa-cart-arrow-down"></i> Entrada</a>
-                    <a href="nv_estoque.php"
-                       class="list-group-item list-group-item-action border-top border-right-0 border-left-0 text-menu-color-2"><i
-                                class="fas fa-box-open"></i> Estoque</a>
-                    <!-- Botão dropright padrão -->
-                    <div class="dropright">
-                        <a href="#"
-                           class="list-group-item list-group-item-action border-top border-right-0 border-left-0 text-menu-color-2"
-                           data-toggle="dropdown"><i class="fas fa-external-link-alt"></i> Saída</a>
-                        <div class="dropdown-menu">
-                            <ul class="list-group border-0">
-                                <?php
-                                $setores = $s->ver_setores();
-                                foreach ($setores as $v) {
-                                    ?>
-                                    <a href="n_saida_setor.php?setor=<?= $v->id_setor ?>&nomesetor=<?= str_replace("-", " ", $v->setor_s) ?>"
-                                       class="list-group-item list-group-item-action border-top-0 border-right-0 border-left-0">
-                                        <?= str_replace("-", " ", $v->setor_s) ?>
-                                    </a>
-                                <?php } ?>
-                            </ul>
-                        </div>
-                    </div>
-                    <a href="n_relatorio.php"
-                       class="list-group-item list-group-item-action border-top border-right-0 border-left-0 text-menu-color-2" <?= $permissao ?>
-                    "><i class="fas fa-file-pdf"></i> Relatórios</a>
-                    <a href="n_relatorio.php"
-                       class="list-group-item list-group-item-action border-top border-right-0 border-left-0 text-menu-color-2 " <?= $permissao ?>
-                    "><i class="fas fa-bell"></i> Notificações <span class="float-right"><i
-                                class="fas fa-exclamation-triangle text-primary"></i></span></a>
-                    <a href="vd_pedidos.php"
-                       class="list-group-item list-group-item-action border-top border-right-0 border-left-0 text-menu-color-2"><i
-                                class="fas fa-ticket-alt"></i> Solicitação</a>
-                    <a href="config_farma.php"
-                       class="list-group-item list-group-item-action border-top border-right-0 border-left-0 text-menu-color-2" <?= $permissao ?>
-                    "><i
-                            class="fas fa-cog"></i> Configurações</a>
-                    <a href="back/response/destroy_sessao.php"
-                       class="list-group-item list-group-item-action border-top border-right-0 border-left-0 border-bottom-0 text-menu-color-2"><i
-                                class="fas fa-power-off"></i> Sair</a>
-                </ul>
-            </div>
-        </div>
+        <?php include_once "widget/menu.php" ?>
         <div class="col-9">
             <div class="">
                 <nav class="navbar navbar-expand-lg navbar-light bg-nav">
@@ -104,7 +44,7 @@ switch ($_SESSION['user']) {
 
                         </ul>
                         <div class="form-inline my-2 my-lg-0">
-                            
+
 
                         </div>
                     </div>

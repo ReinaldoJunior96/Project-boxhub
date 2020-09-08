@@ -36,50 +36,7 @@ switch ($_SESSION['user']) {
 <body>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-3">
-            <div class="shadow p-3">
-                <div class="text-center">
-                    <img src="images/box.png" class="img-fluid mt-2" width="100" alt="Imagem responsiva">
-                </div>
-                <ul class="list-group mt-5">
-                    <a href="n_nota_fiscal.php"
-                       class="list-group-item list-group-item-action border-top-0 border-right-0 border-left-0 <?= $permissao ?>"><i
-                                class="fas fa-cart-arrow-down"></i> Entrada</a>
-                    <a href="nv_estoque.php"
-                       class="list-group-item list-group-item-action border-top-0 border-right-0 border-left-0"><i
-                                class="fas fa-box-open"></i> Estoque</a>
-                    <!-- Botão dropright padrão -->
-                    <div class="dropright">
-                        <a href="#"
-                           class="list-group-item list-group-item-action border-top-0 border-right-0 border-left-0"
-                           data-toggle="dropdown"><i class="fas fa-external-link-alt"></i> Saída</a>
-                        <div class="dropdown-menu">
-                            <ul class="list-group border-0">
-                                <?php
-                                $setores = $s->ver_setores();
-                                foreach ($setores as $v) {
-                                    ?>
-                                    <a href="n_saida_setor.php?setor=<?= $v->id_setor ?>&nomesetor=<?= str_replace("-", " ", $v->setor_s) ?>"
-                                       class="list-group-item list-group-item-action border-top-0 border-right-0 border-left-0">
-                                        <?= str_replace("-", " ", $v->setor_s) ?>
-                                    </a>
-                                <?php } ?>
-                            </ul>
-                        </div>
-                    </div>
-                    <a href="n_relatorio.php"
-                       class="list-group-item list-group-item-action border-top-0 border-right-0 border-left-0 <?= $permissao ?>">Relatórios</a>
-                    <a href="vd_pedidos.php"
-                       class="list-group-item list-group-item-action border-top-0 border-right-0 border-left-0 >"><i
-                                class="fas fa-ticket-alt"></i> Solicitação</a>
-                    <a href="config_farma.php"
-                       class="list-group-item list-group-item-action border-top-0 border-right-0 border-left-0 <?= $permissao ?>"><i
-                                class="fas fa-cog"></i> Configurações</a>
-                    <a href="back/response/destroy_sessao.php"
-                       class="list-group-item list-group-item-action border-top-0 border-right-0 border-left-0 ">Sair</a>
-                </ul>
-            </div>
-        </div>
+        <?php include_once "widget/menu.php"?>
         <div class="col-9">
             <div class="">
                 <nav class="navbar navbar-expand-lg navbar-light bg-nav">
@@ -97,12 +54,12 @@ switch ($_SESSION['user']) {
 
                         </ul>
                         <div class="form-inline my-2 my-lg-0">
-                            <a href="#" class="badge badge-secondary"><i class="fas fa-bell text-white"></i> <span
-                                        class="badge text-white">5</span></a>
+                            <!--<a href="#" class="badge badge-secondary"><i class="fas fa-bell text-white"></i> <span
+                                        class="badge text-white">5</span></a>-->
                         </div>
                     </div>
                 </nav>
-                <div class="mt-5">
+                <div class="mt-5 roboto-condensed">
                     <form method="POST" action="back/response/estoque_r.php">
                         <input type="hidden" name="new" value="1">
                         <div class="form-row">
@@ -121,6 +78,7 @@ switch ($_SESSION['user']) {
                                     </div>
                                     <?php if ($_SESSION['user'] == 'compras.hvu') { ?>
                                         <input type='text' class='form-control ' name='valor_un' placeholder=''>
+                                        <small>Utilize ponto no lugar da vírgula</small>
                                     <?php } else { ?>
                                         <input type='text' class='form-control ' name='valor_un' placeholder=''
                                                disabled>
@@ -184,7 +142,7 @@ switch ($_SESSION['user']) {
                                 </select>
                             </div>
                         </div>-->
-                        <button type="submit" class="btn bg-success col-sm-2 exo mt-1 text-white">Novo Produto <i
+                        <button type="submit" class="btn bg-primary shadow col-sm-2 exo mt-1 text-white">Novo Produto <i
                                     class="fas fa-plus ml-2"></i></button>
                     </form>
                 </div>

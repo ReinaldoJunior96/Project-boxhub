@@ -22,8 +22,7 @@
     <list default="true" id="e287bc17-b257-466b-b138-3c26574c0691" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config_farma.php" beforeDir="false" afterPath="$PROJECT_DIR$/config_farma.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/style.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/style.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/css/style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/e_entrada_farma.php" beforeDir="false" afterPath="$PROJECT_DIR$/e_entrada_farma.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/e_estoque_farma.php" beforeDir="false" afterPath="$PROJECT_DIR$/e_estoque_farma.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/n_nota_fiscal.php" beforeDir="false" afterPath="$PROJECT_DIR$/n_nota_fiscal.php" afterDir="false" />
@@ -32,6 +31,7 @@
       <change beforePath="$PROJECT_DIR$/nv_estoque.php" beforeDir="false" afterPath="$PROJECT_DIR$/nv_estoque.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/v_nota_fiscal.php" beforeDir="false" afterPath="$PROJECT_DIR$/v_nota_fiscal.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vd_historico_saida.php" beforeDir="false" afterPath="$PROJECT_DIR$/vd_historico_saida.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/menu.php" beforeDir="false" afterPath="$PROJECT_DIR$/widget/menu.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,6 +69,9 @@
       <workItem from="1599219387452" duration="2751000" />
       <workItem from="1599236892309" duration="2512000" />
       <workItem from="1599344830046" duration="15694000" />
+      <workItem from="1599482719640" duration="888000" />
+      <workItem from="1599484217605" duration="1624000" />
+      <workItem from="1599569921162" duration="6112000" />
     </task>
     <servers />
   </component>
@@ -86,5 +89,15 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/n_produtos_nota_fiscal.php</url>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
