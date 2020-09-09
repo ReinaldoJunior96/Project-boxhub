@@ -7,6 +7,7 @@
         <div class="text-center">
             <img src="images/box.png" class="img-fluid mt-2" width="100" alt="Imagem responsiva">
             <h4 class="roboto-condensed text-black-50">Box Hub</h4>
+            <h5 class="roboto-condensed text-black-50">Bem vindo(a), <?=$_SESSION['user']?></h5>
         </div>
         <ul class="list-group mt-5">
             <li class="list-group-item border-0">
@@ -47,7 +48,7 @@
                         class="border-top-0 border-right-0 border-left-0 text-menu-color-2"
                 "><i class="fas fa-file-pdf"></i> Relatórios</a></li>
             <li class="list-group-item border-top border-right-0 border-left-0 border-bottom-0 ">
-                <a href="<?= ($_SESSION['user'] == 'compras.hvu' or $_SESSION['user'] == 'farma.hvu') ? '' : '#' ?>"
+                <a href="<?= ($_SESSION['user'] == 'compras.hvu' or $_SESSION['user'] == 'farma.hvu') ? 'notificacao.php' : '' ?>"
                    class="border-top-0 border-right-0 border-left-0 text-menu-color-2 "
                 "><i class="fas fa-bell"></i> Notificações <span class="float-right"><i
                             class="fas fa-exclamation-triangle text-primary"></i></span></a>
@@ -60,7 +61,7 @@
 
             </li>-->
             <li class="list-group-item border-top border-right-0 border-left-0 border-bottom-0 ">
-                <a href="<?= ($_SESSION['user'] == 'farma.hvu') ? 'config_farma.php' : '#' ?>"
+                <a href="<?= ($_SESSION['user'] == 'farma.hvu') ? 'config_farma.php' : '' ?>"
                    class="text-menu-color-2 <?= ($_SESSION['user'] == 'farma.hvu') ? '' : 'isDisabled' ?>">
                     <i class="fas fa-cog"></i> Configurações</a>
             </li>

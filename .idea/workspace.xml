@@ -21,16 +21,8 @@
   <component name="ChangeListManager">
     <list default="true" id="e287bc17-b257-466b-b138-3c26574c0691" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config_farma.php" beforeDir="false" afterPath="$PROJECT_DIR$/config_farma.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e_entrada_farma.php" beforeDir="false" afterPath="$PROJECT_DIR$/e_entrada_farma.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e_estoque_farma.php" beforeDir="false" afterPath="$PROJECT_DIR$/e_estoque_farma.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/n_nota_fiscal.php" beforeDir="false" afterPath="$PROJECT_DIR$/n_nota_fiscal.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/n_produtos_nota_fiscal.php" beforeDir="false" afterPath="$PROJECT_DIR$/n_produtos_nota_fiscal.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/n_saida_setor.php" beforeDir="false" afterPath="$PROJECT_DIR$/n_saida_setor.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nv_estoque.php" beforeDir="false" afterPath="$PROJECT_DIR$/nv_estoque.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v_nota_fiscal.php" beforeDir="false" afterPath="$PROJECT_DIR$/v_nota_fiscal.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vd_historico_saida.php" beforeDir="false" afterPath="$PROJECT_DIR$/vd_historico_saida.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/crud/conexao.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/crud/conexao.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/sessao.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/sessao.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/widget/menu.php" beforeDir="false" afterPath="$PROJECT_DIR$/widget/menu.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -72,6 +64,7 @@
       <workItem from="1599482719640" duration="888000" />
       <workItem from="1599484217605" duration="1624000" />
       <workItem from="1599569921162" duration="6112000" />
+      <workItem from="1599620518023" duration="2279000" />
     </task>
     <servers />
   </component>
