@@ -4,9 +4,9 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
     header("location: login.php");
 }
 require_once('back/crud/configCRUD.php');
-require_once('back/crud/farmaciaCRUD.php');
+require_once('back/crud/bhCRUD.php');
 $s = new ConfigCRUD();
-$f = new FarmaciaCRUD();
+$f = new BhCRUD();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

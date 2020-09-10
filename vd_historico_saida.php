@@ -92,8 +92,8 @@ switch ($_SESSION['user']) {
                             </thead>
                             <tbody>
                             <?php
-                            require_once('back/crud/farmaciaCRUD.php');
-                            $view_historico = new FarmaciaCRUD();
+                            require_once('back/crud/bhCRUD.php');
+                            $view_historico = new BhCRUD();
                             // $historico = $view_historico->historico_saida();
                             if (empty($_POST['filtro'])) {
                                 $historico = $view_historico->historico_saida();

@@ -38,8 +38,8 @@ switch ($_SESSION['user']) {
             <div class="">
                 <nav class="navbar navbar-expand-lg navbar-light bg-nav">
                     <?php
-                    require_once('back/crud/farmaciaCRUD.php');
-                    $dados_nf = new FarmaciaCRUD();
+                    require_once('back/crud/bhCRUD.php');
+                    $dados_nf = new BhCRUD();
                     $nf = $dados_nf->findID($_GET['idnf']);
                     foreach ($nf
 
@@ -100,8 +100,8 @@ switch ($_SESSION['user']) {
                             </thead>
                             <tbody class="text-black-50">
                             <?php
-                            require_once('back/crud/farmaciaCRUD.php');
-                            $produtos = new FarmaciaCRUD();
+                            require_once('back/crud/bhCRUD.php');
+                            $produtos = new BhCRUD();
                             $ver_produtos = $produtos->verEstoque();
                             foreach ($ver_produtos as $v) {
                                 ?>

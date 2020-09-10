@@ -1,6 +1,6 @@
-<?php 
-require_once('../crud/farmaciaCRUD.php');
-require_once('../crud/ConfigCRUD.php');
+<?php
+include '../crud/bhCRUD.php';
+include '../crud/configCRUD.php';
 
 date_default_timezone_set('America/Sao_Paulo');
 $s = new ConfigCRUD();
@@ -15,7 +15,7 @@ $saida = array(
 	'data' => date("Y-m-d H:i:s")
 );
 
-$new_saida = new FarmaciaCRUD();
+$new_saida = new BhCRUD();
 $new_saida->registrar_saida($saida);
 echo "<script language=\"javascript\">window.history.back();</script>";
 

@@ -75,8 +75,8 @@
                     <select class="form-control" id="exampleFormControlSelect1" name="id_produto">
                         <option value=""></option>
                         <?php
-                        require_once('back/crud/farmaciaCRUD.php');
-                        $estoque = new FarmaciaCRUD();
+                        require_once('back/crud/bhCRUD.php');
+                        $estoque = new BhCRUD();
                         $ver_estoque = $estoque->verEstoque();
                         foreach ($ver_estoque as $v) {
                         ?>
@@ -114,8 +114,8 @@
     </div>
     <div class="container">
         <?php
-        require_once('back/crud/farmaciaCRUD.php');
-        $p = new FarmaciaCRUD();
+        require_once('back/crud/bhCRUD.php');
+        $p = new BhCRUD();
         if (!empty($_POST['id_produto']) and !empty($_POST['setor']) and !empty($_POST['dataI']) and !empty($_POST['dataF'])) {
             $search_prod = $p->pega_nome($_POST['id_produto']);/* Pega o produto no estoque */
             $pega_saida = $p->pega_saida($_POST['id_produto'], $_POST['setor'],$_POST['dataI'],$_POST['dataF']);/* Pega o produto no estoque */

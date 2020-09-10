@@ -59,8 +59,8 @@ switch ($_SESSION['user']) {
                 </nav>
                 <div class="text-center mt-3">
                     <?php
-                    require_once('back/crud/farmaciaCRUD.php');
-                    $nf = new FarmaciaCRUD();
+                    require_once('back/crud/bhCRUD.php');
+                    $nf = new BhCRUD();
                     $ver_nf = $nf->ver_NF($_GET['idnf']);
                     foreach ($ver_nf as $v) {
                         ?>
@@ -98,8 +98,8 @@ switch ($_SESSION['user']) {
                             </thead>
                             <tbody>
                             <?php
-                            require_once('back/crud/farmaciaCRUD.php');
-                            $nf = new FarmaciaCRUD();
+                            require_once('back/crud/bhCRUD.php');
+                            $nf = new BhCRUD();
                             $ver_nf = $nf->ver_prod_NF($_GET['idnf']);
                             foreach ($ver_nf as $v) {
                                 ?>

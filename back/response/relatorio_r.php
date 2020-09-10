@@ -1,6 +1,6 @@
 <?php 
-require_once('../crud/farmaciaCRUD.php');
-$p = new FarmaciaCRUD();
+require_once('../crud/bhCRUD.php');
+$p = new BhCRUD();
 // $produtos = $p->relatorio1($_POST['id_produto'],$_POST['setor'],$_POST['dataI'],$_POST['dataF']);
 $produtos = $p->relatorio1($_POST['setor']);
 

@@ -59,8 +59,8 @@ switch ($_SESSION['user']) {
                 <div class="mt-5 roboto-condensed">
                     <div class="container mt-3">
                         <?php
-                        require_once('back/crud/farmaciaCRUD.php');
-                        $new_nf = new FarmaciaCRUD();
+                        require_once('back/crud/bhCRUD.php');
+                        $new_nf = new BhCRUD();
                         $ver_nf = $new_nf->findID($_GET['idnf']);
                         foreach ($ver_nf as $v) {
                             ?>

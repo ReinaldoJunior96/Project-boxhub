@@ -1,5 +1,5 @@
 <?php 
-require_once('../crud/farmaciaCRUD.php');
+require_once('../crud/bhCRUD.php');
 $produto = array(
 	'produto' => $_POST['produto_e'],
 	'quantidade' => $_POST['quantidade_e'], 
@@ -11,11 +11,11 @@ $produto = array(
 );
 
 if(@$_POST['new'] == 1) {	
-	$new_produto = new FarmaciaCRUD();
+	$new_produto = new BhCRUD();
 	$new_produto->newProduto($produto);
 	echo "<script language=\"javascript\">window.history.back();</script>";
 }elseif(@$_POST['edit'] == 1){
-	$edit = new FarmaciaCRUD();
+	$edit = new BhCRUD();
 	$edit->edit_Produto($produto,$_POST['id']);
 	echo "<script language=\"javascript\">window.history.back();</script>";
 }

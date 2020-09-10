@@ -1,5 +1,5 @@
 <?php 
-require_once('../crud/farmaciaCRUD.php');
+require_once('../crud/bhCRUD.php');
 $produto_nf = array(
 	'produto' => $_POST['prod_id'],
 	'quantidade' => $_POST['quantidade_pnf'],
@@ -8,7 +8,7 @@ $produto_nf = array(
 	'nf' => $_POST['nf']
 );
 
-$new_produto_nf = new FarmaciaCRUD();
+$new_produto_nf = new BhCRUD();
 $new_produto_nf->addProd_nf($produto_nf);
 echo "<script language=\"javascript\">window.history.back();</script>";
 

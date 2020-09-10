@@ -132,8 +132,8 @@ $s = new ConfigCRUD();
                     </thead>
                     <tbody class="text-black-50">
                     <?php
-                    require_once('back/crud/farmaciaCRUD.php');
-                    $view_nf = new FarmaciaCRUD();
+                    require_once('back/crud/bhCRUD.php');
+                    $view_nf = new BhCRUD();
                     $allnf = $view_nf->index();
                     foreach ($allnf as $v) {
                         ?>

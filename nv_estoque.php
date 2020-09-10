@@ -159,8 +159,8 @@ switch ($_SESSION['user']) {
                     </thead>
                     <tbody class="text-black-50">
                     <?php
-                    require_once('back/crud/farmaciaCRUD.php');
-                    $view_estoque = new FarmaciaCRUD();
+                    require_once('back/crud/bhCRUD.php');
+                    $view_estoque = new BhCRUD();
                     $all_estoque = $view_estoque->verEstoque();
                     foreach ($all_estoque as $v) {
                         ?>

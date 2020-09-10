@@ -22,8 +22,29 @@
     <list default="true" id="e287bc17-b257-466b-b138-3c26574c0691" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/crud/conexao.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/crud/conexao.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/crud/farmaciaCRUD.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/crud/bhCRUD.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/relatorio/relatorio_setor.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/relatorio/relatorio_setor.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/d_nf_r.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/d_nf_r.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/d_produto_nf.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/d_produto_nf.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/d_saida_r.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/d_saida_r.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/estoque_r.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/estoque_r.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/n_produtos_nfr.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/n_produtos_nfr.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/n_saida_r.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/n_saida_r.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/nota_fiscal_r.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/nota_fiscal_r.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/pedidos_r.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/pedidos_r.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/relatorio_r.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/relatorio_r.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/response/sessao.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/sessao.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/widget/menu.php" beforeDir="false" afterPath="$PROJECT_DIR$/widget/menu.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/e_entrada_farma.php" beforeDir="false" afterPath="$PROJECT_DIR$/e_entrada_farma.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/e_estoque_farma.php" beforeDir="false" afterPath="$PROJECT_DIR$/e_estoque_farma.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/n_nota_fiscal.php" beforeDir="false" afterPath="$PROJECT_DIR$/n_nota_fiscal.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/n_produtos_nota_fiscal.php" beforeDir="false" afterPath="$PROJECT_DIR$/n_produtos_nota_fiscal.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/n_relatorio.php" beforeDir="false" afterPath="$PROJECT_DIR$/n_relatorio.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/n_saida_setor.php" beforeDir="false" afterPath="$PROJECT_DIR$/n_saida_setor.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notificacao.php" beforeDir="false" afterPath="$PROJECT_DIR$/notificacao.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nv_estoque.php" beforeDir="false" afterPath="$PROJECT_DIR$/nv_estoque.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v_nota_fiscal.php" beforeDir="false" afterPath="$PROJECT_DIR$/v_nota_fiscal.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vd_historico_saida.php" beforeDir="false" afterPath="$PROJECT_DIR$/vd_historico_saida.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vd_pedidos.php" beforeDir="false" afterPath="$PROJECT_DIR$/vd_pedidos.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,6 +86,7 @@
       <workItem from="1599484217605" duration="1624000" />
       <workItem from="1599569921162" duration="6112000" />
       <workItem from="1599620518023" duration="2279000" />
+      <workItem from="1599692656405" duration="4395000" />
     </task>
     <servers />
   </component>
@@ -82,6 +104,12 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1599693941251">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1599693941251" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

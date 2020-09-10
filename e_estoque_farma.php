@@ -57,8 +57,8 @@ switch ($_SESSION['user']) {
                 </nav>
                 <div class="mt-5">
                     <?php
-                    require_once 'back/crud/farmaciaCRUD.php';
-                    $p = new FarmaciaCRUD();
+                    require_once 'back/crud/bhCRUD.php';
+                    $p = new BhCRUD();
                     $produtos = $p->estoqueID($_GET['idp']);
                     foreach ($produtos as $v) {
                         ?>

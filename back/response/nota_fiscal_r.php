@@ -1,5 +1,5 @@
 <?php 
-require_once('../crud/farmaciaCRUD.php');
+require_once('../crud/bhCRUD.php');
 $nf = array(
 	'numero' => $_POST['numero_nf'],
 	'data_e' => $_POST['datae_nf'], 
@@ -11,11 +11,11 @@ $nf = array(
 
 
 if ($_POST['tipo'] == 'edit') {
-	$editnf = new FarmaciaCRUD();
+	$editnf = new BhCRUD();
 	$editnf-> edit_NF($nf, $_POST['idnf']);
 	echo "<script language=\"javascript\">window.history.back();</script>";
 }elseif ($_POST['tipo'] == 'new') {
-	$newnf = new FarmaciaCRUD();
+	$newnf = new BhCRUD();
 	$newnf->insert($nf);
 	echo "<script language=\"javascript\">window.history.back();</script>";
 }

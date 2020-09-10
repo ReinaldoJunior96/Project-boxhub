@@ -92,8 +92,8 @@
                 </thead>
                 <tbody>
                     <?php
-                    require_once('back/crud/farmaciaCRUD.php');
-                    $view_pedidos = new FarmaciaCRUD();
+                    require_once('back/crud/bhCRUD.php');
+                    $view_pedidos = new BhCRUD();
                     $pedidos = $view_pedidos->v_pedidos();
                     foreach ($pedidos as $v) {
                     ?>
