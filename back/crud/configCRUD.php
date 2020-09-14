@@ -39,7 +39,7 @@ class ConfigCRUD
     }
     public function ver_setores(){
 		try {
-			$setores = $this->conn->prepare("SELECT * FROM tbl_setores");
+			$setores = $this->conn->prepare("SELECT * FROM tbl_setores ORDER BY setor_s asc");
 			$setores->execute();
 			$query_result = $setores->fetchAll(PDO::FETCH_OBJ);
 			return $query_result;
