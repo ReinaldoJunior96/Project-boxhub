@@ -16,8 +16,7 @@
     <div class="d-flex justify-content-center mt-5">
         <div class="shadow p-3 mb-5 bg-white rounded col-4">
             <div class="text-center">
-                <img src="images/box.png" class="img-fluid mt-2" width="100" alt="Imagem responsiva">
-                <h4 class="roboto-condensed text-black-50">Box Hub</h4>
+                <img src="images/logo-login.png" class="img-fluid mt-2" width="250" alt="Imagem responsiva">
             </div>
             <form method="post" action="back/response/sessao.php">
                 <div class="form-group">
@@ -31,9 +30,10 @@
                 </div>
                 <button type="submit" class="btn btn-secondary col-3 roboto-condensed shadow">Entrar</button>
             </form>
-        </div>
-    </div>
 
+        </div>
+
+    </div>
 
 </div>
 <!-- JavaScript (Opcional) -->
