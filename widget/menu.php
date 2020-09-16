@@ -26,7 +26,7 @@
                             class="fas fa-box-open"></i> Estoque</a>
                 </li>
                 <li class="list-group-item border-top border-right-0 border-left-0 border-bottom-0 ">
-                    <a href="<?= ($_SESSION['user'] == 'compras.hvu') ? 'nv_estoque.php' : '' ?>"
+                    <a href="<?= ($_SESSION['user'] == 'compras.hvu') ? 'n_ordemcompra.php' : '' ?>"
                         class="border-top-0 border-right-0 border-left-0 border-top-0 text-menu-color-2 <?= ($_SESSION['user'] != 'compras.hvu') ? 'isDisabled' : '' ?>"">
                         <i class=" fas fa-shopping-bag"></i> Compras</a>
                 </li>

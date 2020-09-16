@@ -7,12 +7,12 @@ $s = new ConfigCRUD();
 $setor = $s->setor_id($_POST['setor_s']);
 foreach($setor as $v){$nome_setor = $v->setor_s;}
 
-
+$date = new DateTime();
 $saida = array(
 	'produto' => $_POST['produto_s'],
 	'quantidade' => $_POST['saidaqte_p'], 
 	'setor' => $nome_setor,
-	'data' =>  (isset($_POST['data_s'])) ? $_POST['data_s'] : date("Y-m-d H:i:s")
+	'data' =>  (empty($_POST['data_s'])) ? $date->format('Y-m-d H:i:s') : $_POST['data_s']
 );
 
 $new_saida = new BhCRUD();

@@ -93,12 +93,12 @@ switch ($_SESSION['user']) {
                                 <?php } ?>
                                 <div class="form-group col-md-2">
                                     <label for="inputEmail4" class="roboto-condensed">Estoque Mínimo</label>
-                                    <input type="text" class="form-control" name="estoque_minimo_e" id="inputEmail4"
+                                    <input type="number" class="form-control" name="estoque_minimo_e" id="inputEmail4"
                                            value="<?= $v->estoque_minimo_e ?>" placeholder="">
                                 </div>
                                 <div class="form-group col-md-2">
                                     <label for="inputEmail4" class="roboto-condensed">Quantidade</label>
-                                    <input type="text" class="form-control" value="<?= $v->quantidade_e ?>"
+                                    <input type="number" class="form-control" value="<?= $v->quantidade_e ?>"
                                            name="quantidade_e"
                                            id="inputEmail4" placeholder="">
                                 </div>
