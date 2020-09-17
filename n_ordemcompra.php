@@ -43,16 +43,16 @@ $s = new ConfigCRUD();
                     </div>
                 </nav>
                 <div class="mt-4 roboto-condensed">
-                    <form>
+                    <form method="post" action="back/response/n_ordem_compra.php">
                         <div class="form-row">
                             <div class="form-group col-6">
                                 <label for="exampleInputEmail1">Fornecedor</label>
-                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                <input type="text" name="nome_f" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                                 <small class="text-black-50">Caso a data não seja preenchida, entrará como o dia presente. </small>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Data</label>
-                                <input type="date" class="form-control" id="exampleInputPassword1" placeholder="Senha">
+                                <input type="date" name="data_c" class="form-control" id="exampleInputPassword1" placeholder="Senha">
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary">Novo <i class="fas fa-plus"></i></button>
@@ -67,12 +67,21 @@ $s = new ConfigCRUD();
                                     <th class=""></th>
                                     <th class="">Fornecedr</th>
                                     <th class="">Data</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody class="text-black-50">
-                                <th class="">4JK3341</th>
-                                <th class="">Castro Comércio</th>
-                                <th class="">16/09/2020</th>
+                            <?php
+                            include 'back/crud/bhCRUD.php';
+                            $view_ordens = new BhCRUD();
+                            $all_ordens = $view_ordens->ver_ordensCompra();
+                            foreach ($all_ordens as $v){
+                            ?>
+                                <th class=""><?=$v->id_ordem?></th>
+                                <th class=""><a href="n_prod_oc.php?id_ordem=<?=$v->id_ordem?>"><?=$v->nome_f?></a></th>
+                                <th class=""><?=$v->data_c?></th>
+                                <th><a href="back/response/d_ordem_compra.php?idordem=<?=$v->id_ordem?>"><i class='fas fa-trash text-danger'></i></a></th>
+                            <?php }?>
                             </tbody>
                         </table>
                     </div>

@@ -489,4 +489,37 @@ class BhCRUD
         $user->execute();
         return $user->rowCount();
 	}
+
+    public function cadOrdemCompra($forcenedor, $data)
+    {
+        try {
+            $this->conn->beginTransaction();
+            $query_Sql = "INSERT INTO tbl_ordem_compra(nome_f,data_c) VALUES (:nome_f,:data_c)";
+            $sql = $this->conn->prepare($query_Sql);
+            $sql->bindValue(':nome_f', $forcenedor);
+            $sql->bindValue(':data_c', $data);
+            $sql->execute();
+            if ($sql) {
+                $this->conn->commit();
+            }
+        } catch (PDOException $erro) {
+            $this->conn->rollBack();
+            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
+        }
+	}
+    public function ver_ordensCompra()
+    {
+        $ver = $this->conn->prepare("SELECT * FROM tbl_ordem_compra");
+        $ver->execute();
+        return $ver->fetchAll(PDO::FETCH_OBJ);
+    }
+    public function deleteOrdem($id)
+    {
+        try {
+            $delete_ordem = $this->conn->prepare("DELETE FROM  tbl_ordem_compra WHERE id_ordem='$id'");
+            $delete_ordem->execute();
+        } catch (PDOException $erro) {
+            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
+        }
+    }
 }
