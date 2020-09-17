@@ -32,104 +32,108 @@ switch ($_SESSION['user']) {
 </head>
 
 <body>
-<div class="container-fluid">
-    <div class="row">
-        <?php include_once "widget/menu.php" ?>
-        <div class="col-9">
-            <nav class="navbar navbar-expand-lg navbar-light bg-nav">
-                <a class="navbar-brand text-white roboto-condensed" href="#"><i class="fas fa-box-open"></i>
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+    <div class="container-fluid">
+        <div class="row">
+            <?php include_once "widget/menu.php" ?>
+            <div class="col-9">
+                <nav class="navbar navbar-expand-lg navbar-light bg-nav">
+                    <a class="navbar-brand text-white roboto-condensed" href="#"><i class="fas fa-box-open"></i>
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
 
-                <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
-                    <ul class="navbar-nav mr-auto">
+                    <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+                        <ul class="navbar-nav mr-auto">
 
-                    </ul>
-                    <div class="form-inline my-2 my-lg-0">
-                        <a href="#" class="badge badge-secondary"><i class="fas fa-bell text-white"></i> <span class="badge text-white">5</span></a>
+                        </ul>
+                        <div class="form-inline my-2 my-lg-0">
+                            <a href="#" class="badge badge-secondary"><i class="fas fa-bell text-white"></i> <span class="badge text-white">5</span></a>
+                        </div>
                     </div>
+                </nav>
+                <div class="container mt-5 ">
+                    <table id="example" class="table table-sm text-center roboto-condensed">
+                        <thead class="bg-shadow-it bg-primary">
+                            <tr class="text-light ">
+                                <th class="">Produto / Material</th>
+                                <th>Quantidade UN(Compra)</th>
+                                <th class="">Valor (UN)</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-black-50">
+                            <?php
+                            require_once('back/crud/bhCRUD.php');
+                            $view_estoque = new BhCRUD();
+                            $all_estoque = $view_estoque->verEstoque();
+                            foreach ($all_estoque as $v) {
+                            ?>
+                                <tr>
+                                    <form method="POST" action="">
+                                        <input type="hidden" name="produto_c" value="<?= $v->id_estoque ?>">
+                                        <td><?= $v->produto_e ?></td>
+                                        <td><input type="number" class="form-control" name="saidaqte_p" id="inputPassword4" placeholder="" style="text-align: center;"></td>
+                                        <td><?=$v->valor_un_e?></td>
+                                        <td>
+                                            <button type="submit" class="btn bg-success roboto-condensed text-white mt-1">Adicionar <i class="fas fa-sign-out-alt"></i>
+                                        </td>
+                                    </form>
+                                </tr>
+
+                            <?php } ?>
+                        </tbody>
+                    </table>
                 </div>
-            </nav>
-            <div class="container mt-5 ">
-                <table id="example" class="table table-sm text-center roboto-condensed">
-                    <thead class="bg-shadow-it bg-primary">
-                    <tr class="text-light ">
-                        <th class="">Cod.</th>
-                        <th class="">Produto / Meterial</th>
-                        <th class="">Quantidade</th>
-                        <th class="">Valor (UN)</th>
-                    </tr>
-                    </thead>
-                    <tbody class="text-black-50">
-                    <?php
-                    require_once('back/crud/bhCRUD.php');
-                    $view_estoque = new BhCRUD();
-                    $all_estoque = $view_estoque->verEstoque();
-                    foreach ($all_estoque as $v) {
-                        ?>
-                        <tr>
-                            <td><?= $v->id_estoque ?></td>
-                            <?php echo "<td><a class='text-black-50' style='text-decoration: none' href=e_estoque_farma.php?idp=" . $v->id_estoque . ">$v->produto_e</td>"; ?>
-                            <td><?= $v->quantidade_e ?></td>
-
-                            <td><?= ($permissao == 'disabled') ? '*****' : 'R$' . $v->valor_un_e ?></td>
-                        </tr>
-
-                    <?php } ?>
-                    </tbody>
-                </table>
             </div>
         </div>
     </div>
-</div>
-<!-- JavaScript (Opcional) -->
-<!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
-<script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
-<script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
-<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/v/bs4-4.1.1/dt-1.10.18/datatables.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $('#example').DataTable({
-            "language": {
-                "sEmptyTable": "Nenhum registro encontrado",
-                "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
-                "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
-                "sInfoFiltered": "(Filtrados de _MAX_ registros)",
-                "sInfoPostFix": "",
-                "sInfoThousands": ".",
-                "sLengthMenu": "_MENU_ <r class='exo azul-mateus'>resultados por página</r>",
-                "sLoadingRecords": "Carregando...",
-                "sProcessing": "Processando...",
-                "sZeroRecords": "Nenhum registro encontrado",
-                "sSearch": "Buscar",
-                "oPaginate": {
-                    "sNext": "Próximo",
-                    "sPrevious": "Anterior",
-                    "sFirst": "Primeiro",
-                    "sLast": "Último"
-                },
-                "oAria": {
-                    "sSortAscending": ": Ordenar colunas de forma ascendente",
-                    "sSortDescending": ": Ordenar colunas de forma descendente"
+    <!-- JavaScript (Opcional) -->
+    <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+    <script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+    <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4-4.1.1/dt-1.10.18/datatables.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable({
+                "language": {
+                    "sEmptyTable": "Nenhum registro encontrado",
+                    "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                    "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+                    "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sInfoThousands": ".",
+                    "sLengthMenu": "_MENU_ <r class='exo azul-mateus'>resultados por página</r>",
+                    "sLoadingRecords": "Carregando...",
+                    "sProcessing": "Processando...",
+                    "sZeroRecords": "Nenhum registro encontrado",
+                    "sSearch": "Buscar",
+                    "oPaginate": {
+                        "sNext": "Próximo",
+                        "sPrevious": "Anterior",
+                        "sFirst": "Primeiro",
+                        "sLast": "Último"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": Ordenar colunas de forma ascendente",
+                        "sSortDescending": ": Ordenar colunas de forma descendente"
+                    }
                 }
-            }
+            });
         });
-    });
-</script>
-<script type='text/javascript'>
-    (function() {
-        if (window.localStorage) {
-            if (!localStorage.getItem('firstLoad')) {
-                localStorage['firstLoad'] = true;
-                window.location.reload();
-            } else
-                localStorage.removeItem('firstLoad');
-        }
-    })();
-</script>
+    </script>
+    <script type='text/javascript'>
+        (function() {
+            if (window.localStorage) {
+                if (!localStorage.getItem('firstLoad')) {
+                    localStorage['firstLoad'] = true;
+                    window.location.reload();
+                } else
+                    localStorage.removeItem('firstLoad');
+            }
+        })();
+    </script>
 </body>
 
 </html>

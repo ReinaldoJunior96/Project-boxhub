@@ -65,7 +65,7 @@ $s = new ConfigCRUD();
                             <thead class="bg-shadow-it bg-primary">
                                 <tr class="text-light ">
                                     <th class=""></th>
-                                    <th class="">Fornecedr</th>
+                                    <th class="">Fornecedor</th>
                                     <th class="">Data</th>
                                     <th></th>
                                 </tr>
