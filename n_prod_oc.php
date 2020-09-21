@@ -48,7 +48,7 @@ switch ($_SESSION['user']) {
 
                         </ul>
                         <div class="form-inline my-2 my-lg-0">
-                            <a href="#" class="badge badge-secondary"><i class="fas fa-bell text-white"></i> <span class="badge text-white">5</span></a>
+                            <span><a target="_blank" href="ordem_pdf.php?id_ordem=<?=$_GET['id_ordem']?>" class="text-white roboto-condensed"><i class="far fa-file-pdf"></i> Abrir Ordem</a></span>
                         </div>
                     </div>
                 </nav>
@@ -70,8 +70,9 @@ switch ($_SESSION['user']) {
                             foreach ($all_estoque as $v) {
                             ?>
                                 <tr>
-                                    <form method="POST" action="">
+                                    <form method="POST" action="back/response/n_prod_ordem_compra.php">
                                         <input type="hidden" name="produto_c" value="<?= $v->id_estoque ?>">
+                                        <input type="hidden" name="ordem" value="<?= $_GET['id_ordem'] ?>">
                                         <td><?= $v->produto_e ?></td>
                                         <td><input type="number" class="form-control" name="saidaqte_p" id="inputPassword4" placeholder="" style="text-align: center;"></td>
                                         <td><?=$v->valor_un_e?></td>

@@ -480,46 +480,75 @@ class BhCRUD
 	{
 		$ver = $this->conn->prepare("SELECT * FROM tbl_estoque WHERE quantidade_e<=estoque_minimo_e");
 		$ver->execute();
-        return $ver->fetchAll(PDO::FETCH_OBJ);
+		return $ver->fetchAll(PDO::FETCH_OBJ);
 	}
 
-    public function login($user, $password)
-    {
-        $user = $this->conn->prepare("SELECT * FROM tbl_usuarios WHERE nome_user='$user' and password='$password'");
-        $user->execute();
-        return $user->rowCount();
+	public function login($user, $password)
+	{
+		$user = $this->conn->prepare("SELECT * FROM tbl_usuarios WHERE nome_user='$user' and password='$password'");
+		$user->execute();
+		return $user->rowCount();
 	}
 
-    public function cadOrdemCompra($forcenedor, $data)
-    {
-        try {
-            $this->conn->beginTransaction();
-            $query_Sql = "INSERT INTO tbl_ordem_compra(nome_f,data_c) VALUES (:nome_f,:data_c)";
-            $sql = $this->conn->prepare($query_Sql);
-            $sql->bindValue(':nome_f', $forcenedor);
-            $sql->bindValue(':data_c', $data);
-            $sql->execute();
-            if ($sql) {
-                $this->conn->commit();
-            }
-        } catch (PDOException $erro) {
-            $this->conn->rollBack();
-            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
-        }
+	public function cadOrdemCompra($forcenedor, $data)
+	{
+		try {
+			$this->conn->beginTransaction();
+			$query_Sql = "INSERT INTO tbl_ordem_compra(nome_f,data_c) VALUES (:nome_f,:data_c)";
+			$sql = $this->conn->prepare($query_Sql);
+			$sql->bindValue(':nome_f', $forcenedor);
+			$sql->bindValue(':data_c', $data);
+			$sql->execute();
+			if ($sql) {
+				$this->conn->commit();
+			}
+		} catch (PDOException $erro) {
+			$this->conn->rollBack();
+			echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
+		}
 	}
-    public function ver_ordensCompra()
-    {
-        $ver = $this->conn->prepare("SELECT * FROM tbl_ordem_compra");
-        $ver->execute();
-        return $ver->fetchAll(PDO::FETCH_OBJ);
-    }
-    public function deleteOrdem($id)
-    {
-        try {
-            $delete_ordem = $this->conn->prepare("DELETE FROM  tbl_ordem_compra WHERE id_ordem='$id'");
-            $delete_ordem->execute();
-        } catch (PDOException $erro) {
-            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
-        }
-    }
+	public function ver_ordensCompra()
+	{
+		$ver = $this->conn->prepare("SELECT * FROM tbl_ordem_compra");
+		$ver->execute();
+		return $ver->fetchAll(PDO::FETCH_OBJ);
+	}
+	public function verOrdemTotal($idOrdem)
+	{
+		$ver = $this->conn->prepare("SELECT * FROM tbl_ordem_compra
+		INNER JOIN tbl_items_compra 
+		ON tbl_ordem_compra.id_ordem = tbl_items_compra.ordem_compra_id
+		INNER JOIN tbl_estoque
+		ON tbl_items_compra.item_compra = tbl_estoque.id_estoque
+		WHERE tbl_ordem_compra.id_ordem='$idOrdem'");
+		$ver->execute();
+		return $ver->fetchAll(PDO::FETCH_OBJ);
+	}
+	public function deleteOrdem($id)
+	{
+		try {
+			$delete_ordem = $this->conn->prepare("DELETE FROM  tbl_ordem_compra WHERE id_ordem='$id'");
+			$delete_ordem->execute();
+		} catch (PDOException $erro) {
+			echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
+		}
+	}
+	public function addProdOdemCompra($produto, $ordemCompra,$qtdeCompra)
+	{
+		try {
+			$this->conn->beginTransaction();
+			$query_Sql = "INSERT INTO tbl_items_compra(item_compra,ordem_compra_id,qtde_compra) VALUES (:item_compra,:ordem_compra_id,:qtde_compra)";
+			$sql = $this->conn->prepare($query_Sql);
+			$sql->bindValue(':item_compra', $produto);
+			$sql->bindValue(':ordem_compra_id', $ordemCompra);
+			$sql->bindValue(':qtde_compra', $qtdeCompra);
+			$sql->execute();
+			if ($sql) {
+				$this->conn->commit();
+			}
+		} catch (PDOException $erro) {
+			$this->conn->rollBack();
+			echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
+		}
+	}
 }
