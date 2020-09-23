@@ -551,4 +551,13 @@ class BhCRUD
 			echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
 		}
 	}
+	public function deleteProdOrdem($id)
+	{
+		try {
+			$deleteProd = $this->conn->prepare("DELETE FROM  tbl_items_compra WHERE id_item_compra='$id'");
+			$deleteProd->execute();
+		} catch (PDOException $erro) {
+			echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
+		}
+	}
 }

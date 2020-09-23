@@ -77,10 +77,12 @@ $s = new ConfigCRUD();
                             $all_ordens = $view_ordens->ver_ordensCompra();
                             foreach ($all_ordens as $v){
                             ?>
-                                <th class=""><?=$v->id_ordem?></th>
-                                <th class=""><a href="n_prod_oc.php?id_ordem=<?=$v->id_ordem?>"><?=$v->nome_f?></a></th>
-                                <th class=""><?=$v->data_c?></th>
-                                <th><a href="back/response/d_ordem_compra.php?idordem=<?=$v->id_ordem?>"><i class='fas fa-trash text-danger'></i></a></th>
+                            <tr>
+                                <td class=""><?=$v->id_ordem?></td>
+                                <td class=""><a href="n_prod_oc.php?id_ordem=<?=$v->id_ordem?>"><?=$v->nome_f?></a></td>
+                                <td class=""><?=date("d/m/Y", strtotime($v->data_c))?></td>
+                                <td><a href="back/response/d_ordem_compra.php?idordem=<?=$v->id_ordem?>"><i class='fas fa-trash text-danger'></i></a></td>
+                                </tr>
                             <?php }?>
                             </tbody>
                         </table>

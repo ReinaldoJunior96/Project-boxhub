@@ -21,7 +21,9 @@
                 </li>
 
                 <li class="list-group-item border-top border-right-0 border-left-0 border-bottom-0 ">
-                    <a href="<?= ($_SESSION['user'] == 'compras.hvu' or $_SESSION['user'] == 'farma.hvu') ? 'nv_estoque.php' : '#' ?>"
+                    <a href="<?= ($_SESSION['user'] == 'compras.hvu' or
+                                  $_SESSION['user'] == 'farma.hvu' or
+                                  $_SESSION['user'] == 'tatiane_a.hvu') ? 'nv_estoque.php' : '#' ?>"
                         class="border-top-0 border-right-0 border-left-0 border-top-0 text-menu-color-2"><i
                             class="fas fa-box-open"></i> Estoque</a>
                 </li>

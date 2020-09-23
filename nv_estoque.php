@@ -12,6 +12,9 @@ switch ($_SESSION['user']) {
     case 'compras.hvu':
         $permissao = '';
         break;
+    case 'tatiane_a.hvu':
+       $permissao = '';
+       break;
     default:
         $permissao = '';
 }
