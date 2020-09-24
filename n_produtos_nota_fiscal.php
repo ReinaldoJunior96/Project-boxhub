@@ -28,36 +28,24 @@ switch ($_SESSION['user']) {
           integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <!-- Meu CSS -->
     <title class="roboto-condensed">Firebox</title>
-    <link rel="icon" type="imagem/png" href="images/fire.png" />
+    <link rel="icon" type="imagem/png" href="images/fire.png"/>
     <!-- <link rel="icon" class="rounded" href="images/icon-box.png" type="image/x-icon" /> -->
 </head>
 <body>
 <div class="container-fluid">
     <div class="row">
-        <?php include_once "widget/menu.php"?>
+        <?php include_once "widget/menu.php" ?>
         <div class="col-9">
             <div class="">
-                <nav class="navbar navbar-expand-lg navbar-light bg-nav">
+                <nav class="navbar navbar-expand-lg navbar-light">
                     <?php
                     require_once('back/crud/bhCRUD.php');
                     $dados_nf = new BhCRUD();
                     $nf = $dados_nf->findID($_GET['idnf']);
-                    foreach ($nf
-
-                             as $v) {
-                        ?>
-                        <a class="navbar-brand text-white roboto-condensed" href="#"><i class="fas fa-box-open"></i>
-                            Box Hub / Produtos NF nº <?= $v->numero_nf ?> / <a class="text-white roboto-condensed"
-                                                                               target="_blank"
-                                                                               href="v_nota_fiscal.php?idnf=<?= $_GET['idnf'] ?>">
-                                Abrir NF</a>
-                        </a>
-
-                        <!--<h5>
-                            / Fornecedor: <?= $v->fornecedor ?> - Valor: R$ <?= $v->valor_nf ?> - Data de Emissão:
-                            <?= date("d/m/Y", strtotime($v->data_emissao)) ?> - Data de Lançamento:
-                            <?= date("d/m/Y", strtotime($v->data_lancamento)) ?>
-                        </h5> -->
+                    foreach ($nf as $v) { ?>
+                        <img src="images/document.png" class="img-fluid"
+                             width="40">
+                        <h5 class="text-primary roboto-condensed ml-2 mt-1"> Nota Fiscal Nº - <?= $v->numero_nf ?></h5>
                     <?php } ?>
 
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -71,26 +59,34 @@ switch ($_SESSION['user']) {
 
                         </ul>
                         <div class="form-inline my-2 my-lg-0">
-                            <a href="#" class="badge badge-secondary"><i class="fas fa-bell text-white"></i> <span
-                                        class="badge text-white">5</span></a>
+                            <h6 class="text-black-50 roboto-condensed"><i
+                                        class="fas fa-user text-primary"></i> <?= $_SESSION['user'] ?></h6>
                         </div>
                     </div>
                 </nav>
-                <div class="text-center mt-5">
+                <div class="mt-1 roboto-condensed text-black-50">
                     <?php
                     foreach ($nf as $v) {
                         ?>
-                        <p class="roboto-condensed text-black-50">
-                            Fornecedor: <?= $v->fornecedor ?> /
-                            Valor: R$ <?= $v->valor_nf ?> /
-                            Data de Emissão: <?= date("d/m/Y", strtotime($v->data_emissao)) ?> /
-                            Data de Lançamento: <?= date("d/m/Y", strtotime($v->data_lancamento)) ?>
-                        </p>
+                        <h6><i class="fas fa-user-tag text-black-50"></i> Fornecedor: <?= $v->fornecedor ?></h6>
+
+                        <h6><span class="fas fa-calendar-alt text-black-50"></span> Data de
+                            Emissão: <?= date("d/m/Y", strtotime($v->data_emissao)) ?></h6>
+                        <h6><span class="far fa-calendar-alt text-black-50 "></span> Data de
+                            Lançamento: <?= date("d/m/Y", strtotime($v->data_lancamento)) ?></h6>
+                        <h6><i class="fas fa-dollar-sign text-black-50"></i> Valor:
+                            R$ <?= str_replace(".", ",", $v->valor_nf) ?></h6>
+                        <a class="text-primary" target="_blank"
+                           href="v_nota_fiscal.php?idnf=<?= $_GET['idnf'] ?>"><i class="fas fa-print"></i> Imprimir</a>
                     <?php } ?>
                     <hr class="bg-primary">
-                    <div class="container mt-5 mb-5">
-                        <table id="example" class="table table-striped roboto-condensed text-center">
-                            <thead class="bg-primary text-white">
+                </div>
+
+
+                <div class="mt-1 roboto-condensed text-black-50">
+                    <div class="container mb-5">
+                        <table id="example" class="table table-sm text-center roboto-condensed">
+                            <thead class="bg-nav  text-white">
                             <tr class="text-white">
                                 <th class="">Prod / Material</th>
                                 <th class="">Quantidade</th>
@@ -127,8 +123,8 @@ switch ($_SESSION['user']) {
                                                    id="inputPassword4" placeholder="">
                                         </td>
                                         <td>
-                                            <button type="submit" class="btn border-0 bg-primary mt-1">
-                                                <i class="fas fa-plus text-white"></i>
+                                            <button type="submit" class="btn border-0 bg-white mt-1">
+                                                <i class="fas fa-file-import text-secondary"></i>
                                             </button>
                                         </td>
                                     </form>

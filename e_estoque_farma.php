@@ -43,7 +43,7 @@ switch ($_SESSION['user']) {
                         <i class="fas fa-box-open text-primary"></i>
                     </a> -->
                     <h5 class="text-primary roboto-condensed"><img src="images/box.png" class="img-fluid" width="40">
-                        Alterar produto</h5>
+                        Alterar</h5>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado"
                             aria-expanded="false" aria-label="Alterna navegação">

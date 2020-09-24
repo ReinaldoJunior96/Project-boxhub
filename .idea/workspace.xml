@@ -21,23 +21,11 @@
   <component name="ChangeListManager">
     <list default="true" id="e287bc17-b257-466b-b138-3c26574c0691" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/e_entrada_farma.php" beforeDir="false" afterPath="$PROJECT_DIR$/e_entrada_farma.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/e_estoque_farma.php" beforeDir="false" afterPath="$PROJECT_DIR$/e_estoque_farma.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/avatar.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/box.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/box.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/box2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/box3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/boxhub-3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/construct.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/foto.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/icon-box.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/image-menu.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/img-box.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/index-image.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/logo-login.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/logo2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/man.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/notification.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/nv_estoque.php" beforeDir="false" afterPath="$PROJECT_DIR$/nv_estoque.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/n_nota_fiscal.php" beforeDir="false" afterPath="$PROJECT_DIR$/n_nota_fiscal.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/n_produtos_nota_fiscal.php" beforeDir="false" afterPath="$PROJECT_DIR$/n_produtos_nota_fiscal.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v_nota_fiscal.php" beforeDir="false" afterPath="$PROJECT_DIR$/v_nota_fiscal.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +74,7 @@
       <workItem from="1600305650398" duration="3526000" />
       <workItem from="1600815815238" duration="129000" />
       <workItem from="1600903548960" duration="8108000" />
-      <workItem from="1600978827947" duration="537000" />
+      <workItem from="1600978827947" duration="3509000" />
     </task>
     <servers />
   </component>

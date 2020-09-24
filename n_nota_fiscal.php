@@ -21,7 +21,7 @@ $s = new ConfigCRUD();
 
     <!-- Meu CSS -->
     <title class="roboto-condensed">Firebox</title>
-    <link rel="icon" type="imagem/png" href="images/fire.png" />
+    <link rel="icon" type="imagem/png" href="images/fire.png"/>
     <!-- <link rel="icon" class="rounded" href="images/icon-box.png" type="image/x-icon" /> -->
 </head>
 <body>
@@ -30,10 +30,13 @@ $s = new ConfigCRUD();
         <?php include_once "widget/menu.php" ?>
         <div class="col-9">
             <div class="">
-                <nav class="navbar navbar-expand-lg navbar-light bg-nav">
-                    <a class="navbar-brand text-white roboto-condensed" href="#"><i class="fas fa-box-open"></i>
-                        Cadastro NF
-                    </a>
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <!-- <a class="navbar-brand text-white roboto-condensed" href="#">
+                        <i class="fas fa-box-open text-primary"></i>
+                    </a> -->
+                    <h5 class="text-primary roboto-condensed"><img src="images/document.png" class="img-fluid"
+                                                                   width="40">
+                        Entrada</h5>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado"
                             aria-expanded="false" aria-label="Alterna navegação">
@@ -45,20 +48,20 @@ $s = new ConfigCRUD();
 
                         </ul>
                         <div class="form-inline my-2 my-lg-0">
-
-
+                            <h6 class="text-black-50 roboto-condensed"><i
+                                        class="fas fa-user text-primary"></i> <?= $_SESSION['user'] ?></h6>
                         </div>
                     </div>
                 </nav>
-                <div class="mt-5">
+                <div class="">
                     <div class="container">
                         <form method="POST" action="back/response/nota_fiscal_r.php">
                             <div class="form-row">
                                 <input type="hidden" name="tipo" value="new">
                                 <div class="form-group col-md-12">
-                                    <label for="inputEmail4" class="roboto-condensed">Número da NF</label>
+                                    <label for="inputEmail4" class="roboto-condensed">Nota Fiscal</label>
                                     <input type="text" class="form-control" name="numero_nf" id="inputEmail4"
-                                           placeholder="">
+                                           placeholder="Número">
                                 </div>
                             </div>
                             <div class="form-row">
@@ -119,8 +122,8 @@ $s = new ConfigCRUD();
                 </div>
             </div>
             <div class="container mt-5">
-                <table id="example" class="table table-striped roboto-condensed text-center">
-                    <thead class="bg-primary text-white">
+                <table id="example" class="table table-sm text-center roboto-condensed">
+                    <thead class="bg-nav text-white">
                     <tr class="">
                         <th class="">NF</th>
                         <th class="">Fornecedor</th>
@@ -137,12 +140,14 @@ $s = new ConfigCRUD();
                     $view_nf = new BhCRUD();
                     $allnf = $view_nf->index();
                     foreach ($allnf as $v) {
+                        $data_emisao = date_create($v->data_emissao);
+                        $data_lancamento = date_create($v->data_lancamento);
                         ?>
                         <tr>
                             <?php echo "<td class=''><a class='text-primary' href=n_produtos_nota_fiscal.php?idnf=" . $v->id_nf . ">" . $v->numero_nf . "</a></td>" ?>
                             <td><?= $v->fornecedor ?></td>
-                            <td><?= $v->data_emissao ?></td>
-                            <td><?= $v->data_lancamento ?></td>
+                            <td><?= date_format($data_emisao, 'd/m/Y') ?> </td>
+                            <td><?= date_format($data_lancamento, 'd/m/Y') ?></td>
                             <td>R$ <?= $v->valor_nf ?></td>
                             <?php echo "<td><a href=e_entrada_farma.php?idnf=" . $v->id_nf . "><i class='fas fa-pen fa-1x color-icon-nf text-black-50'></i></a></td>" ?>
                             <?php echo "<td><a href=back/response/d_nf_r.php?idnf=" . $v->id_nf . "><i class='fas fa-trash-alt fa-1x text-secondary'></i></a></td>" ?>
