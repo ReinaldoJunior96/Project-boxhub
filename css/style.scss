@@ -4,10 +4,10 @@
 @import url('https://fonts.googleapis.com/css?family=Exo&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
 $theme-colors: (
-        "primary": #DA4453,
-        "secondary": #89216B,
+        "primary": #FE9100,
+        "secondary": #FF7B49,
         "menu-color": #F9CD74,
-        "menu-color-2": #6B968B,
+        "menu-color-2": #BB6342,
 );
 /* Fontes */
 
@@ -46,9 +46,11 @@ $theme-colors: (
 /* Backgrounds */
 
 .bg-nav {
-  background-image: linear-gradient(to right, #DA4453, #89216B);
+  background-image: linear-gradient(to right, #FF7B49, #FD435B);
 }
+.da{
 
+}
 .input-background{
   background-color: #DA4453;
   opacity: 0.8;

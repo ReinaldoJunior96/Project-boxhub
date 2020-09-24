@@ -10,7 +10,8 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4-4.1.1/dt-1.10.18/datatables.min.css" />
     <!-- Meu CSS -->
     <link rel="stylesheet" href="css/style.css">
-    <title>boxhub</title>
+    <title class="roboto-condensed">Firebox</title>
+    <link rel="icon" type="imagem/png" href="images/fire.png" />
 </head>
 
 <body>

@@ -6,15 +6,13 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
 require_once('back/crud/configCRUD.php');
 $s = new ConfigCRUD();
 switch ($_SESSION['user']) {
+    case 'tatiane_a.hvu':
     case 'farma.hvu':
         $permissao = 'disabled';
         break;
     case 'compras.hvu':
         $permissao = '';
         break;
-    case 'tatiane_a.hvu':
-       $permissao = '';
-       break;
     default:
         $permissao = '';
 }
@@ -32,7 +30,8 @@ switch ($_SESSION['user']) {
           integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
     <!-- Meu CSS -->
-    <title>Box Hub</title>
+    <title class="roboto-condensed">Firebox</title>
+    <link rel="icon" type="imagem/png" href="images/fire.png" />
     <!-- <link rel="icon" class="rounded" href="images/icon-box.png" type="image/x-icon" /> -->
 </head>
 
@@ -43,8 +42,7 @@ switch ($_SESSION['user']) {
         <div class="col-9">
             <div class="">
                 <nav class="navbar navbar-expand-lg navbar-light bg-nav">
-                    <a class="navbar-brand text-white roboto-condensed" href="#"><i class="fas fa-box-open"></i> Box Hub
-                        / Estoque
+                    <a class="navbar-brand text-white roboto-condensed" href="#"><i class="fas fa-box-open"></i>
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado"

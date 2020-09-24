@@ -6,6 +6,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
 require_once('back/crud/configCRUD.php');
 $s = new ConfigCRUD();
 switch ($_SESSION['user']) {
+    case 'tatiane_a.hvu':
     case 'farma.hvu':
         $permissao = 'disabled';
         break;
@@ -26,7 +27,8 @@ switch ($_SESSION['user']) {
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
           integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <!-- Meu CSS -->
-    <title>Box Hub</title>
+    <title class="roboto-condensed">Firebox</title>
+    <link rel="icon" type="imagem/png" href="images/fire.png" />
     <!-- <link rel="icon" class="rounded" href="images/icon-box.png" type="image/x-icon" /> -->
 </head>
 
@@ -72,9 +74,6 @@ switch ($_SESSION['user']) {
                                            name="produto_e"
                                            id="inputEmail4" placeholder="">
                                 </div>
-                                <?php
-                                if ($permissao != 'farma.hvu') {
-                                    ?>
                                     <div class="col-2">
                                         <label for="inputEmail4" class="roboto-condensed">Valor</label>
                                         <div class="input-group mb-2">
@@ -82,7 +81,7 @@ switch ($_SESSION['user']) {
                                                 <div class="input-group-text bg-primary text-light roboto-condensed">R$
                                                 </div>
                                             </div>
-                                            <?php if ($_SESSION['user'] == 'farma.hvu') { ?>
+                                            <?php if ($_SESSION['user'] != 'compras.hvu') { ?>
                                                 <input type='text' class='form-control' disabled value="*******" name='valor_un' placeholder=''>
                                             <?php } else { ?>
                                                 <input type='text' class='form-control disabled' name='valor_un' value="<?= $v->valor_un_e ?>" placeholder=''
@@ -90,7 +89,6 @@ switch ($_SESSION['user']) {
                                             <?php } ?>
                                         </div>
                                     </div>
-                                <?php } ?>
                                 <div class="form-group col-md-2">
                                     <label for="inputEmail4" class="roboto-condensed">Estoque Mínimo</label>
                                     <input type="number" class="form-control" name="estoque_minimo_e" id="inputEmail4"

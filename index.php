@@ -17,7 +17,8 @@ $s = new ConfigCRUD();
     <link rel="stylesheet" href="css/style.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <!-- Meu CSS -->
-    <title>Box Hub</title>
+    <title class="roboto-condensed">Firebox</title>
+    <link rel="icon" type="imagem/png" href="images/fire.png" />
     <!-- <link rel="icon" class="rounded" href="images/icon-box.png" type="image/x-icon" /> -->
 </head>
 
@@ -26,25 +27,25 @@ $s = new ConfigCRUD();
         <div class="row">
             <?php include_once "widget/menu.php" ?>
             <div class="col-9">
-                <!--<nav class="navbar navbar-expand-lg navbar-light bg-nav">
-                    <a class="navbar-brand text-white roboto-condensed" href="#"><i class="fas fa-box-open"></i>
-                    </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-
-                    <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
-                        <ul class="navbar-nav mr-auto">
-
-                        </ul>
-                        <div class="form-inline my-2 my-lg-0">
-                            <a href="#" class="badge badge-secondary"><i class="fas fa-bell text-white"></i> <span
-                                        class="badge text-white">5</span></a>
-                        </div>
-                    </div>
-                </nav>-->
-                <div class="text-center mt-4">
-                    <img src="images/box3.png" width="600" class="img-fluid" alt="Imagem responsiva">
+<!--                <nav class="navbar navbar-expand-lg navbar-light bg-nav">-->
+<!--                    <a class="navbar-brand text-white roboto-condensed" href="#"><i class="fas fa-box-open"></i>-->
+<!--                    </a>-->
+<!--                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">-->
+<!--                        <span class="navbar-toggler-icon"></span>-->
+<!--                    </button>-->
+<!---->
+<!--                    <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">-->
+<!--                        <ul class="navbar-nav mr-auto">-->
+<!---->
+<!--                        </ul>-->
+<!--                        <div class="form-inline my-2 my-lg-0">-->
+<!--                            <a href="#" class="badge badge-secondary"><i class="fas fa-bell text-white"></i> <span-->
+<!--                                        class="badge text-white">5</span></a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </nav>-->
+                <div class="text-center" style="margin-top: 200px">
+                    <img src="images/img-login.png" width="500" class="img-fluid" alt="Imagem responsiva">
                 </div>
             </div>
         </div>

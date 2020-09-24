@@ -20,7 +20,8 @@ $s = new ConfigCRUD();
           integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
     <!-- Meu CSS -->
-    <title>Box Hub</title>
+    <title class="roboto-condensed">Firebox</title>
+    <link rel="icon" type="imagem/png" href="images/fire.png" />
     <!-- <link rel="icon" class="rounded" href="images/icon-box.png" type="image/x-icon" /> -->
 </head>
 <body>

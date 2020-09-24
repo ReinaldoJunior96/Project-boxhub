@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.7.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: 23-Set-2020 às 21:25
--- Versão do servidor: 10.1.37-MariaDB
--- versão do PHP: 7.3.0
+-- Host: mysql41.prv.f1.k8.com.br.
+-- Tempo de geração: 23/09/2020 às 23:08
+-- Versão do servidor: 10.1.36-MariaDB-1~xenial
+-- Versão do PHP: 7.0.33-30+ubuntu16.04.1+deb.sury.org+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `boxhub`
+-- Banco de dados: `uemapet`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `fila_p`
+-- Estrutura para tabela `fila_p`
 --
 
 CREATE TABLE `fila_p` (
@@ -36,7 +36,7 @@ CREATE TABLE `fila_p` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tbl_categoria`
+-- Estrutura para tabela `tbl_categoria`
 --
 
 CREATE TABLE `tbl_categoria` (
@@ -47,14 +47,14 @@ CREATE TABLE `tbl_categoria` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tbl_estoque`
+-- Estrutura para tabela `tbl_estoque`
 --
 
 CREATE TABLE `tbl_estoque` (
   `id_estoque` int(11) NOT NULL,
   `produto_e` varchar(120) DEFAULT NULL,
   `quantidade_e` varchar(100) DEFAULT NULL,
-  `valor_un_e` varchar(100) DEFAULT NULL,
+  `valor_un_e` varchar(100) DEFAULT '0',
   `categoria_e` varchar(100) DEFAULT NULL,
   `marca_e` varchar(100) DEFAULT NULL,
   `unidade_e` varchar(100) DEFAULT NULL,
@@ -62,18 +62,232 @@ CREATE TABLE `tbl_estoque` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `tbl_estoque`
+-- Fazendo dump de dados para tabela `tbl_estoque`
 --
 
 INSERT INTO `tbl_estoque` (`id_estoque`, `produto_e`, `quantidade_e`, `valor_un_e`, `categoria_e`, `marca_e`, `unidade_e`, `estoque_minimo_e`) VALUES
-(1, 'Agulha tal', '12525', '5.3', NULL, NULL, NULL, '300'),
-(2, 'Seringa 10ML', '500', '134.65', NULL, NULL, NULL, '50'),
-(3, 'LUVAS PROC DD', '123', '3.2', NULL, NULL, NULL, '20');
+(6, 'ABAIXADOR DE LÍNGUA', '150', '0', NULL, NULL, NULL, '50'),
+(7, 'ACEPRAN 0,2%', '7', '0', NULL, NULL, NULL, '2'),
+(8, 'ACETILCISTEÍNA (AMPOLA)', '85', '', NULL, NULL, NULL, '25'),
+(9, 'ÁCIDO ASCÓRBICO', '83', '', NULL, NULL, NULL, '10'),
+(10, 'FIO DE SUTURA VICRYL (ÁCIDO POLIGLICÓLICO) 0', '', '', NULL, NULL, NULL, ''),
+(11, 'FIO DE SUTURA VICRYL (ÁCIDO POLIGLICÓLICO) 1', '', '', NULL, NULL, NULL, ''),
+(12, 'FIO DE SUTURA VICRYL (ÁCIDO POLIGLICÓLICO) 2', '', '', NULL, NULL, NULL, ''),
+(13, 'FIO DE SUTURA VICRYL (ÁCIDO POLIGLICÓLICO) 3-0', '', '', NULL, NULL, NULL, ''),
+(14, 'FIO DE SUTURA VICRYL (ÁCIDO POLIGLICÓLICO) 4-0', '', '', NULL, NULL, NULL, ''),
+(15, 'ÁCIDO TRANEXÂMICO (AMPOLA)', '49', '', NULL, NULL, NULL, '10'),
+(16, 'ACRÍLICO AUTO POLIMERIZANTE PÓ (1KG)', '1', '', NULL, NULL, NULL, '1'),
+(17, 'ACRÍLICO AUTOPOLIMERIZANTE LÍQUIDO (1LITRO)', '1', '', NULL, NULL, NULL, '1'),
+(18, 'ADAPTADOR DE CATETER', '156', '', NULL, NULL, NULL, '20'),
+(19, 'ADRENALINA', '200', '', NULL, NULL, NULL, '50'),
+(20, 'AGEMOXI', '10', '', NULL, NULL, NULL, '2'),
+(21, 'ÁGUA OXIGENADA', '21', '', NULL, NULL, NULL, '3'),
+(22, 'ÁGUA PARA INJEÇÃO', '', '', NULL, NULL, NULL, ''),
+(23, 'AGULHA 25 X 0,7', '', '', NULL, NULL, NULL, ''),
+(24, 'AGULHA 28 X 0,8', '', '', NULL, NULL, NULL, ''),
+(25, 'AGULHA 30 X 0,8', '', '', NULL, NULL, NULL, ''),
+(26, 'AGULHA 40 X 1,2', '', '', NULL, NULL, NULL, ''),
+(27, 'AGULHA 45 X 0,13', '', '', NULL, NULL, NULL, ''),
+(28, 'ALANTOL 250 GRAMAS', '1', '', NULL, NULL, NULL, '1'),
+(29, 'ÁLCOOL 70%', '12', '', NULL, NULL, NULL, '5'),
+(30, 'ALGIVET', '7', '', NULL, NULL, NULL, '1'),
+(31, 'ALGODÃO BOLA', '12', '', NULL, NULL, NULL, '5'),
+(32, 'ALGODÃO ROLO', '2', '', NULL, NULL, NULL, '2'),
+(33, 'ALGODÃO ORTOPÉDICO', '', '', NULL, NULL, NULL, ''),
+(34, 'ALMOTOLIA GRANDE', '', '', NULL, NULL, NULL, ''),
+(35, 'AMINOFILINA', '86', '', NULL, NULL, NULL, '10'),
+(36, 'ATADURA 10 X 1,80', '', '', NULL, NULL, NULL, ''),
+(37, 'ATADURA 12 X 1,80', '', '', NULL, NULL, NULL, ''),
+(38, 'ATADURA 15 X 1,80', '', '', NULL, NULL, NULL, ''),
+(39, 'ATROPINA', '719', '', NULL, NULL, NULL, '50'),
+(40, 'AURIVET', '2', '', NULL, NULL, NULL, '1'),
+(41, 'BANDAGEM', '', '', NULL, NULL, NULL, ''),
+(42, 'BARIOGEL', '9', '', NULL, NULL, NULL, '2'),
+(43, 'BIONEW FRASCO 100ML', '1', '', NULL, NULL, NULL, '1'),
+(44, 'BISTURÍ OFTÁLMICO', '5', '', NULL, NULL, NULL, '2'),
+(45, 'BUSCOFIN', '4', '', NULL, NULL, NULL, '2'),
+(46, 'MYDRIACYL', '1', '', NULL, NULL, NULL, '1'),
+(47, 'CAPSTAR 11,4 MG', '19', '', NULL, NULL, NULL, '12'),
+(48, 'CAPSTAR 57 MG', '53', '', NULL, NULL, NULL, '12'),
+(49, 'CATETER INTRAVENOSO 16', '123', '', NULL, NULL, NULL, '20'),
+(50, 'CATETER INTRAVENOSO 18', '21', '', NULL, NULL, NULL, '20'),
+(51, 'CATETER INTRAVENOSO 20', '125', '', NULL, NULL, NULL, '40'),
+(52, 'CATETER INTRAVENOSO 22', '273', '', NULL, NULL, NULL, '50'),
+(53, 'CATETER INTRAVENOSO 24', '502', '', NULL, NULL, NULL, '50'),
+(54, 'FIO DE SUTURA CATGUT CROMADO 0', '', '', NULL, NULL, NULL, ''),
+(55, 'FIO DE SUTURA CATGUT CROMADO 1', '', '', NULL, NULL, NULL, ''),
+(56, 'FIO DE SUTURA CATGUT CROMADO 2-0', '', '', NULL, NULL, NULL, ''),
+(57, 'FIO DE SUTURA CATGUT CROMADO 3-0', '', '', NULL, NULL, NULL, ''),
+(58, 'FIO DE SUTURA CATGUT CROMADO 4-0', '', '', NULL, NULL, NULL, ''),
+(59, 'CEFALOTINA', '21', '', NULL, NULL, NULL, '10'),
+(60, 'CEFAZOLINA SÓDICA', '14', '', NULL, NULL, NULL, '5'),
+(61, 'CEFTRIAXONA', '18', '', NULL, NULL, NULL, '5'),
+(62, 'CETAMINA, CLORIDRATO. 10% - 50ML', '3', '', NULL, NULL, NULL, '2'),
+(63, 'CLIP PARA ACALMAR GATO', '1', '', NULL, NULL, NULL, '1'),
+(64, 'CLORETO DE POTÁSSIO 10%', '141', '', NULL, NULL, NULL, '50'),
+(65, 'CLORETO DE SÓDIO 10%', '142', '', NULL, NULL, NULL, '20'),
+(66, 'CLOREXIDINA 0,5%', '8', '', NULL, NULL, NULL, '3'),
+(67, 'CLOREXIDINA 1%', '10', '', NULL, NULL, NULL, '3'),
+(68, 'COLAR ELIZABETANO Nº 7', '', '', NULL, NULL, NULL, ''),
+(69, 'COLAR ELIZABETANO Nº 3', '', '', NULL, NULL, NULL, ''),
+(70, 'COLAR ELIZABETANO Nº 5', '', '', NULL, NULL, NULL, ''),
+(71, 'COLETOR DESCARTÁVEL', '158', '', NULL, NULL, NULL, '50'),
+(72, 'COLÍRIO ANESTÉSICO', '4', '', NULL, NULL, NULL, '1'),
+(73, 'CONDROTON', '3', '', NULL, NULL, NULL, '1'),
+(74, 'CLOREXIDINA 2%', '13', '', NULL, NULL, NULL, '3'),
+(75, 'DEXAMETASONA (CORTFLAN)', '2', '', NULL, NULL, NULL, '1'),
+(76, 'DEXA CITONEURIN', '15', '', NULL, NULL, NULL, '6'),
+(77, 'DIAZEPAM', '75', '', NULL, NULL, NULL, '25'),
+(78, 'DOBUTAMINA', '17', '', NULL, NULL, NULL, '3'),
+(79, 'EQUIPO MACROGOTA', '', '', NULL, NULL, NULL, ''),
+(80, 'EQUIPO MICROGOTA', '', '', NULL, NULL, NULL, ''),
+(81, 'EQUIPO MULTIVIAS', '', '', NULL, NULL, NULL, ''),
+(82, 'EQUIPO PARA BOMBA DE INFUSÃO', '', '', NULL, NULL, NULL, ''),
+(83, 'ESPARADRAPO IMPERMEÁVEL', '18', '', NULL, NULL, NULL, '5'),
+(84, 'ESPARADRAPO MICROPOROSO', '8', '', NULL, NULL, NULL, '5'),
+(85, 'ESTOJO TUBO EDTA 2ML COM 100 UNIDADES', '', '', NULL, NULL, NULL, ''),
+(86, 'ESTOJO TUBO EDTA 4ML COM 100 UNIDADES', '', '', NULL, NULL, NULL, ''),
+(87, 'ETOMIDATO', '18', '', NULL, NULL, NULL, '5'),
+(88, 'FENOBARBITAL', '9', '', NULL, NULL, NULL, '5'),
+(89, 'FIO OFTÁLMICO PGC25 PE1903-45B 3-0', '', '', NULL, NULL, NULL, ''),
+(90, 'FIO OFTÁLMICO PGC25 PE1904 - BH 4-0', '', '', NULL, NULL, NULL, ''),
+(91, 'FIO OFTÁLMICO PGC25 SR2602T 2-0', '', '', NULL, NULL, NULL, ''),
+(92, 'FIO OFTÁLMICO PGC25 SR2603T 3-0', '', '', NULL, NULL, NULL, ''),
+(93, 'FLUORESCEÍNA STRIPS OPHTHALMOS', '45', '', NULL, NULL, NULL, '15'),
+(94, 'FORMOL 10%', '3', '', NULL, NULL, NULL, '2'),
+(95, 'FRASCO DE NUTRIÇÃO ENTERAL 300ML', '0', '', NULL, NULL, NULL, '30'),
+(96, 'FUROSEMIDA', '53', '', NULL, NULL, NULL, '30'),
+(97, 'GARROTE', '1', '', NULL, NULL, NULL, '1'),
+(98, 'GLICOSE 25%', '66', '', NULL, NULL, NULL, '30'),
+(99, 'GLICOSE 50%', '195', '', NULL, NULL, NULL, '30'),
+(100, 'HENETIX', '4', '', NULL, NULL, NULL, '1'),
+(101, 'HIPERVIT', '24', '', NULL, NULL, NULL, '10'),
+(102, 'HIPOVITA K', '3', '', NULL, NULL, NULL, '01'),
+(103, 'COMPLEXO B', '70', '', NULL, NULL, NULL, '20'),
+(104, 'IBATRIM', '4', '', NULL, NULL, NULL, '1'),
+(105, 'IODO 10%', '', '', NULL, NULL, NULL, ''),
+(106, 'ISOFLURANO', '2', '', NULL, NULL, NULL, '3'),
+(107, 'IZOOT B12', '1', '', NULL, NULL, NULL, '1'),
+(108, 'JALECO DESCARTÁVEL', '51', '', NULL, NULL, NULL, '20'),
+(109, 'KERAVIT POMADA', '1', '', NULL, NULL, NULL, '1'),
+(110, 'LÂMINA DE BISTURI Nº24', '884', '', NULL, NULL, NULL, '50'),
+(111, 'LUVA CIRÚRGICA TAMANHO 6,5', '57', '', NULL, NULL, NULL, '20'),
+(112, 'LUVA CIRÚRGICA TAMANHO 7,0', '55', '', NULL, NULL, NULL, '20'),
+(113, 'LUVA CIRÚRGICA TAMANHO 7,5', '', '', NULL, NULL, NULL, ''),
+(114, 'LUVA CIRÚRGICA TAMANHO 8', '', '', NULL, NULL, NULL, ''),
+(115, 'MALHA TUBULAR 15CM X 15M', '', '', NULL, NULL, NULL, ''),
+(116, 'MALHA TUBULAR 8CM X 15M', '', '', NULL, NULL, NULL, ''),
+(117, 'MANITOL 20%', '2', '', NULL, NULL, NULL, '1'),
+(118, 'MAXICAM 2%', '2', '', NULL, NULL, NULL, '1'),
+(119, 'MAXICAM 0,2%', '4', '', NULL, NULL, NULL, '1'),
+(120, 'MEIO STUART', '92', '', NULL, NULL, NULL, '20'),
+(121, 'CAMPO OPERATÓRIO', '3', '', NULL, NULL, NULL, '1'),
+(122, 'METILCELULOSE OPHTHALMOS 2%', '4', '', NULL, NULL, NULL, '1'),
+(123, 'MIDAZOLAM', '92', '', NULL, NULL, NULL, '25'),
+(124, 'MORFINA', '93', '', NULL, NULL, NULL, '25'),
+(125, 'NUTRIFER 20%', '4', '', NULL, NULL, NULL, '1'),
+(126, 'NYLON 0', '', '', NULL, NULL, NULL, ''),
+(127, 'NYLON 1', '', '', NULL, NULL, NULL, ''),
+(128, 'NYLON 10-0 REF: EE64100/2-30N', '', '', NULL, NULL, NULL, ''),
+(129, 'NYLON 2', '', '', NULL, NULL, NULL, ''),
+(130, 'NYLON 3', '', '', NULL, NULL, NULL, ''),
+(131, 'NYLON 4', '', '', NULL, NULL, NULL, ''),
+(132, 'NYLON 5', '', '', NULL, NULL, NULL, ''),
+(133, 'NYLON 9-0 REF: EE6490/230N', '', '', NULL, NULL, NULL, ''),
+(134, 'ÓLEO MINERAL', '2', '', NULL, NULL, NULL, '1'),
+(135, 'OMEPRAZOL', '22', '', NULL, NULL, NULL, '5'),
+(136, 'ONDANSETRONA', '72', '', NULL, NULL, NULL, '10'),
+(137, 'OPTIVET TEARS', '3', '', NULL, NULL, NULL, '1'),
+(138, 'PATÊ KELDOG PARA CÃES', '31', '', NULL, NULL, NULL, '10'),
+(139, 'PETIDINA', '', '', NULL, NULL, NULL, ''),
+(140, 'POMADA CICATRIZANTE', '2', '', NULL, NULL, NULL, '1'),
+(141, 'RANITIDINA', '23', '', NULL, NULL, NULL, '5'),
+(142, 'RIFOTRAT SPRAY', '', '', NULL, NULL, NULL, ''),
+(143, 'SACHÊ PARA FELINOS', '', '', NULL, NULL, NULL, ''),
+(144, 'SCALP 21', '25', '', NULL, NULL, NULL, '20'),
+(145, 'SCALP 23', '530', '', NULL, NULL, NULL, '50'),
+(146, 'SERINGA 10ML', '', '', NULL, NULL, NULL, ''),
+(147, 'SERINGA 1ML', '', '', NULL, NULL, NULL, ''),
+(148, 'SERINGA 20ML', '', '', NULL, NULL, NULL, ''),
+(149, 'SERINGA 3ML', '', '', NULL, NULL, NULL, ''),
+(150, 'SERINGA 5ML', '', '', NULL, NULL, NULL, ''),
+(151, 'SERINGA 60ML', '', '', NULL, NULL, NULL, ''),
+(154, 'SONDA ENDOTRAQUEAL Nº2', '2', '', NULL, NULL, NULL, '5'),
+(155, 'SONDA ENDOTRAQUEAL Nº3', '10', '', NULL, NULL, NULL, '5'),
+(156, 'SONDA ENDOTRAQUEAL Nº3,5', '7', '', NULL, NULL, NULL, '5'),
+(157, 'SONDA ENDOTRAQUEAL Nº4', '15', '', NULL, NULL, NULL, '5'),
+(158, 'SONDA ENDOTRAQUEAL Nº4,5', '9', '', NULL, NULL, NULL, '5'),
+(159, 'SONDA ENDOTRAQUEAL Nº5', '11', '', NULL, NULL, NULL, '5'),
+(160, 'SONDA ENDOTRAQUEAL Nº6', '12', '', NULL, NULL, NULL, '5'),
+(161, 'SONDA ENDOTRAQUEAL Nº6,5', '15', '', NULL, NULL, NULL, '5'),
+(162, 'SONDA ENDOTRAQUEAL Nº7', '13', '', NULL, NULL, NULL, '5'),
+(163, 'SONDA ENDOTRAQUEAL Nº7,5', '6', '', NULL, NULL, NULL, '5'),
+(164, 'SONDA ENDOTRAQUEAL Nº8', '7', '', NULL, NULL, NULL, '5'),
+(165, 'SONDA ENDOTRAQUEAL Nº8,5', '5', '', NULL, NULL, NULL, '5'),
+(166, 'SONDA ENDOTRAQUEAL Nº9', '12', '', NULL, NULL, NULL, '5'),
+(167, 'SONDA ENDOTRAQUEAL Nº9,5', '6', '', NULL, NULL, NULL, '5'),
+(168, 'SONDA ENDOTRAQUEAL Nº10', '1', '', NULL, NULL, NULL, '5'),
+(169, 'SONDA FOLEY Nº12', '', '', NULL, NULL, NULL, ''),
+(170, 'SONDA FOLEY Nº14', '', '', NULL, NULL, NULL, ''),
+(171, 'SONDA FOLEY Nº18', '', '', NULL, NULL, NULL, ''),
+(172, 'SONDA FOLEY Nº20', '', '', NULL, NULL, NULL, ''),
+(173, 'SONDA TOM CAT COM MANDRIL', '', '', NULL, NULL, NULL, ''),
+(174, 'SONDA TOM CAT SEM MANDRIL', '', '', NULL, NULL, NULL, ''),
+(181, 'SONDA URETRAL Nº16', '5', '', NULL, NULL, NULL, '2'),
+(182, 'SONDA URETRAL Nº18', '4', '', NULL, NULL, NULL, '2'),
+(183, 'SORO ANTIOFÍDICO', '1', '', NULL, NULL, NULL, '1'),
+(184, 'SORO FISIOLÓGICO 100ML', '54', '', NULL, NULL, NULL, '50'),
+(185, 'SORO FISIOLÓGICO 250ML', '39', '', NULL, NULL, NULL, '50'),
+(186, 'SORO FISIOLÓGICO 500ML', '74', '', NULL, NULL, NULL, '50'),
+(187, 'SORO RINGER LACTATO', '34', '', NULL, NULL, NULL, '30'),
+(188, 'SUCRAFILM', '14', '', NULL, NULL, NULL, '5'),
+(189, 'SWAB', '240', '', NULL, NULL, NULL, '30'),
+(190, 'TERGENVET', '1', '', NULL, NULL, NULL, '1'),
+(191, 'TESTE DE SCHIRMER OPHTHALMOS', '50', '', NULL, NULL, NULL, '20'),
+(192, 'TIRAS DE GLICOSÍMETRO', '', '', NULL, NULL, NULL, ''),
+(193, 'TORNEIRA DE 3 VIAS', '22', '', NULL, NULL, NULL, '20'),
+(194, 'TRAMADOL', '90', '', NULL, NULL, NULL, '25'),
+(195, 'CÁLCIO (VALLECÁLCIO)', '2', '', NULL, NULL, NULL, '1'),
+(196, 'VETAGLÓS POMADA 50 GRAMAS', '5', '', NULL, NULL, NULL, '1'),
+(197, 'XILAZINA, CLORIDRATO.  2% (SEDANEW) 50ML', '4', '', NULL, NULL, NULL, '1'),
+(198, 'MEPERIDINA ', '100', '', NULL, NULL, NULL, '25'),
+(199, 'BUTORFANOL, TARTARATO DE. (BUTORFIN) 1%', '2', '', NULL, NULL, NULL, '1'),
+(200, 'LIDOCAÍNA SEM VASOCONSTRICTOR', '38', '', NULL, NULL, NULL, '10'),
+(201, 'METADONA, CLORIDRATO DE', '20', '', NULL, NULL, NULL, '10'),
+(202, 'LIDOCAÍNA (XYLESTESIN) SPRAY 10% (100MG/ML) 50 ML', '2', '', NULL, NULL, NULL, '1'),
+(203, 'LIDOCAÍNA COM VASOCONSTRICTOR', '6', '', NULL, NULL, NULL, '2'),
+(204, 'PROPOFOL', '88', '', NULL, NULL, NULL, '10'),
+(205, 'CAL SODADA', '1', '', NULL, NULL, NULL, '1'),
+(206, 'ATIPAMEZOLE, CLORIDRATO DE (5,0 MG/ML) ANTISEDAN', '2', '', NULL, NULL, NULL, '1'),
+(207, 'DEXMEDETOMIDINA, CLORIDRATO DE (0,5MG) DEXDOMITOR', '2', '', NULL, NULL, NULL, '1'),
+(208, 'ACEPRAN 1%', '3', '', NULL, NULL, NULL, '1'),
+(209, 'CERENIA', '2', '', NULL, NULL, NULL, '1'),
+(210, 'DEXAMETASONA', '2', '', NULL, NULL, NULL, '1'),
+(211, 'ÁLCOOL EM GEL', '0', '', NULL, NULL, NULL, '1'),
+(212, 'LUVA DE PROCEDIMENTO PP', '580', '', NULL, NULL, NULL, '50'),
+(213, 'LUVA DE PROCEDIMENTO P', '270', '', NULL, NULL, NULL, '50'),
+(214, 'LUVA DE PROCEDIMENTO M', '260', '', NULL, NULL, NULL, '50'),
+(216, 'LUVA DE PROCEDIMENTO G', '560', '', NULL, NULL, NULL, '50'),
+(217, 'TOUCA', '1170', '', NULL, NULL, NULL, '50'),
+(218, 'PATÊ FELINO', '9', '', NULL, NULL, NULL, '5'),
+(219, 'MÁSCARA DESCARTÁVEL', '200', '', NULL, NULL, NULL, '50'),
+(220, 'PROPÉ (PACOTE COM 10 PARES)', '49', '', NULL, NULL, NULL, '5'),
+(221, 'SONDA URETRAL Nº8', '60', '', NULL, NULL, NULL, '20'),
+(222, 'SONDA URETRAL Nº6', '79', '', NULL, NULL, NULL, '20'),
+(223, 'SONDA URETRAL Nº4 ', '51', '', NULL, NULL, NULL, '30'),
+(224, 'SONDA URETRAL Nº14', '38', '', NULL, NULL, NULL, '20'),
+(225, 'SONDA URETRAL Nº10', '12', '', NULL, NULL, NULL, '20'),
+(226, 'SONDA URETRAL Nº12', '104', '', NULL, NULL, NULL, '20'),
+(227, 'LÂMINA DE BISTURI Nº15', '642', '', NULL, NULL, NULL, '50'),
+(228, 'LÂMINA DE BISTURI Nº23 ', '100', '', NULL, NULL, NULL, '50'),
+(229, 'LÂMINA DE AÇO (CAIXA COM 3 UNIDADES)', '151', '', NULL, NULL, NULL, '20'),
+(230, 'SONDA ENDOTRAQUEAL Nº5,5', '5', '', NULL, NULL, NULL, '7'),
+(231, '4DX', '18', '', NULL, NULL, NULL, '15');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tbl_items_compra`
+-- Estrutura para tabela `tbl_items_compra`
 --
 
 CREATE TABLE `tbl_items_compra` (
@@ -84,17 +298,17 @@ CREATE TABLE `tbl_items_compra` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `tbl_items_compra`
+-- Fazendo dump de dados para tabela `tbl_items_compra`
 --
 
 INSERT INTO `tbl_items_compra` (`id_item_compra`, `item_compra`, `ordem_compra_id`, `qtde_compra`) VALUES
-(12, 1, 1, 1),
-(13, 1, 5, 1);
+(0, 6, 1, 6),
+(0, 7, 1, 2);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tbl_itens_nf`
+-- Estrutura para tabela `tbl_itens_nf`
 --
 
 CREATE TABLE `tbl_itens_nf` (
@@ -106,17 +320,10 @@ CREATE TABLE `tbl_itens_nf` (
   `id_nf` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Extraindo dados da tabela `tbl_itens_nf`
---
-
-INSERT INTO `tbl_itens_nf` (`id_itens`, `item_nf`, `qtde_nf`, `lote_e`, `validade_prod_nf`, `id_nf`) VALUES
-(1, 1, '12222', '23dfd', '2020-09-16', 1);
-
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tbl_marca`
+-- Estrutura para tabela `tbl_marca`
 --
 
 CREATE TABLE `tbl_marca` (
@@ -127,7 +334,7 @@ CREATE TABLE `tbl_marca` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tbl_nf`
+-- Estrutura para tabela `tbl_nf`
 --
 
 CREATE TABLE `tbl_nf` (
@@ -141,7 +348,7 @@ CREATE TABLE `tbl_nf` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `tbl_nf`
+-- Fazendo dump de dados para tabela `tbl_nf`
 --
 
 INSERT INTO `tbl_nf` (`id_nf`, `numero_nf`, `data_emissao`, `data_lancamento`, `fornecedor`, `valor_nf`, `obs_nf`) VALUES
@@ -150,7 +357,7 @@ INSERT INTO `tbl_nf` (`id_nf`, `numero_nf`, `data_emissao`, `data_lancamento`, `
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tbl_ordem_compra`
+-- Estrutura para tabela `tbl_ordem_compra`
 --
 
 CREATE TABLE `tbl_ordem_compra` (
@@ -160,7 +367,7 @@ CREATE TABLE `tbl_ordem_compra` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `tbl_ordem_compra`
+-- Fazendo dump de dados para tabela `tbl_ordem_compra`
 --
 
 INSERT INTO `tbl_ordem_compra` (`id_ordem`, `nome_f`, `data_c`) VALUES
@@ -170,7 +377,7 @@ INSERT INTO `tbl_ordem_compra` (`id_ordem`, `nome_f`, `data_c`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tbl_prontuarios`
+-- Estrutura para tabela `tbl_prontuarios`
 --
 
 CREATE TABLE `tbl_prontuarios` (
@@ -185,7 +392,7 @@ CREATE TABLE `tbl_prontuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `tbl_prontuarios`
+-- Fazendo dump de dados para tabela `tbl_prontuarios`
 --
 
 INSERT INTO `tbl_prontuarios` (`id_p`, `prontuario_p`, `animal_p`, `proprietario_p`, `documento_p`, `contato_p`, `endereco_p`, `data_p`) VALUES
@@ -17894,7 +18101,7 @@ INSERT INTO `tbl_prontuarios` (`id_p`, `prontuario_p`, `animal_p`, `proprietario
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tbl_saida`
+-- Estrutura para tabela `tbl_saida`
 --
 
 CREATE TABLE `tbl_saida` (
@@ -17906,10 +18113,42 @@ CREATE TABLE `tbl_saida` (
   `data_dia_s` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Fazendo dump de dados para tabela `tbl_saida`
+--
+
+INSERT INTO `tbl_saida` (`id_saida`, `item_s`, `quantidade_s`, `setor_s`, `data_s`, `data_dia_s`) VALUES
+(1, 29, '2', 'Centro-Cirúrgico', '2020-09-18 03:00:00', '2020-09-21'),
+(2, 94, '1', 'Centro-Cirúrgico', '2020-09-18 03:00:00', '2020-09-21'),
+(3, 66, '1', 'Centro-Cirúrgico', '2020-09-18 03:00:00', '2020-09-21'),
+(4, 29, '1', 'Ambulatório-Canino', '2020-09-18 03:00:00', '2020-09-21'),
+(6, 74, '1', 'Ambulatório-Canino', '2020-09-18 03:00:00', '2020-09-21'),
+(7, 31, '1', 'Ambulatório-Felino', '2020-09-18 03:00:00', '2020-09-21'),
+(8, 64, '84', 'Ambulatório-Canino', '2020-09-21 03:00:00', '2020-09-21'),
+(9, 29, '1', 'Ambulatório-Felino', '2020-09-21 03:00:00', '2020-09-21'),
+(10, 29, '1', 'Consultório-06', '2020-09-21 03:00:00', '2020-09-21'),
+(11, 94, '1', 'Centro-Cirúrgico', '2020-09-22 17:03:54', '2020-09-22'),
+(12, 21, '1', 'Centro-Cirúrgico', '2020-09-23 11:01:10', '2020-09-23'),
+(13, 29, '1', 'Ambulatório-Canino', '2020-09-22 03:00:00', '2020-09-23'),
+(14, 106, '1', 'Anestesiologia', '2020-09-22 03:00:00', '2020-09-23'),
+(15, 39, '1', 'Anestesiologia', '2020-09-22 03:00:00', '2020-09-23'),
+(16, 59, '2', 'Anestesiologia', '2020-09-22 03:00:00', '2020-09-23'),
+(17, 87, '1', 'Anestesiologia', '2020-09-22 03:00:00', '2020-09-23'),
+(18, 200, '1', 'Anestesiologia', '2020-09-22 03:00:00', '2020-09-23'),
+(19, 119, '1', 'Anestesiologia', '2020-09-22 03:00:00', '2020-09-23'),
+(20, 198, '1', 'Anestesiologia', '2020-09-22 03:00:00', '2020-09-23'),
+(21, 201, '2', 'Anestesiologia', '2020-09-22 03:00:00', '2020-09-23'),
+(22, 123, '1', 'Anestesiologia', '2020-09-22 03:00:00', '2020-09-23'),
+(23, 124, '1', 'Anestesiologia', '2020-09-22 03:00:00', '2020-09-23'),
+(24, 204, '3', 'Anestesiologia', '2020-09-22 03:00:00', '2020-09-23'),
+(25, 194, '4', 'Anestesiologia', '2020-09-22 03:00:00', '2020-09-23'),
+(26, 106, '1', 'Anestesiologia', '2020-09-22 03:00:00', '2020-09-23'),
+(27, 200, '1', 'Cortesia/Autorizado', '2020-09-23 17:56:19', '2020-09-23');
+
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tbl_setores`
+-- Estrutura para tabela `tbl_setores`
 --
 
 CREATE TABLE `tbl_setores` (
@@ -17918,27 +18157,38 @@ CREATE TABLE `tbl_setores` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `tbl_setores`
+-- Fazendo dump de dados para tabela `tbl_setores`
 --
 
 INSERT INTO `tbl_setores` (`id_setor`, `setor_s`) VALUES
 (7, 'Ambulatório-Canino'),
 (8, 'Ambulatório-Felino'),
-(9, 'Doença-Infectocontagiosa'),
-(10, 'Internação'),
 (16, 'Odontologia'),
 (17, 'Anestesiologia'),
 (18, 'Centro-Cirúrgico'),
 (19, 'Cardiologia'),
 (20, 'Oftalmologia'),
-(21, 'Consultório-01'),
-(22, 'Consultório-02'),
-(23, 'Consultório-03');
+(24, 'Ultrassonografia'),
+(26, 'Internação-Diurna'),
+(27, 'Internação-Noturna'),
+(29, 'Caixa-Ortopédica-Ambulatório-Canino'),
+(30, 'Caixa-Ortopédica-Ambulatório-Felino'),
+(31, 'Caixa-Ortopédica-Internação'),
+(32, 'Caixa-Ortopédica-Centro-Cirúrgico'),
+(33, 'Ambulatório-Doença-Infectocontagiosa'),
+(34, 'Consultório-01'),
+(35, 'Consultório-02'),
+(36, 'Consultório-03'),
+(37, 'Consultório-05'),
+(38, 'Consultório-06'),
+(39, 'Consultório-07'),
+(40, 'Oncologia-(Consultório-08)'),
+(41, 'Cortesia/Autorizado');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tbl_solicitacoes`
+-- Estrutura para tabela `tbl_solicitacoes`
 --
 
 CREATE TABLE `tbl_solicitacoes` (
@@ -17954,7 +18204,7 @@ CREATE TABLE `tbl_solicitacoes` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tbl_un_medida`
+-- Estrutura para tabela `tbl_un_medida`
 --
 
 CREATE TABLE `tbl_un_medida` (
@@ -17965,7 +18215,7 @@ CREATE TABLE `tbl_un_medida` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tbl_usuarios`
+-- Estrutura para tabela `tbl_usuarios`
 --
 
 CREATE TABLE `tbl_usuarios` (
@@ -17976,43 +18226,38 @@ CREATE TABLE `tbl_usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `tbl_usuarios`
+-- Fazendo dump de dados para tabela `tbl_usuarios`
 --
 
 INSERT INTO `tbl_usuarios` (`id_user`, `nome_user`, `cod_user`, `password`) VALUES
 (1, 'farma.hvu', NULL, '123'),
-(2, 'compras.hvu', NULL, '123');
+(2, 'compras.hvu', NULL, '123'),
+(3, 'tatiane_a.hvu', NULL, 'tatiane123');
 
 --
--- Indexes for dumped tables
+-- Índices de tabelas apagadas
 --
 
 --
--- Indexes for table `fila_p`
+-- Índices de tabela `fila_p`
 --
 ALTER TABLE `fila_p`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `tbl_categoria`
+-- Índices de tabela `tbl_categoria`
 --
 ALTER TABLE `tbl_categoria`
   ADD PRIMARY KEY (`id_categoria`);
 
 --
--- Indexes for table `tbl_estoque`
+-- Índices de tabela `tbl_estoque`
 --
 ALTER TABLE `tbl_estoque`
   ADD PRIMARY KEY (`id_estoque`);
 
 --
--- Indexes for table `tbl_items_compra`
---
-ALTER TABLE `tbl_items_compra`
-  ADD PRIMARY KEY (`id_item_compra`);
-
---
--- Indexes for table `tbl_itens_nf`
+-- Índices de tabela `tbl_itens_nf`
 --
 ALTER TABLE `tbl_itens_nf`
   ADD PRIMARY KEY (`id_itens`),
@@ -18020,161 +18265,131 @@ ALTER TABLE `tbl_itens_nf`
   ADD KEY `tbl_itens_nf_fk1` (`id_nf`);
 
 --
--- Indexes for table `tbl_marca`
+-- Índices de tabela `tbl_marca`
 --
 ALTER TABLE `tbl_marca`
   ADD PRIMARY KEY (`id_marca`);
 
 --
--- Indexes for table `tbl_nf`
+-- Índices de tabela `tbl_nf`
 --
 ALTER TABLE `tbl_nf`
   ADD PRIMARY KEY (`id_nf`);
 
 --
--- Indexes for table `tbl_ordem_compra`
---
-ALTER TABLE `tbl_ordem_compra`
-  ADD PRIMARY KEY (`id_ordem`);
-
---
--- Indexes for table `tbl_prontuarios`
+-- Índices de tabela `tbl_prontuarios`
 --
 ALTER TABLE `tbl_prontuarios`
   ADD PRIMARY KEY (`id_p`);
 
 --
--- Indexes for table `tbl_saida`
+-- Índices de tabela `tbl_saida`
 --
 ALTER TABLE `tbl_saida`
   ADD PRIMARY KEY (`id_saida`),
   ADD KEY `tbl_saida_fk0` (`item_s`);
 
 --
--- Indexes for table `tbl_setores`
+-- Índices de tabela `tbl_setores`
 --
 ALTER TABLE `tbl_setores`
   ADD PRIMARY KEY (`id_setor`);
 
 --
--- Indexes for table `tbl_solicitacoes`
+-- Índices de tabela `tbl_solicitacoes`
 --
 ALTER TABLE `tbl_solicitacoes`
   ADD PRIMARY KEY (`id_req`);
 
 --
--- Indexes for table `tbl_un_medida`
+-- Índices de tabela `tbl_un_medida`
 --
 ALTER TABLE `tbl_un_medida`
   ADD PRIMARY KEY (`id_medidas`);
 
 --
--- Indexes for table `tbl_usuarios`
+-- Índices de tabela `tbl_usuarios`
 --
 ALTER TABLE `tbl_usuarios`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de tabelas apagadas
 --
 
 --
--- AUTO_INCREMENT for table `fila_p`
+-- AUTO_INCREMENT de tabela `fila_p`
 --
 ALTER TABLE `fila_p`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
-
 --
--- AUTO_INCREMENT for table `tbl_categoria`
+-- AUTO_INCREMENT de tabela `tbl_categoria`
 --
 ALTER TABLE `tbl_categoria`
   MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT;
-
 --
--- AUTO_INCREMENT for table `tbl_estoque`
+-- AUTO_INCREMENT de tabela `tbl_estoque`
 --
 ALTER TABLE `tbl_estoque`
-  MODIFY `id_estoque` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
+  MODIFY `id_estoque` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=232;
 --
--- AUTO_INCREMENT for table `tbl_items_compra`
---
-ALTER TABLE `tbl_items_compra`
-  MODIFY `id_item_compra` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
---
--- AUTO_INCREMENT for table `tbl_itens_nf`
+-- AUTO_INCREMENT de tabela `tbl_itens_nf`
 --
 ALTER TABLE `tbl_itens_nf`
-  MODIFY `id_itens` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
+  MODIFY `id_itens` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `tbl_marca`
+-- AUTO_INCREMENT de tabela `tbl_marca`
 --
 ALTER TABLE `tbl_marca`
   MODIFY `id_marca` int(11) NOT NULL AUTO_INCREMENT;
-
 --
--- AUTO_INCREMENT for table `tbl_nf`
+-- AUTO_INCREMENT de tabela `tbl_nf`
 --
 ALTER TABLE `tbl_nf`
   MODIFY `id_nf` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
--- AUTO_INCREMENT for table `tbl_ordem_compra`
---
-ALTER TABLE `tbl_ordem_compra`
-  MODIFY `id_ordem` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `tbl_prontuarios`
+-- AUTO_INCREMENT de tabela `tbl_prontuarios`
 --
 ALTER TABLE `tbl_prontuarios`
   MODIFY `id_p` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18190;
-
 --
--- AUTO_INCREMENT for table `tbl_saida`
+-- AUTO_INCREMENT de tabela `tbl_saida`
 --
 ALTER TABLE `tbl_saida`
-  MODIFY `id_saida` int(11) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `id_saida` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 --
--- AUTO_INCREMENT for table `tbl_setores`
+-- AUTO_INCREMENT de tabela `tbl_setores`
 --
 ALTER TABLE `tbl_setores`
-  MODIFY `id_setor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
-
+  MODIFY `id_setor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 --
--- AUTO_INCREMENT for table `tbl_solicitacoes`
+-- AUTO_INCREMENT de tabela `tbl_solicitacoes`
 --
 ALTER TABLE `tbl_solicitacoes`
   MODIFY `id_req` int(11) NOT NULL AUTO_INCREMENT;
-
 --
--- AUTO_INCREMENT for table `tbl_un_medida`
+-- AUTO_INCREMENT de tabela `tbl_un_medida`
 --
 ALTER TABLE `tbl_un_medida`
   MODIFY `id_medidas` int(11) NOT NULL AUTO_INCREMENT;
-
 --
--- AUTO_INCREMENT for table `tbl_usuarios`
+-- AUTO_INCREMENT de tabela `tbl_usuarios`
 --
 ALTER TABLE `tbl_usuarios`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- Restrições para dumps de tabelas
+--
 
 --
--- Constraints for dumped tables
---
-
---
--- Limitadores para a tabela `tbl_itens_nf`
+-- Restrições para tabelas `tbl_itens_nf`
 --
 ALTER TABLE `tbl_itens_nf`
   ADD CONSTRAINT `tbl_itens_nf_fk0` FOREIGN KEY (`item_nf`) REFERENCES `tbl_estoque` (`id_estoque`),
   ADD CONSTRAINT `tbl_itens_nf_fk1` FOREIGN KEY (`id_nf`) REFERENCES `tbl_nf` (`id_nf`);
 
 --
--- Limitadores para a tabela `tbl_saida`
+-- Restrições para tabelas `tbl_saida`
 --
 ALTER TABLE `tbl_saida`
   ADD CONSTRAINT `tbl_saida_fk0` FOREIGN KEY (`item_s`) REFERENCES `tbl_estoque` (`id_estoque`);
