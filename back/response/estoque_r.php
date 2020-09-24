@@ -1,13 +1,13 @@
 <?php 
 require_once('../crud/bhCRUD.php');
 $produto = array(
-	'produto' => $_POST['produto_e'],
-	'quantidade' => $_POST['quantidade_e'], 
-	'valor' => str_replace(",",".",$_POST['valor_un']),
-	'categoria' => $_POST['categoria_e'],
-	'marca' => $_POST['marca_e'],
-	'unidade' => $_POST['unidade_e'],
-	'estoque_minimo_e' => $_POST['estoque_minimo_e'],
+	'produto' => @$_POST['produto_e'],
+	'quantidade' => @$_POST['quantidade_e'], 
+	'valor' => str_replace(",",".",@$_POST['valor_un']),
+	'categoria' => @$_POST['categoria_e'],
+	'marca' => @$_POST['marca_e'],
+	'unidade' => @$_POST['unidade_e'],
+	'estoque_minimo_e' => @$_POST['estoque_minimo_e'],
 );
 
 if(@$_POST['new'] == 1) {	
@@ -19,7 +19,6 @@ if(@$_POST['new'] == 1) {
 	$edit->edit_Produto($produto,$_POST['id']);
 	echo "<script language=\"javascript\">window.history.back();</script>";
 }
-
 
 
 ?>
