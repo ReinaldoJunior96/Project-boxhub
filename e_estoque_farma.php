@@ -38,9 +38,12 @@ switch ($_SESSION['user']) {
         <?php include_once "widget/menu.php"?>
         <div class="col-9">
             <div class="">
-                <nav class="navbar navbar-expand-lg navbar-light bg-nav">
-                    <a class="navbar-brand text-white roboto-condensed" href="#"><i class="fas fa-box-open"></i> Box Hub /  Editar produto
-                    </a>
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <!-- <a class="navbar-brand text-white roboto-condensed" href="#">
+                        <i class="fas fa-box-open text-primary"></i>
+                    </a> -->
+                    <h5 class="text-primary roboto-condensed"><img src="images/box.png" class="img-fluid" width="40">
+                        Alterar produto</h5>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado"
                             aria-expanded="false" aria-label="Alterna navegação">
@@ -52,8 +55,8 @@ switch ($_SESSION['user']) {
 
                         </ul>
                         <div class="form-inline my-2 my-lg-0">
-                            <a href="#" class="badge badge-secondary"><i class="fas fa-bell text-white"></i> <span
-                                        class="badge text-white">5</span></a>
+                            <h6 class="text-black-50 roboto-condensed"><i
+                                        class="fas fa-user text-primary"></i> <?= $_SESSION['user'] ?></h6>
                         </div>
                     </div>
                 </nav>
@@ -67,40 +70,36 @@ switch ($_SESSION['user']) {
                         <form method="POST" action="back/response/estoque_r.php">
                             <input type="hidden" name="edit" value="1">
                             <input type="hidden" name="id" value="<?= $_GET['idp'] ?>">
-                            <div class="form-row">
-                                <div class="form-group col-6">
-                                    <label for="inputEmail4" class="exo">Produto</label>
-                                    <input type="text" class="form-control" value="<?= $v->produto_e ?>"
-                                           name="produto_e"
-                                           id="inputEmail4" placeholder="">
-                                </div>
-                                    <div class="col-2">
-                                        <label for="inputEmail4" class="roboto-condensed">Valor</label>
-                                        <div class="input-group mb-2">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text bg-primary text-light roboto-condensed">R$
-                                                </div>
-                                            </div>
-                                            <?php if ($_SESSION['user'] != 'compras.hvu') { ?>
-                                                <input type='text' class='form-control' disabled value="*******" name='valor_un' placeholder=''>
-                                            <?php } else { ?>
-                                                <input type='text' class='form-control disabled' name='valor_un' value="<?= $v->valor_un_e ?>" placeholder=''
-                                                       >
-                                            <?php } ?>
-                                        </div>
-                                    </div>
-                                <div class="form-group col-md-2">
-                                    <label for="inputEmail4" class="roboto-condensed">Estoque Mínimo</label>
-                                    <input type="number" class="form-control" name="estoque_minimo_e" id="inputEmail4"
-                                           value="<?= $v->estoque_minimo_e ?>" placeholder="">
-                                </div>
-                                <div class="form-group col-md-2">
-                                    <label for="inputEmail4" class="roboto-condensed">Quantidade</label>
-                                    <input type="number" class="form-control" value="<?= $v->quantidade_e ?>"
-                                           name="quantidade_e"
-                                           id="inputEmail4" placeholder="">
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-sm-2 col-form-label">Produto / Material</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="produto_e" value="<?= $v->produto_e ?>"  class="form-control" id="inputEmail3" required="">
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-sm-2 col-form-label">Valor Unitário</label>
+                                <div class="col-sm-2">
+                                    <?php if ($_SESSION['user'] == 'compras.hvu') { ?>
+                                        <input type='text' class='form-control' value="<?= $v->valor_un_e ?>" name='valor_un' placeholder='R$'>
+                                        <small>Utilize ponto no lugar da vírgula</small>
+                                    <?php } else { ?>
+                                        <input type='text' class='form-control ' value="*******" name='valor_un' placeholder=''
+                                               disabled>
+                                    <?php } ?>
+                                </div>
+                                <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Quantidade</label>
+                                <div class="col-sm-2">
+                                    <input type="number" class="form-control" value="<?= $v->quantidade_e ?>" name="quantidade_e" id="inputEmail4"
+                                           placeholder="">
+                                </div>
+
+                                <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Estoque Mínimo</label>
+                                <div class="col-sm-2">
+                                    <input type="number" class="form-control" value="<?= $v->estoque_minimo_e ?>" name="estoque_minimo_e" id="inputEmail4"
+                                           placeholder="">
+                                </div>
+                            </div>
+
                             <div class="form-row">
 
                                 <!--<div class="form-group col-sm-3">
