@@ -38,10 +38,12 @@ switch ($_SESSION['user']) {
         <?php include_once "widget/menu.php"?>
         <div class="col-9">
             <div class="">
-                <nav class="navbar navbar-expand-lg navbar-light bg-nav">
-                    <a class="navbar-brand text-white roboto-condensed" href="#"><i class="fas fa-box-open"></i>
-                        Box Hub / Configurações
-                    </a>
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <!-- <a class="navbar-brand text-white roboto-condensed" href="#">
+                        <i class="fas fa-box-open text-primary"></i>
+                    </a> -->
+                    <h5 class="text-primary roboto-condensed"><img src="images/network.png" class="img-fluid" width="40">
+                        Setores</h5>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado"
                             aria-expanded="false" aria-label="Alterna navegação">
@@ -53,8 +55,8 @@ switch ($_SESSION['user']) {
 
                         </ul>
                         <div class="form-inline my-2 my-lg-0">
-                            <!--<a href="#" class="badge badge-secondary"><i class="fas fa-bell text-white"></i> <span
-                                        class="badge text-white">5</span></a>-->
+                            <h6 class="text-black-50 roboto-condensed"><i
+                                        class="fas fa-user text-primary"></i> <?= $_SESSION['user'] ?></h6>
                         </div>
                     </div>
                 </nav>

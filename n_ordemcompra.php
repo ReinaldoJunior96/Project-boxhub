@@ -27,10 +27,15 @@ $s = new ConfigCRUD();
         <div class="row">
             <?php include_once "widget/menu.php" ?>
             <div class="col-9">
-                <nav class="navbar navbar-expand-lg navbar-light bg-nav">
-                    <a class="navbar-brand text-white roboto-condensed" href="#"><i class="fas fa-box-open"></i>
-                    </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <!-- <a class="navbar-brand text-white roboto-condensed" href="#">
+                        <i class="fas fa-box-open text-primary"></i>
+                    </a> -->
+                    <h5 class="text-primary roboto-condensed"><img src="images/shopping.png" class="img-fluid" width="40">
+                        Compras</h5>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado"
+                            aria-expanded="false" aria-label="Alterna navegação">
                         <span class="navbar-toggler-icon"></span>
                     </button>
 
@@ -39,31 +44,34 @@ $s = new ConfigCRUD();
 
                         </ul>
                         <div class="form-inline my-2 my-lg-0">
-                            <a href="#" class="badge badge-secondary"><i class="fas fa-bell text-white"></i> <span class="badge text-white">5</span></a>
+                            <h6 class="text-black-50 roboto-condensed"><i
+                                        class="fas fa-user text-primary"></i> <?= $_SESSION['user'] ?></h6>
                         </div>
                     </div>
                 </nav>
-                <div class="mt-4 roboto-condensed">
+                <div class="mt-1 roboto-condensed">
                     <form method="post" action="back/response/n_ordem_compra.php">
-                        <div class="form-row">
-                            <div class="form-group col-6">
-                                <label for="exampleInputEmail1">Fornecedor</label>
+
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-1 col-form-label">Fornecedor</label>
+                            <div class="col-sm-5">
                                 <input type="text" name="nome_f" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                                 <small class="text-black-50">Caso a data não seja preenchida, entrará como o dia presente. </small>
                             </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Data</label>
-                                <input type="date" name="data_c" class="form-control" id="exampleInputPassword1" placeholder="Senha">
+
+                            <label for="inputEmail3" class="col-sm-1 col-form-label text-right">Data</label>
+                            <div class="col-sm-4">
+                                <input type="date" name="data_c" class="form-control" id="exampleInputPassword1" placeholder="">
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Novo <i class="fas fa-plus"></i></button>
+                        <button type="submit" class="btn btn-primary text-white">Nova Ordem <i class="fas fa-plus"></i></button>
                     </form>
                 </div>
                 <hr>
                 <div class="">
-                    <div class="container mt-5 ">
+                    <div class="container mt-1">
                         <table id="example" class="table table-sm text-center roboto-condensed">
-                            <thead class="bg-shadow-it bg-primary">
+                            <thead class="bg-shadow-it bg-nav">
                                 <tr class="text-light ">
                                     <th class=""></th>
                                     <th class="">Fornecedor</th>
@@ -80,7 +88,7 @@ $s = new ConfigCRUD();
                             ?>
                             <tr>
                                 <td class=""><?=$v->id_ordem?></td>
-                                <td class=""><a href="n_prod_oc.php?id_ordem=<?=$v->id_ordem?>"><?=$v->nome_f?></a></td>
+                                <td class="text-primary"><a href="n_prod_oc.php?id_ordem=<?=$v->id_ordem?>"><?=$v->nome_f?></a></td>
                                 <td class=""><?=date("d/m/Y", strtotime($v->data_c))?></td>
                                 <td><a href="back/response/d_ordem_compra.php?idordem=<?=$v->id_ordem?>"><i class='fas fa-trash text-danger'></i></a></td>
                                 </tr>

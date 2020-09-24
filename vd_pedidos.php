@@ -59,7 +59,7 @@
                     <a class="nav-link exo text-white" href="vd_pedidos.php">Pedidos <i class="fas fa-ticket-alt"></i></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link exo text-white" href="config_farma.php">Configurações <i class="fas fa-cog"></i></a>
+                    <a class="nav-link exo text-white" href="setores.php">Configurações <i class="fas fa-cog"></i></a>
                 </li>
             </ul>
         </form>

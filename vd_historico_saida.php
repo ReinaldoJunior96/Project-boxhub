@@ -38,9 +38,12 @@ switch ($_SESSION['user']) {
         <?php include_once "widget/menu.php"?>
         <div class="col-9">
             <div class="">
-                <nav class="navbar navbar-expand-lg navbar-light bg-nav">
-                    <a class="navbar-brand text-white roboto-condensed" href="#"><i class="fas fa-box-open"></i> Box Hub
-                    </a>
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <!-- <a class="navbar-brand text-white roboto-condensed" href="#">
+                        <i class="fas fa-box-open text-primary"></i>
+                    </a> -->
+                    <h5 class="text-primary roboto-condensed"><img src="images/history.png" class="img-fluid" width="40">
+                        Histórico</h5>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado"
                             aria-expanded="false" aria-label="Alterna navegação">
@@ -52,36 +55,39 @@ switch ($_SESSION['user']) {
 
                         </ul>
                         <div class="form-inline my-2 my-lg-0">
-                            <a href="#" class="badge badge-secondary"><i class="fas fa-bell text-white"></i> <span
-                                        class="badge text-white">5</span></a>
+                            <h6 class="text-black-50 roboto-condensed"><i
+                                        class="fas fa-user text-primary"></i> <?= $_SESSION['user'] ?></h6>
                         </div>
                     </div>
                 </nav>
-                <div class="mt-5">
+                <div class="">
                     <div class="container">
                         <form method="post" action="">
-                            <div class="form-group mt-5">
-                                <label for="exampleFormControlSelect1" class="roboto-condensed">Qual setor você
+
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-sm-3 col-form-label">Qual setor você
                                     deseja?</label>
-                                <select class="form-control col-5" id="exampleFormControlSelect1"
-                                        onChange="this.form.submit()" name="filtro">
-                                    <option selected></option>
-                                    <option class="roboto-condensed" value="">Todos os setores</option>
-                                    <?php
-                                    require_once('back/crud/configCRUD.php');
-                                    $s = new ConfigCRUD();
-                                    $setores = $s->ver_setores();
-                                    foreach ($setores as $v) {
-                                        ?>
-                                        <option class="roboto-condensed"
-                                                value="<?= $v->setor_s ?>"><?= str_replace("-", " ", $v->setor_s) ?></option>
-                                    <?php } ?>
-                                </select>
+                                <div class="col-sm-9">
+                                    <select class="form-control col-5" id="exampleFormControlSelect1"
+                                            onChange="this.form.submit()" name="filtro">
+                                        <option selected></option>
+                                        <option class="roboto-condensed" value="">Todos os setores</option>
+                                        <?php
+                                        require_once('back/crud/configCRUD.php');
+                                        $s = new ConfigCRUD();
+                                        $setores = $s->ver_setores();
+                                        foreach ($setores as $v) {
+                                            ?>
+                                            <option class="roboto-condensed"
+                                                    value="<?= $v->setor_s ?>"><?= str_replace("-", " ", $v->setor_s) ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
                             </div>
                         </form>
                     </div>
-                    <div class="container text-center justify-content-center">
-                        <table id="example" class="table table-sm comfortaa">
+                    <div class="">
+                        <table id="example" class="table table-sm roboto-condensed">
                             <thead class="bg-shadow-it bg-nav">
                             <tr class="text-light text-center">
                                 <th class="">Produto / Meterial</th>

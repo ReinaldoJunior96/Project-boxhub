@@ -62,7 +62,7 @@
                             class="border-top-0 border-right-0 border-left-0 text-menu-color-2" "><i class=" fas
                             fa-file-pdf"></i> Relatórios</a></li>
                             <li class="list-group-item border-top border-right-0 border-left-0 border-bottom-0 ">
-                                <a href="<?= ($_SESSION['user'] == 'compras.hvu' or $_SESSION['user'] == 'farma.hvu') ? 'notificacao.php' : '' ?>"
+                                <a href="<?= ($_SESSION['user'] == 'compras.hvu' or $_SESSION['user'] == 'farma.hvu' or $_SESSION['user'] == 'tatiane_a.hvu') ? 'notificacao.php' : '' ?>"
                                     class="border-top-0 border-right-0 border-left-0 text-menu-color-2 " "><i class=" fas
                                     fa-bell"></i> Notificações <span class="float-right"><i
                                         class="fas fa-exclamation-triangle text-primary"></i></span></a>
@@ -75,9 +75,9 @@
 
                         </li>-->
                         <li class="list-group-item border-top border-right-0 border-left-0 border-bottom-0 ">
-                            <a href="<?= ($_SESSION['user'] == 'farma.hvu') ? 'config_farma.php' : '' ?>"
+                            <a href="<?= ($_SESSION['user'] == 'farma.hvu') ? 'setores.php' : '' ?>"
                                 class="text-menu-color-2 <?= ($_SESSION['user'] == 'farma.hvu') ? '' : 'isDisabled' ?>">
-                                <i class="fas fa-cog"></i> Configurações</a>
+                                <i class="fas fa-project-diagram"></i> Setores</a>
                             </li>
 
                             <li class="list-group-item border-top border-right-0 border-left-0 border-bottom-0 ">

@@ -21,11 +21,15 @@
   <component name="ChangeListManager">
     <list default="true" id="e287bc17-b257-466b-b138-3c26574c0691" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e_entrada_farma.php" beforeDir="false" afterPath="$PROJECT_DIR$/e_entrada_farma.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e_estoque_farma.php" beforeDir="false" afterPath="$PROJECT_DIR$/e_estoque_farma.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/n_nota_fiscal.php" beforeDir="false" afterPath="$PROJECT_DIR$/n_nota_fiscal.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/n_produtos_nota_fiscal.php" beforeDir="false" afterPath="$PROJECT_DIR$/n_produtos_nota_fiscal.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v_nota_fiscal.php" beforeDir="false" afterPath="$PROJECT_DIR$/v_nota_fiscal.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config_farma.php" beforeDir="false" afterPath="$PROJECT_DIR$/setores.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/n_ordemcompra.php" beforeDir="false" afterPath="$PROJECT_DIR$/n_ordemcompra.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/n_prod_oc.php" beforeDir="false" afterPath="$PROJECT_DIR$/n_prod_oc.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/n_relatorio.php" beforeDir="false" afterPath="$PROJECT_DIR$/n_relatorio.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/n_saida_setor.php" beforeDir="false" afterPath="$PROJECT_DIR$/n_saida_setor.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notificacao.php" beforeDir="false" afterPath="$PROJECT_DIR$/notificacao.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vd_historico_saida.php" beforeDir="false" afterPath="$PROJECT_DIR$/vd_historico_saida.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vd_pedidos.php" beforeDir="false" afterPath="$PROJECT_DIR$/vd_pedidos.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/menu.php" beforeDir="false" afterPath="$PROJECT_DIR$/widget/menu.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +78,7 @@
       <workItem from="1600305650398" duration="3526000" />
       <workItem from="1600815815238" duration="129000" />
       <workItem from="1600903548960" duration="8108000" />
-      <workItem from="1600978827947" duration="3509000" />
+      <workItem from="1600978827947" duration="10136000" />
     </task>
     <servers />
   </component>
