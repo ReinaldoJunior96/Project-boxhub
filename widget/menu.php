@@ -1,8 +1,6 @@
 <html>
-
 <head>
 </head>
-
 <body>
     <div class="col-3 roboto-condensed">
         <div class="p-2">
@@ -10,9 +8,6 @@
                 <a href="index.php"><img src="images/img-login.png" class="img-fluid" width="300"></a>
             </div>            
             <ul class="list-group mt-2">
-                <!--                <li class="list-group-item border-0" style="font-size: 1.0em">-->
-                    <!--                    <img src="images/boy.png" class="img-fluid mt-2" width="40" alt="Imagem responsiva">Olá --><?//= $_SESSION['user'] ?><!--, seja bem vindo.-->
-                    <!--                </li>-->
                     <li class="list-group-item border-0">
                         <a href="<?= ($_SESSION['user'] == 'compras.hvu') ? 'n_nota_fiscal.php' : '#' ?>"
                             class="border-top-0 border-right-0 border-left-0 text-menu-color-2  <?= ($_SESSION['user'] != 'compras.hvu') ? 'isDisabled' : '' ?>">
@@ -79,14 +74,19 @@
                                 class="text-menu-color-2 <?= ($_SESSION['user'] == 'farma.hvu') ? '' : 'isDisabled' ?>">
                                 <i class="fas fa-project-diagram"></i> Setores</a>
                             </li>
-
                             <li class="list-group-item border-top border-right-0 border-left-0 border-bottom-0 ">
-                                <a href="back/response/destroy_sessao.php" class="text-menu-color-2"><i
-                                    class="fas fa-power-off"></i> Sair</a>
+                                <a href="<?= ($_SESSION['user'] == 'compras.hvu') ? 'fornecedores.php' : '' ?>"
+                                    class="text-menu-color-2 <?= ($_SESSION['user'] == 'compras.hvu') ? '' : 'isDisabled' ?>">
+                                    <i class="fas fa-users"></i> Fornecedores</a>
                                 </li>
-                            </ul>
-                        </div>
-                    </div>
-                </body>
 
-                </html>
+                                <li class="list-group-item border-top border-right-0 border-left-0 border-bottom-0 ">
+                                    <a href="back/response/destroy_sessao.php" class="text-menu-color-2"><i
+                                        class="fas fa-power-off"></i> Sair</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </body>
+
+                    </html>
