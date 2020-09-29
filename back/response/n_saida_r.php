@@ -1,6 +1,6 @@
 <?php
-include '../crud/bhCRUD.php';
-include '../crud/configCRUD.php';
+include '../controllers/bhCRUD.php';
+include '../controllers/configCRUD.php';
 
 date_default_timezone_set('America/Sao_Paulo');
 $s = new ConfigCRUD();

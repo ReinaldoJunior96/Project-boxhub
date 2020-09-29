@@ -1,7 +1,7 @@
 <?php
 setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
 date_default_timezone_set('America/Sao_Paulo');
-require 'back/crud/bhCRUD.php';
+require 'back/controllers/bhCRUD.php';
 $dados = new BhCRUD();
 $dados_ordem = $dados->verOrdemTotal($_GET['id_ordem']);
 if (empty($dados_ordem['0']->item_compra)) {

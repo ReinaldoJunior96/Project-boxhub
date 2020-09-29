@@ -3,7 +3,7 @@ session_start();
 if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
     header("location: login.php");
 }
-require_once('back/crud/configCRUD.php');
+require_once('back/controllers/configCRUD.php');
 $s = new ConfigCRUD();
 switch ($_SESSION['user']) {
     case 'farma.hvu':
@@ -36,7 +36,7 @@ switch ($_SESSION['user']) {
 <body>
 <div class="container-fluid">
     <div class="row">
-        <?php include_once "widget/menu.php" ?>
+        <?php include_once "componentes/menu.php" ?>
         <div class="col-9">
             <nav class="navbar navbar-expand-lg navbar-light">
                 <h5 class="text-primary roboto-condensed"><img src="images/shopping.png" class="img-fluid" width="40">
@@ -74,8 +74,8 @@ switch ($_SESSION['user']) {
                     </thead>
                     <tbody class="text-black-50 ">
                     <?php
-                    require_once('back/crud/bhCRUD.php');
-                    $view_estoque = new BhCRUD();
+                    require_once('back/controllers/estoqueController.php');
+                    $view_estoque = new EstoqueController();
                     $all_estoque = $view_estoque->verEstoque();
                     foreach ($all_estoque as $v) {
                         ?>
@@ -86,7 +86,7 @@ switch ($_SESSION['user']) {
                                 <td class=""><?= $v->produto_e ?></td>
                                 <td><input type="number" class="form-control" name="saidaqte_p" id="inputPassword4"
                                            placeholder="" style="text-align: center;"></td>
-                                <td><?= $v->valor_un_e ?></td>
+                                <td><?= "R$ ". str_replace('.',',',$v->valor_un_e) ?></td>
                                 <td>
                                     <button type="submit" class="btn roboto-condensed text-white mt-1">
                                         <i class="fas fa-file-import text-secondary"></i>

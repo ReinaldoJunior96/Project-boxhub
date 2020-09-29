@@ -1,5 +1,5 @@
 <?php
-include '../crud/bhCRUD.php';
+include '../controllers/bhCRUD.php';
 date_default_timezone_set('America/Sao_Paulo');
 $f = new BhCRUD();
 $data = new DateTime();

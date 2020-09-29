@@ -1,5 +1,5 @@
 <?php 
-require_once('../crud/bhCRUD.php');
+require_once('../controllers/bhCRUD.php');
 $nf = array(
 	'numero' => $_POST['numero_nf'],
 	'data_e' => $_POST['datae_nf'], 

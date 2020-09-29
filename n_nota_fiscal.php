@@ -5,7 +5,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
 } elseif ($_SESSION['user'] != 'compras.hvu') {
     header("location: index.php");
 }
-require_once('back/crud/configCRUD.php');
+require_once('back/controllers/configCRUD.php');
 $s = new ConfigCRUD();
 ?>
 <!DOCTYPE html>
@@ -27,7 +27,7 @@ $s = new ConfigCRUD();
 <body>
 <div class="container-fluid">
     <div class="row">
-        <?php include_once "widget/menu.php" ?>
+        <?php include_once "componentes/menu.php" ?>
         <div class="col-9">
             <div class="">
                 <nav class="navbar navbar-expand-lg navbar-light">
@@ -136,7 +136,7 @@ $s = new ConfigCRUD();
                     </thead>
                     <tbody class="text-black-50">
                     <?php
-                    require_once('back/crud/bhCRUD.php');
+                    require_once('back/controllers/bhCRUD.php');
                     $view_nf = new BhCRUD();
                     $allnf = $view_nf->index();
                     foreach ($allnf as $v) {

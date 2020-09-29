@@ -3,7 +3,7 @@ session_start();
 if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
     header("location: login.php");
 }
-require_once('back/crud/configCRUD.php');
+require_once('back/controllers/configCRUD.php');
 $s = new ConfigCRUD();
 ?>
 <!DOCTYPE html>
@@ -25,7 +25,7 @@ $s = new ConfigCRUD();
 <body>
     <div class="container-fluid">
         <div class="row">
-            <?php include_once "widget/menu.php" ?>
+            <?php include_once "componentes/menu.php" ?>
             <div class="col-9">
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <!-- <a class="navbar-brand text-white roboto-condensed" href="#">
@@ -81,7 +81,7 @@ $s = new ConfigCRUD();
                             </thead>
                             <tbody class="text-black-50">
                             <?php
-                            include 'back/crud/bhCRUD.php';
+                            include 'back/controllers/bhCRUD.php';
                             $view_ordens = new BhCRUD();
                             $all_ordens = $view_ordens->ver_ordensCompra();
                             foreach ($all_ordens as $v){

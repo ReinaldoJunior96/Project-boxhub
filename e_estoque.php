@@ -3,19 +3,6 @@ session_start();
 if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
     header("location: login.php");
 }
-require_once('back/crud/configCRUD.php');
-$s = new ConfigCRUD();
-switch ($_SESSION['user']) {
-    case 'tatiane_a.hvu':
-    case 'farma.hvu':
-        $permissao = 'disabled';
-        break;
-    case 'compras.hvu':
-        $permissao = '';
-        break;
-    default:
-        $permissao = '';
-}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -29,20 +16,16 @@ switch ($_SESSION['user']) {
     <!-- Meu CSS -->
     <title class="roboto-condensed">Firebox</title>
     <link rel="icon" type="imagem/png" href="images/fire.png" />
-    <!-- <link rel="icon" class="rounded" href="images/icon-box.png" type="image/x-icon" /> -->
 </head>
 
 <body>
 <div class="container-fluid">
     <div class="row">
-        <?php include_once "widget/menu.php"?>
+        <?php include_once "componentes/menu.php" ?>
         <div class="col-9">
             <div class="">
                 <nav class="navbar navbar-expand-lg navbar-light">
-                    <!-- <a class="navbar-brand text-white roboto-condensed" href="#">
-                        <i class="fas fa-box-open text-primary"></i>
-                    </a> -->
-                    <h5 class="text-primary roboto-condensed"><img src="images/box.png" class="img-fluid" width="40">
+                    <h5 class="text-primary roboto-condensed"><img src="images/box.png" alt="" class="img-fluid" width="40">
                         Alterar</h5>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado"
@@ -52,7 +35,6 @@ switch ($_SESSION['user']) {
 
                     <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
                         <ul class="navbar-nav mr-auto">
-
                         </ul>
                         <div class="form-inline my-2 my-lg-0">
                             <h6 class="text-black-50 roboto-condensed"><i
@@ -62,8 +44,8 @@ switch ($_SESSION['user']) {
                 </nav>
                 <div class="mt-5">
                     <?php
-                    require_once 'back/crud/bhCRUD.php';
-                    $p = new BhCRUD();
+                    require_once 'back/controllers/estoqueController.php';
+                    $p = new EstoqueController();
                     $produtos = $p->estoqueID($_GET['idp']);
                     foreach ($produtos as $v) {
                         ?>
@@ -98,52 +80,6 @@ switch ($_SESSION['user']) {
                                     <input type="number" class="form-control" value="<?= $v->estoque_minimo_e ?>" name="estoque_minimo_e" id="inputEmail4"
                                            placeholder="">
                                 </div>
-                            </div>
-
-                            <div class="form-row">
-
-                                <!--<div class="form-group col-sm-3">
-                                    <label for="exampleFormControlSelect1">Categoria</label>
-                                    <select class="form-control" id="exampleFormControlSelect1" name="categoria_e">
-                                        <?php /*echo "<option value='$v->categoria_e'>$v->categoria_e</option>"; */?>
-                                        <?php
-/*                                        require_once('back/crud/configCRUD.php');
-                                        $c = new ConfigCRUD();
-                                        $categorias = $c->ver_categoria();
-                                        foreach ($categorias as $c) {
-                                            */?>
-                                            <?php /*echo "<option value=$c->categoria_c>" . str_replace("-", " ", $c->categoria_c) . "</option>" */?>
-                                        <?php /*} */?>
-                                    </select>
-                                </div>-->
-                                <!--<div class="form-group col-sm-3">
-                                    <label for="exampleFormControlSelect1">Unidade de medida</label>
-                                    <select class="form-control" id="exampleFormControlSelect1" name="unidade_e">
-                                        <?php /*echo "<option value='$v->unidade_e'>$v->unidade_e</option>"; */?>
-                                        <?php
-/*                                        require_once('back/crud/configCRUD.php');
-                                        $un = new ConfigCRUD();
-                                        $uni_medida = $un->ver_UNM();
-                                        foreach ($uni_medida as $un) {
-                                            */?>
-                                            <?php /*echo "<option value=$un->un_medida>" . str_replace("-", " ", $un->un_medida) . "</option>" */?>
-                                        <?php /*} */?>
-                                    </select>
-                                </div>-->
-                                <!--<div class="form-group col-sm-3">
-                                    <label for="exampleFormControlSelect1">Marca</label>
-                                    <select class="form-control" id="exampleFormControlSelect1" name="marca_e">
-                                        <?php /*echo "<option value='$v->marca_e'>$v->marca_e</option>"; */?>
-                                        <?php
-/*                                        require_once('back/crud/configCRUD.php');
-                                        $m = new ConfigCRUD();
-                                        $marca = $m->ver_marcas();
-                                        foreach ($marca as $m) {
-                                            */?>
-                                            <?php /*echo "<option value=$m->marca_m>" . str_replace("-", " ", $m->marca_m) . "</option>" */?>
-                                        <?php /*} */?>
-                                    </select>
-                                </div>-->
                             </div>
                             <button type="submit" class="btn bg-primary col-sm-2 roboto-condensed text-white">Alterar <i
                                         class="far fa-edit ml-2"></i>

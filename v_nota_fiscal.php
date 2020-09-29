@@ -3,7 +3,7 @@ session_start();
 if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
     header("location: login.php");
 }
-require_once('back/crud/configCRUD.php');
+require_once('back/controllers/configCRUD.php');
 $s = new ConfigCRUD();
 switch ($_SESSION['user']) {
     case 'farma.hvu':
@@ -35,12 +35,12 @@ switch ($_SESSION['user']) {
 <body>
 <div class="container-fluid">
     <div class="row">
-        <?php include_once "widget/menu.php" ?>
+        <?php include_once "componentes/menu.php" ?>
         <div class="col-9">
             <div class="">
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <?php
-                    require_once('back/crud/bhCRUD.php');
+                    require_once('back/controllers/bhCRUD.php');
                     $dados_nf = new BhCRUD();
                     $nf = $dados_nf->findID($_GET['idnf']);
                     foreach ($nf as $v) { ?>
@@ -95,7 +95,7 @@ switch ($_SESSION['user']) {
                         </thead>
                         <tbody class="roboto-condensed text-black-50">
                         <?php
-                        require_once('back/crud/bhCRUD.php');
+                        require_once('back/controllers/bhCRUD.php');
                         $nf = new BhCRUD();
                         $ver_nf = $nf->ver_prod_NF($_GET['idnf']);
                         foreach ($ver_nf as $v) {

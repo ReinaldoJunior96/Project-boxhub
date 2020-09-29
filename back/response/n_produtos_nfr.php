@@ -1,5 +1,5 @@
 <?php 
-require_once('../crud/bhCRUD.php');
+require_once('../controllers/bhCRUD.php');
 $produto_nf = array(
 	'produto' => $_POST['prod_id'],
 	'quantidade' => $_POST['quantidade_pnf'],

@@ -1,5 +1,5 @@
 <?php 
-require_once('../crud/bhCRUD.php');
+require_once('../controllers/bhCRUD.php');
 
 if($_GET['p'] == 'cancelar'){
     $ng_solicitacao= new BhCRUD();

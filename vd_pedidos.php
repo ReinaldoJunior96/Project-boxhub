@@ -39,7 +39,7 @@
                     </a>
                     <div class="dropdown-menu bg-drop exo border-0 drop-position " aria-labelledby="navbarDropdown">
                         <?php
-                        require_once('back/crud/configCRUD.php');
+                        require_once('back/controllers/configCRUD.php');
                         $s = new ConfigCRUD();
                         $setores = $s->ver_setores();
                         foreach ($setores as $v) {
@@ -93,7 +93,7 @@
                 </thead>
                 <tbody>
                     <?php
-                    require_once('back/crud/bhCRUD.php');
+                    require_once('back/controllers/bhCRUD.php');
                     $view_pedidos = new BhCRUD();
                     $pedidos = $view_pedidos->v_pedidos();
                     foreach ($pedidos as $v) {

@@ -20,18 +20,69 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e287bc17-b257-466b-b138-3c26574c0691" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/back/controllers/estoqueController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/crud/bhCRUD.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/bhCRUD.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/crud/compraController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/compraController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/crud/conexao.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/conexao.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/crud/configCRUD.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/configCRUD.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/crud/estoqueController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/crud/fornecedoreController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/fornecedoreController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/crud/nfController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/nfController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/crud/relatorioController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/relatorioController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/crud/saidaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/saidaController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/crud/setoresController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/setoresController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/crud/usuarioController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/usuarioController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/config_r.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/config_r.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/d_nf_r.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/d_nf_r.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/d_ordem_compra.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/d_ordem_compra.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/d_prod_compra.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/d_prod_compra.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/d_produto_nf.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/d_produto_nf.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/d_saida_r.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/d_saida_r.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/estoque_r.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/estoque_r.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/n_ordem_compra.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/n_ordem_compra.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/n_prod_ordem_compra.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/n_prod_ordem_compra.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/n_produtos_nfr.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/n_produtos_nfr.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/n_saida_r.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/n_saida_r.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/nota_fiscal_r.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/nota_fiscal_r.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/pedidos_r.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/pedidos_r.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/relatorio_r.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/relatorio_r.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/sessao.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/sessao.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/e_entrada_farma.php" beforeDir="false" afterPath="$PROJECT_DIR$/e_nota_fiscal.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/e_estoque_farma.php" beforeDir="false" afterPath="$PROJECT_DIR$/e_estoque.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/n_fornecedores.php" beforeDir="false" afterPath="$PROJECT_DIR$/n_fornecedores.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/n_nota_fiscal.php" beforeDir="false" afterPath="$PROJECT_DIR$/n_nota_fiscal.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/n_ordemcompra.php" beforeDir="false" afterPath="$PROJECT_DIR$/n_ordemcompra.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/n_prod_oc.php" beforeDir="false" afterPath="$PROJECT_DIR$/n_prod_oc.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/n_produtos_nota_fiscal.php" beforeDir="false" afterPath="$PROJECT_DIR$/n_produtos_nota_fiscal.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/n_relatorio.php" beforeDir="false" afterPath="$PROJECT_DIR$/n_relatorio.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/n_saida_setor.php" beforeDir="false" afterPath="$PROJECT_DIR$/n_saida_setor.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/n_setores.php" beforeDir="false" afterPath="$PROJECT_DIR$/n_setores.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notificacao.php" beforeDir="false" afterPath="$PROJECT_DIR$/notificacao.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nv_estoque.php" beforeDir="false" afterPath="$PROJECT_DIR$/nv_estoque.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ordem_pdf.php" beforeDir="false" afterPath="$PROJECT_DIR$/ordem_pdf.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/solicitacoes/Anestesia/index.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solicitacoes/Anestesia/itens_req.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solicitacoes/Anestesia/view_solicitacoes.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solicitacoes/crud/conexao.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solicitacoes/crud/requisicao_crud.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solicitacoes/css/bootstrap.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solicitacoes/css/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solicitacoes/images/Control.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solicitacoes/images/controle-estoque.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solicitacoes/images/controle.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solicitacoes/images/foto.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solicitacoes/images/img-box.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solicitacoes/images/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solicitacoes/js/bootstrap.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solicitacoes/js/jquery.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solicitacoes/js/popper.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solicitacoes/response/requisicao_r.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/v_nota_fiscal.php" beforeDir="false" afterPath="$PROJECT_DIR$/v_nota_fiscal.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vd_historico_saida.php" beforeDir="false" afterPath="$PROJECT_DIR$/vd_historico_saida.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vd_pedidos.php" beforeDir="false" afterPath="$PROJECT_DIR$/vd_pedidos.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/menu.php" beforeDir="false" afterPath="$PROJECT_DIR$/componentes/menu.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +131,9 @@
       <workItem from="1600305650398" duration="3526000" />
       <workItem from="1600815815238" duration="129000" />
       <workItem from="1600903548960" duration="8108000" />
-      <workItem from="1600978827947" duration="11772000" />
+      <workItem from="1600978827947" duration="12373000" />
+      <workItem from="1601210947668" duration="1209000" />
+      <workItem from="1601338272188" duration="8600000" />
     </task>
     <servers />
   </component>
@@ -100,14 +153,26 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="194" y="248" key="#SQL_Dialects" timestamp="1601341761861">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="194" y="248" key="#SQL_Dialects/0.0.1536.824@0.0.1536.824" timestamp="1601341761861" />
+    <state x="361" y="71" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1601342078325">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="71" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1601342078325" />
     <state x="449" y="148" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1600815823217">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="449" y="148" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1536.824@0.0.1536.824" timestamp="1600815823217" />
-    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1600978847140">
+    <state x="255" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1601340769096">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1600978847140" />
+    <state x="255" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824@0.0.1536.824" timestamp="1601340769096" />
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1601217324260">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1601217324260" />
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1599693941251">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

@@ -3,7 +3,7 @@ session_start();
 if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
     header("location: login.php");
 }
-require_once('back/crud/configCRUD.php');
+require_once('back/controllers/configCRUD.php');
 $s = new ConfigCRUD();
 switch ($_SESSION['user']) {
     case 'farma.hvu':
@@ -35,7 +35,7 @@ switch ($_SESSION['user']) {
 <body>
 <div class="container-fluid">
     <div class="row">
-        <?php include_once "widget/menu.php"?>
+        <?php include_once "componentes/menu.php" ?>
         <div class="col-9">
             <div class="">
                 <nav class="navbar navbar-expand-lg navbar-light">
@@ -73,7 +73,7 @@ switch ($_SESSION['user']) {
                                         <option selected></option>
                                         <option class="roboto-condensed" value="">Todos os setores</option>
                                         <?php
-                                        require_once('back/crud/configCRUD.php');
+                                        require_once('back/controllers/configCRUD.php');
                                         $s = new ConfigCRUD();
                                         $setores = $s->ver_setores();
                                         foreach ($setores as $v) {
@@ -99,7 +99,7 @@ switch ($_SESSION['user']) {
                             </thead>
                             <tbody>
                             <?php
-                            require_once('back/crud/bhCRUD.php');
+                            require_once('back/controllers/bhCRUD.php');
                             $view_historico = new BhCRUD();
                             // $historico = $view_historico->historico_saida();
                             if (empty($_POST['filtro'])) {

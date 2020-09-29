@@ -1,5 +1,5 @@
 <?php 
-require_once('../crud/configCRUD.php');
+require_once('../controllers/configCRUD.php');
 
 /* Adicionar */
 if(@$_POST['setor'] == 1){

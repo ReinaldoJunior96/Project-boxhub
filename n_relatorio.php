@@ -3,7 +3,7 @@ session_start();
 if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
     header("location: login.php");
 }
-require_once('back/crud/configCRUD.php');
+require_once('back/controllers/configCRUD.php');
 $s = new ConfigCRUD();
 ?>
 <!DOCTYPE html>
@@ -26,7 +26,7 @@ $s = new ConfigCRUD();
 <body>
 <div class="container-fluid">
     <div class="row">
-        <?php include_once "widget/menu.php" ?>
+        <?php include_once "componentes/menu.php" ?>
         <div class="col-9">
             <div class="">
                 <nav class="navbar navbar-expand-lg navbar-light">
@@ -59,7 +59,7 @@ $s = new ConfigCRUD();
                                 <select class="form-control" id="exampleFormControlSelect1" name="id_produto">
                                     <option value=""></option>
                                     <?php
-                                    require_once('back/crud/bhCRUD.php');
+                                    require_once('back/controllers/bhCRUD.php');
                                     $estoque = new BhCRUD();
                                     $ver_estoque = $estoque->verEstoque();
                                     foreach ($ver_estoque as $v) {
@@ -73,7 +73,7 @@ $s = new ConfigCRUD();
                                 <select class="form-control" id="exampleFormControlSelect1" name="setor">
                                     <option></option>
                                     <?php
-                                    require_once('back/crud/configCRUD.php');
+                                    require_once('back/controllers/configCRUD.php');
                                     $s = new ConfigCRUD();
                                     $setores = $s->ver_setores();
                                     foreach ($setores as $v) {
@@ -99,7 +99,7 @@ $s = new ConfigCRUD();
                     </form>
                     <div class="container mt-2 roboto-condensed">
                         <?php
-                        require_once('back/crud/bhCRUD.php');
+                        require_once('back/controllers/bhCRUD.php');
                         $p = new BhCRUD();
                         if (!empty($_POST['id_produto']) and !empty($_POST['setor']) and !empty($_POST['dataI']) and !empty($_POST['dataF'])) {
                             $search_prod = $p->pega_nome($_POST['id_produto']);/* Pega o produto no estoque */

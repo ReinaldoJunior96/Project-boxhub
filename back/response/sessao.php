@@ -1,5 +1,5 @@
 <?php
-include '../crud/bhCRUD.php';
+include '../controllers/bhCRUD.php';
 $attLogin = new BhCRUD();
 if($attLogin->login($_POST['user'],$_POST['password']) == 1){
     session_cache_expire(1440);
