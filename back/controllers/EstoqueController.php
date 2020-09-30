@@ -84,4 +84,37 @@ class EstoqueController{
             echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
     }
+
+    /* função para relatorio */
+    public function pega_nome($item)
+    {
+        try {
+            $sql_p_id = $this->conn->prepare("SELECT * FROM tbl_estoque
+			WHERE id_estoque='$item'");
+            $sql_p_id->execute();
+            $query_result = $sql_p_id->fetchAll(PDO::FETCH_OBJ);
+            foreach ($query_result as $k) {
+                $produto = array(
+                    'produto' => $k->produto_e,
+                    'quantidade' => $k->quantidade_e,
+                    'valor_un' => $k->valor_un_e
+                );
+            }
+            return $produto;
+        } catch (PDOException $erro) {
+            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
+        }
+    }
+    public function pega_saida($item, $setor, $datai, $dataf)
+    {
+        $sql_qtde = $this->conn->prepare("SELECT * FROM tbl_saida
+		WHERE item_s='$item'
+		AND setor_s='$setor'	
+		AND data_dia_s BETWEEN '$datai' AND '$dataf'");
+        $sql_qtde->execute();
+        $query_result = $sql_qtde->fetchAll(PDO::FETCH_OBJ);
+        return $query_result;
+    }
+
+    /* função para relatorio */
 }

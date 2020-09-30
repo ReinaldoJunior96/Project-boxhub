@@ -11,58 +11,58 @@ class BhCRUD
 		$this->conn = PDOconectar::conectar();
 	}
 
-	public function insert($nf)
-	{
-		try {
-			$this->conn->beginTransaction();
-			$query_Sql = "INSERT INTO tbl_nf(numero_nf,data_emissao,data_lancamento,fornecedor,valor_nf,obs_nf)
-			VALUES (:numero_nf,:data_emissao,:data_lancamento,:fornecedor,:valor_nf,:obs_nf)";
-			$sql = $this->conn->prepare($query_Sql);
-			$sql->bindValue(':numero_nf', $nf['numero']);
-			$sql->bindValue(':data_emissao', $nf['data_e']);
-			$sql->bindValue(':data_lancamento', $nf['data_l']);
-			$sql->bindValue(':fornecedor', $nf['fornecedor']);
-			$sql->bindValue(':valor_nf', $nf['valor']);
-			$sql->bindValue(':obs_nf', $nf['obs']);
+//	public function insert($nf)
+//	{
+//		try {
+//			$this->conn->beginTransaction();
+//			$query_Sql = "INSERT INTO tbl_nf(numero_nf,data_emissao,data_lancamento,fornecedor,valor_nf,obs_nf)
+//			VALUES (:numero_nf,:data_emissao,:data_lancamento,:fornecedor,:valor_nf,:obs_nf)";
+//			$sql = $this->conn->prepare($query_Sql);
+//			$sql->bindValue(':numero_nf', $nf['numero']);
+//			$sql->bindValue(':data_emissao', $nf['data_e']);
+//			$sql->bindValue(':data_lancamento', $nf['data_l']);
+//			$sql->bindValue(':fornecedor', $nf['fornecedor']);
+//			$sql->bindValue(':valor_nf', $nf['valor']);
+//			$sql->bindValue(':obs_nf', $nf['obs']);
+//
+//			$sql->execute();
+//			if ($sql) {
+//				$this->conn->commit();
+//			}
+//		} catch (PDOException $erro) {
+//			$this->conn->rollBack();
+//			echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
+//		}
+//	}
 
-			$sql->execute();
-			if ($sql) {
-				$this->conn->commit();
-			}
-		} catch (PDOException $erro) {
-			$this->conn->rollBack();
-			echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
-		}
-	}
-
-	public function edit_NF($nf, $id)
-	{
-		try {
-			$this->conn->beginTransaction();
-			$query = "UPDATE tbl_nf SET 
-			numero_nf=:numero_nf,
-			data_emissao=:data_emissao,
-			data_lancamento=:data_lancamento,
-			fornecedor=:fornecedor,
-			valor_nf=:valor_nf,
-			obs_nf=:obs_nf
-			WHERE id_nf='$id'";
-			$editar_nf = $this->conn->prepare($query);
-			$editar_nf->bindValue(':numero_nf', $nf['numero']);
-			$editar_nf->bindValue(':data_emissao', $nf['data_e']);
-			$editar_nf->bindValue(':data_lancamento', $nf['data_l']);
-			$editar_nf->bindValue(':fornecedor', $nf['fornecedor']);
-			$editar_nf->bindValue(':valor_nf', $nf['valor']);
-			$editar_nf->bindValue(':obs_nf', $nf['obs']);
-			$editar_nf->execute();
-			if ($editar_nf) {
-				$this->conn->commit();
-			}
-		} catch (PDOException $erro) {
-			$this->conn->rollBack();
-			echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
-		}
-	}
+//	public function edit_NF($nf, $id)
+//	{
+//		try {
+//			$this->conn->beginTransaction();
+//			$query = "UPDATE tbl_nf SET
+//			numero_nf=:numero_nf,
+//			data_emissao=:data_emissao,
+//			data_lancamento=:data_lancamento,
+//			fornecedor=:fornecedor,
+//			valor_nf=:valor_nf,
+//			obs_nf=:obs_nf
+//			WHERE id_nf='$id'";
+//			$editar_nf = $this->conn->prepare($query);
+//			$editar_nf->bindValue(':numero_nf', $nf['numero']);
+//			$editar_nf->bindValue(':data_emissao', $nf['data_e']);
+//			$editar_nf->bindValue(':data_lancamento', $nf['data_l']);
+//			$editar_nf->bindValue(':fornecedor', $nf['fornecedor']);
+//			$editar_nf->bindValue(':valor_nf', $nf['valor']);
+//			$editar_nf->bindValue(':obs_nf', $nf['obs']);
+//			$editar_nf->execute();
+//			if ($editar_nf) {
+//				$this->conn->commit();
+//			}
+//		} catch (PDOException $erro) {
+//			$this->conn->rollBack();
+//			echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
+//		}
+//	}
 	public function delete_NF($id)
 	{
 		try {
@@ -135,39 +135,39 @@ class BhCRUD
 			echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
 		}
 	}
-	public function addProd_nf($produto_nf)
-	{
-		try {
-
-			$this->conn->beginTransaction();
-			$query_Sql = "INSERT INTO tbl_itens_nf(item_nf,qtde_nf,lote_e,validade_prod_nf,id_nf) VALUES (:item_nf,:qtde_nf,:lote_e,:valiadde_prod_nf,:id_nf)";
-			$sql = $this->conn->prepare($query_Sql);
-			$sql->bindValue(':item_nf', $produto_nf['produto']);
-			$sql->bindValue(':qtde_nf', $produto_nf['quantidade']);
-			$sql->bindValue(':lote_e', $produto_nf['lote']);
-			$sql->bindValue(':valiadde_prod_nf', $produto_nf['validade']);
-			$sql->bindValue(':id_nf', $produto_nf['nf']);
-			$sql->execute();
-			$produto = $produto_nf['produto'];
-			$qtde_antiga = $this->conn->prepare("SELECT * FROM tbl_estoque WHERE id_estoque='$produto'");
-			$qtde_antiga->execute();
-			$query_result = $qtde_antiga->fetchAll(PDO::FETCH_OBJ);
-			foreach ($query_result as $v) {
-				$qtde_antiga = $v->quantidade_e;
-				$qtde_nova = $qtde_antiga + $produto_nf['quantidade'];
-			}
-			$alterar_estoque = "UPDATE tbl_estoque SET quantidade_e=:quantidade WHERE id_estoque='$produto'";
-			$fazer_alteracao = $this->conn->prepare($alterar_estoque);
-			$fazer_alteracao->bindValue(':quantidade', $qtde_nova);
-			$fazer_alteracao->execute();
-			if ($fazer_alteracao) {
-				$this->conn->commit();
-			}
-		} catch (PDOException $erro) {
-			$this->conn->rollBack();
-			echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
-		}
-	}
+//	public function addProd_nf($produto_nf)
+//	{
+//		try {
+//
+//			$this->conn->beginTransaction();
+//			$query_Sql = "INSERT INTO tbl_itens_nf(item_nf,qtde_nf,lote_e,validade_prod_nf,id_nf) VALUES (:item_nf,:qtde_nf,:lote_e,:valiadde_prod_nf,:id_nf)";
+//			$sql = $this->conn->prepare($query_Sql);
+//			$sql->bindValue(':item_nf', $produto_nf['produto']);
+//			$sql->bindValue(':qtde_nf', $produto_nf['quantidade']);
+//			$sql->bindValue(':lote_e', $produto_nf['lote']);
+//			$sql->bindValue(':valiadde_prod_nf', $produto_nf['validade']);
+//			$sql->bindValue(':id_nf', $produto_nf['nf']);
+//			$sql->execute();
+//			$produto = $produto_nf['produto'];
+//			$qtde_antiga = $this->conn->prepare("SELECT * FROM tbl_estoque WHERE id_estoque='$produto'");
+//			$qtde_antiga->execute();
+//			$query_result = $qtde_antiga->fetchAll(PDO::FETCH_OBJ);
+//			foreach ($query_result as $v) {
+//				$qtde_antiga = $v->quantidade_e;
+//				$qtde_nova = $qtde_antiga + $produto_nf['quantidade'];
+//			}
+//			$alterar_estoque = "UPDATE tbl_estoque SET quantidade_e=:quantidade WHERE id_estoque='$produto'";
+//			$fazer_alteracao = $this->conn->prepare($alterar_estoque);
+//			$fazer_alteracao->bindValue(':quantidade', $qtde_nova);
+//			$fazer_alteracao->execute();
+//			if ($fazer_alteracao) {
+//				$this->conn->commit();
+//			}
+//		} catch (PDOException $erro) {
+//			$this->conn->rollBack();
+//			echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
+//		}
+//	}
 	public function ver_NF($nf)
 	{
 		try {
@@ -179,19 +179,19 @@ class BhCRUD
 			echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
 		}
 	}
-	public function ver_prod_NF($nf)
-	{
-		try {
-			$view_nf = $this->conn->prepare("SELECT * FROM tbl_itens_nf
-				INNER JOIN tbl_estoque ON tbl_itens_nf.item_nf = tbl_estoque.id_estoque
-				WHERE id_nf = '$nf'");
-			$view_nf->execute();
-			$query_result = $view_nf->fetchAll(PDO::FETCH_OBJ);
-			return $query_result;
-		} catch (PDOException $erro) {
-			echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
-		}
-	}
+//	public function ver_prod_NF($nf)
+//	{
+//		try {
+//			$view_nf = $this->conn->prepare("SELECT * FROM tbl_itens_nf
+//				INNER JOIN tbl_estoque ON tbl_itens_nf.item_nf = tbl_estoque.id_estoque
+//				WHERE id_nf = '$nf'");
+//			$view_nf->execute();
+//			$query_result = $view_nf->fetchAll(PDO::FETCH_OBJ);
+//			return $query_result;
+//		} catch (PDOException $erro) {
+//			echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
+//		}
+//	}
 
 	public function registrar_saida($saida)
 	{
@@ -276,35 +276,35 @@ class BhCRUD
 		}
 	}
 	/* função para relatorio */
-	public function pega_nome($item)
-	{
-		try {
-			$sql_p_id = $this->conn->prepare("SELECT * FROM tbl_estoque
-			WHERE id_estoque='$item'");
-			$sql_p_id->execute();
-			$query_result = $sql_p_id->fetchAll(PDO::FETCH_OBJ);
-			foreach ($query_result as $k) {
-				$produto = array(
-					'produto' => $k->produto_e,
-					'quantidade' => $k->quantidade_e,
-					'valor_un' => $k->valor_un_e
-				);
-			}
-			return $produto;
-		} catch (PDOException $erro) {
-			echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
-		}
-	}
-	public function pega_saida($item, $setor, $datai, $dataf)
-	{
-		$sql_qtde = $this->conn->prepare("SELECT * FROM tbl_saida
-		WHERE item_s='$item'
-		AND setor_s='$setor'	
-		AND data_dia_s BETWEEN '$datai' AND '$dataf'");
-		$sql_qtde->execute();
-		$query_result = $sql_qtde->fetchAll(PDO::FETCH_OBJ);
-		return $query_result;
-	}
+//	public function pega_nome($item)
+//	{
+//		try {
+//			$sql_p_id = $this->conn->prepare("SELECT * FROM tbl_estoque
+//			WHERE id_estoque='$item'");
+//			$sql_p_id->execute();
+//			$query_result = $sql_p_id->fetchAll(PDO::FETCH_OBJ);
+//			foreach ($query_result as $k) {
+//				$produto = array(
+//					'produto' => $k->produto_e,
+//					'quantidade' => $k->quantidade_e,
+//					'valor_un' => $k->valor_un_e
+//				);
+//			}
+//			return $produto;
+//		} catch (PDOException $erro) {
+//			echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
+//		}
+//	}
+//	public function pega_saida($item, $setor, $datai, $dataf)
+//	{
+//		$sql_qtde = $this->conn->prepare("SELECT * FROM tbl_saida
+//		WHERE item_s='$item'
+//		AND setor_s='$setor'
+//		AND data_dia_s BETWEEN '$datai' AND '$dataf'");
+//		$sql_qtde->execute();
+//		$query_result = $sql_qtde->fetchAll(PDO::FETCH_OBJ);
+//		return $query_result;
+//	}
 
 	/* função para relatorio */
 
@@ -410,40 +410,40 @@ class BhCRUD
 		return $user->rowCount();
 	}
 
-	public function cadOrdemCompra($forcenedor, $data)
-	{
-		try {
-			$this->conn->beginTransaction();
-			$query_Sql = "INSERT INTO tbl_ordem_compra(nome_f,data_c) VALUES (:nome_f,:data_c)";
-			$sql = $this->conn->prepare($query_Sql);
-			$sql->bindValue(':nome_f', $forcenedor);
-			$sql->bindValue(':data_c', $data);
-			$sql->execute();
-			if ($sql) {
-				$this->conn->commit();
-			}
-		} catch (PDOException $erro) {
-			$this->conn->rollBack();
-			echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
-		}
-	}
-	public function ver_ordensCompra()
-	{
-		$ver = $this->conn->prepare("SELECT * FROM tbl_ordem_compra");
-		$ver->execute();
-		return $ver->fetchAll(PDO::FETCH_OBJ);
-	}
-	public function verOrdemTotal($idOrdem)
-	{
-		$ver = $this->conn->prepare("SELECT * FROM tbl_ordem_compra
-		INNER JOIN tbl_items_compra 
-		ON tbl_ordem_compra.id_ordem = tbl_items_compra.ordem_compra_id
-		INNER JOIN tbl_estoque
-		ON tbl_items_compra.item_compra = tbl_estoque.id_estoque
-		WHERE tbl_ordem_compra.id_ordem='$idOrdem'");
-		$ver->execute();
-		return $ver->fetchAll(PDO::FETCH_OBJ);
-	}
+//	public function cadOrdemCompra($forcenedor, $data)
+//	{
+//		try {
+//			$this->conn->beginTransaction();
+//			$query_Sql = "INSERT INTO tbl_ordem_compra(nome_f,data_c) VALUES (:nome_f,:data_c)";
+//			$sql = $this->conn->prepare($query_Sql);
+//			$sql->bindValue(':nome_f', $forcenedor);
+//			$sql->bindValue(':data_c', $data);
+//			$sql->execute();
+//			if ($sql) {
+//				$this->conn->commit();
+//			}
+//		} catch (PDOException $erro) {
+//			$this->conn->rollBack();
+//			echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
+//		}
+//	}
+//	public function ver_ordensCompra()
+//	{
+//		$ver = $this->conn->prepare("SELECT * FROM tbl_ordem_compra");
+//		$ver->execute();
+//		return $ver->fetchAll(PDO::FETCH_OBJ);
+//	}
+//	public function verOrdemTotal($idOrdem)
+//	{
+//		$ver = $this->conn->prepare("SELECT * FROM tbl_ordem_compra
+//		INNER JOIN tbl_items_compra
+//		ON tbl_ordem_compra.id_ordem = tbl_items_compra.ordem_compra_id
+//		INNER JOIN tbl_estoque
+//		ON tbl_items_compra.item_compra = tbl_estoque.id_estoque
+//		WHERE tbl_ordem_compra.id_ordem='$idOrdem'");
+//		$ver->execute();
+//		return $ver->fetchAll(PDO::FETCH_OBJ);
+//	}
 	public function deleteOrdem($id)
 	{
 		try {
@@ -453,24 +453,24 @@ class BhCRUD
 			echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
 		}
 	}
-	public function addProdOdemCompra($produto, $ordemCompra,$qtdeCompra)
-	{
-		try {
-			$this->conn->beginTransaction();
-			$query_Sql = "INSERT INTO tbl_items_compra(item_compra,ordem_compra_id,qtde_compra) VALUES (:item_compra,:ordem_compra_id,:qtde_compra)";
-			$sql = $this->conn->prepare($query_Sql);
-			$sql->bindValue(':item_compra', $produto);
-			$sql->bindValue(':ordem_compra_id', $ordemCompra);
-			$sql->bindValue(':qtde_compra', $qtdeCompra);
-			$sql->execute();
-			if ($sql) {
-				$this->conn->commit();
-			}
-		} catch (PDOException $erro) {
-			$this->conn->rollBack();
-			echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
-		}
-	}
+//	public function addProdOdemCompra($produto, $ordemCompra,$qtdeCompra)
+//	{
+//		try {
+//			$this->conn->beginTransaction();
+//			$query_Sql = "INSERT INTO tbl_items_compra(item_compra,ordem_compra_id,qtde_compra) VALUES (:item_compra,:ordem_compra_id,:qtde_compra)";
+//			$sql = $this->conn->prepare($query_Sql);
+//			$sql->bindValue(':item_compra', $produto);
+//			$sql->bindValue(':ordem_compra_id', $ordemCompra);
+//			$sql->bindValue(':qtde_compra', $qtdeCompra);
+//			$sql->execute();
+//			if ($sql) {
+//				$this->conn->commit();
+//			}
+//		} catch (PDOException $erro) {
+//			$this->conn->rollBack();
+//			echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
+//		}
+//	}
 	public function deleteProdOrdem($id)
 	{
 		try {

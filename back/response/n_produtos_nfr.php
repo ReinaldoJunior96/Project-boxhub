@@ -1,15 +1,12 @@
 <?php 
-require_once('../controllers/bhCRUD.php');
+require_once('../controllers/NotaFController.php');
 $produto_nf = array(
-	'produto' => $_POST['prod_id'],
-	'quantidade' => $_POST['quantidade_pnf'],
 	'lote' => $_POST['lote_pnf'],
 	'validade' => $_POST['validade_pnf'],
-	'nf' => $_POST['nf']
 );
 
-$new_produto_nf = new BhCRUD();
-$new_produto_nf->addProd_nf($produto_nf);
+$edit = new NotaFController();
+$edit->editProfNF($produto_nf,$_POST['id_item']);
 echo "<script language=\"javascript\">window.history.back();</script>";
 
 

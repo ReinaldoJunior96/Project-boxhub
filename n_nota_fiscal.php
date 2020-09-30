@@ -28,7 +28,7 @@ $s = new ConfigCRUD();
 <div class="container-fluid">
     <div class="row">
         <?php include_once "componentes/menu.php" ?>
-        <div class="col-9">
+        <div class="col-10">
             <div class="">
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <!-- <a class="navbar-brand text-white roboto-condensed" href="#">
@@ -149,7 +149,7 @@ $s = new ConfigCRUD();
                             <td><?= date_format($data_emisao, 'd/m/Y') ?> </td>
                             <td><?= date_format($data_lancamento, 'd/m/Y') ?></td>
                             <td>R$ <?= $v->valor_nf ?></td>
-                            <?php echo "<td><a href=e_entrada_farma.php?idnf=" . $v->id_nf . "><i class='fas fa-pen fa-1x color-icon-nf text-black-50'></i></a></td>" ?>
+                            <?php echo "<td><a href=e_nota_fiscal.php?idnf=" . $v->id_nf . "><i class='fas fa-pen fa-1x color-icon-nf text-black-50'></i></a></td>" ?>
                             <?php echo "<td><a href=back/response/d_nf_r.php?idnf=" . $v->id_nf . "><i class='fas fa-trash-alt fa-1x text-secondary'></i></a></td>" ?>
                         </tr>
                     <?php } ?>

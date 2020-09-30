@@ -59,8 +59,8 @@ $s = new ConfigCRUD();
                                 <select class="form-control" id="exampleFormControlSelect1" name="id_produto">
                                     <option value=""></option>
                                     <?php
-                                    require_once('back/controllers/bhCRUD.php');
-                                    $estoque = new BhCRUD();
+                                    require_once('back/controllers/EstoqueController.php');
+                                    $estoque = new EstoqueController();
                                     $ver_estoque = $estoque->verEstoque();
                                     foreach ($ver_estoque as $v) {
                                         ?>
@@ -99,8 +99,8 @@ $s = new ConfigCRUD();
                     </form>
                     <div class="container mt-2 roboto-condensed">
                         <?php
-                        require_once('back/controllers/bhCRUD.php');
-                        $p = new BhCRUD();
+                        require_once('back/controllers/EstoqueController.php');
+                        $p = new EstoqueController();
                         if (!empty($_POST['id_produto']) and !empty($_POST['setor']) and !empty($_POST['dataI']) and !empty($_POST['dataF'])) {
                             $search_prod = $p->pega_nome($_POST['id_produto']);/* Pega o produto no estoque */
                             $pega_saida = $p->pega_saida($_POST['id_produto'], $_POST['setor'], $_POST['dataI'], $_POST['dataF']);/* Pega o produto no estoque */

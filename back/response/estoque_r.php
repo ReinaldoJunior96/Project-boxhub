@@ -1,5 +1,5 @@
 <?php
-require_once('../controllers/estoqueController.php');
+require_once('../controllers/EstoqueController.php');
 $estoque = new EstoqueController();
 $produto = array(
     'produto' => @$_POST['produto_e'],

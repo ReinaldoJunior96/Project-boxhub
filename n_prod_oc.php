@@ -3,8 +3,8 @@ session_start();
 if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
     header("location: login.php");
 }
-require_once('back/controllers/configCRUD.php');
-$s = new ConfigCRUD();
+require_once('back/controllers/EstoqueController.php');
+$s = new EstoqueController();
 switch ($_SESSION['user']) {
     case 'farma.hvu':
         $permissao = 'disabled';
@@ -37,7 +37,7 @@ switch ($_SESSION['user']) {
 <div class="container-fluid">
     <div class="row">
         <?php include_once "componentes/menu.php" ?>
-        <div class="col-9">
+        <div class="col-6">
             <nav class="navbar navbar-expand-lg navbar-light">
                 <h5 class="text-primary roboto-condensed"><img src="images/shopping.png" class="img-fluid" width="40">
                     Compras</h5>
@@ -57,6 +57,16 @@ switch ($_SESSION['user']) {
                 </div>
             </nav>
             <div class="container mt-1">
+                <div class="">
+                    <?php
+                    require_once('back/controllers/CompraController.php');
+                    $c = new CompraController();
+                    $compra = $c->verOrdem($_GET['id_ordem']);
+                    foreach ($compra as $v) {
+                        ?>
+                        <h4 class="text-black-50 roboto-condensed">Fornecedor: <?= $v->nome_f ?></h4>
+                    <?php } ?>
+                </div>
                 <div class="mb-2">
                     <a href="ordem_pdf.php?id_ordem=<?= $_GET['id_ordem'] ?>" class="text-primary roboto-condensed">
                         <i class="fas fa-print"></i> Imprimir Ordem
@@ -74,7 +84,7 @@ switch ($_SESSION['user']) {
                     </thead>
                     <tbody class="text-black-50 ">
                     <?php
-                    require_once('back/controllers/estoqueController.php');
+                    require_once('back/controllers/EstoqueController.php');
                     $view_estoque = new EstoqueController();
                     $all_estoque = $view_estoque->verEstoque();
                     foreach ($all_estoque as $v) {
@@ -86,7 +96,10 @@ switch ($_SESSION['user']) {
                                 <td class=""><?= $v->produto_e ?></td>
                                 <td><input type="number" class="form-control" name="saidaqte_p" id="inputPassword4"
                                            placeholder="" style="text-align: center;"></td>
-                                <td><?= "R$ ". str_replace('.',',',$v->valor_un_e) ?></td>
+                                <td><input type="text" class="form-control" name="valor_un_c" id="inputPassword4"
+                                           placeholder="R$" value="<?= str_replace('.', ',', $v->valor_un_e) ?>"
+                                           style="text-align: center;">
+                                </td>
                                 <td>
                                     <button type="submit" class="btn roboto-condensed text-white mt-1">
                                         <i class="fas fa-file-import text-secondary"></i>
@@ -97,22 +110,26 @@ switch ($_SESSION['user']) {
                     <?php } ?>
                     </tbody>
                 </table>
-                <div class="mt-3">
-                    <h3 class="roboto-condensed">Items Adicionados</h3>
-                    <ul class="list-group">
-                        <?php
-                        $dados = new BhCRUD();
-                        $dados_ordem = $dados->verOrdemTotal($_GET['id_ordem']);
-                        foreach ($dados_ordem as $value) {
-                            ?>
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <?= $value->produto_e ?> x<?= $value->qtde_compra ?>
-                                <a href="back/response/d_prod_compra.php?idprod=<?= $value->id_item_compra ?>"><i
-                                            class='fas fa-ban fa-lg' style='color: red;'></i></a>
-                            </li>
-                        <?php } ?>
-                    </ul>
-                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="mt-3">
+                <h3 class="text-black-50 roboto-condensed">Items Adicionados</h3>
+                <hr>
+                <ul class="list-group">
+                    <?php
+                    require_once('back/controllers/CompraController.php');
+                    $dados = new CompraController();
+                    $dados_ordem = $dados->verOrdemTotal($_GET['id_ordem']);
+                    foreach ($dados_ordem as $value) {
+                        ?>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <?= $value->produto_e ?> - <?= $value->qtde_compra ?> - <?= "R$ ".str_replace('.', ',', $value->valor_un_c) ?>
+                            <a href="back/response/d_prod_compra.php?idprod=<?= $value->id_item_compra ?>"><i
+                                        class='fas fa-ban fa-lg' style='color: red;'></i></a>
+                        </li>
+                    <?php } ?>
+                </ul>
             </div>
         </div>
 

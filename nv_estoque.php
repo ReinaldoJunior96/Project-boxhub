@@ -90,7 +90,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                     </thead>
                     <tbody class="text-black-50">
                     <?php
-                    require_once('back/controllers/estoqueController.php');
+                    require_once('back/controllers/EstoqueController.php');
                     $view_estoque = new EstoqueController();
                     $all_estoque = $view_estoque->verEstoque();
                     foreach ($all_estoque as $v) {

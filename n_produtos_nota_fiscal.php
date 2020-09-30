@@ -35,7 +35,7 @@ switch ($_SESSION['user']) {
 <div class="container-fluid">
     <div class="row">
         <?php include_once "componentes/menu.php" ?>
-        <div class="col-9">
+        <div class="col-10">
             <div class="">
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <?php
@@ -66,6 +66,22 @@ switch ($_SESSION['user']) {
                 </nav>
                 <div class="mt-1 roboto-condensed text-black-50">
                     <?php
+                    require_once('back/controllers/NotaFController.php');
+                    $n = new NotaFController();
+                    $attNota = $n->verificarNota($_GET['idnf']);
+                    if ($attNota >= 1) {
+                        $text = "Existe uma ordem de compra associada a esta NF";
+                        $class = "";
+                        $link = "back/response/import_from_ordem.php?idnf=" . $_GET['idnf'];
+                    } else {
+                        $text = "A ordem já foi importada";
+                        $class = "isDisabled";
+                        $link = "#";
+                    }
+                    ?>
+                    <p><?= $text ?><a href="<?= $link ?>" class="badge badge-danger text-white <?= $class ?>">importar
+                            agora!!</a></p>
+                    <?php
                     foreach ($nf as $v) {
                         ?>
                         <h6><i class="fas fa-user-tag text-black-50"></i> Fornecedor: <?= $v->fornecedor ?></h6>
@@ -89,7 +105,6 @@ switch ($_SESSION['user']) {
                             <thead class="bg-nav  text-white">
                             <tr class="text-white">
                                 <th class="">Prod / Material</th>
-                                <th class="">Quantidade</th>
                                 <th class="">Lote</th>
                                 <th class="">Validade</th>
                                 <th></th>
@@ -97,9 +112,9 @@ switch ($_SESSION['user']) {
                             </thead>
                             <tbody class="text-black-50">
                             <?php
-                            require_once('back/controllers/bhCRUD.php');
-                            $produtos = new BhCRUD();
-                            $ver_produtos = $produtos->verEstoque();
+                            require_once('back/controllers/NotaFController.php');
+                            $produtos = new NotaFController();
+                            $ver_produtos = $produtos->verProdNF($_GET['idnf']);
                             foreach ($ver_produtos as $v) {
                                 ?>
                                 <tr>
@@ -107,20 +122,14 @@ switch ($_SESSION['user']) {
                                         <td>
                                             <?= $v->produto_e ?>
                                         </td>
-                                        <input type="hidden" name="nf" value="<?= $_GET['idnf'] ?>">
-                                        <input type="hidden" name="prod_id" value="<?= $v->id_estoque ?>">
-                                        <td>
-                                            <input type="number" class="form-control" name="quantidade_pnf"
-                                                   id="inputPassword4"
-                                                   placeholder="">
-                                        </td>
+                                        <input type="hidden" name="id_item" value="<?= $v->id_itens ?>">
                                         <td>
                                             <input type="text" class="form-control" name="lote_pnf" id="inputPassword4"
-                                                   placeholder="">
+                                                   placeholder="" value="<?= $v->lote_e ?>">
                                         </td>
                                         <td>
                                             <input type="date" class="form-control" name="validade_pnf"
-                                                   id="inputPassword4" placeholder="">
+                                                   id="inputPassword4" placeholder="" value="<?= $v->validade_prod_nf ?>">
                                         </td>
                                         <td>
                                             <button type="submit" class="btn border-0 bg-white mt-1">

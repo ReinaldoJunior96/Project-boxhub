@@ -1,8 +1,8 @@
 <?php
 setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
 date_default_timezone_set('America/Sao_Paulo');
-require 'back/controllers/bhCRUD.php';
-$dados = new BhCRUD();
+require 'back/controllers/CompraController.php';
+$dados = new CompraController();
 $dados_ordem = $dados->verOrdemTotal($_GET['id_ordem']);
 if (empty($dados_ordem['0']->item_compra)) {
 	echo "<script language=\"javascript\">alert(\"Ordem sem itens!!\")</script>";
@@ -37,11 +37,11 @@ if (empty($dados_ordem['0']->item_compra)) {
 	$pdf->SetFont('arial', '', 11);
 	$vTotal = 0;
 	foreach ($dados_ordem as $v) {
-		$vTotal += $v->valor_un_e*$v->qtde_compra;
+		$vTotal += $v->valor_un_c*$v->qtde_compra;
 		$pdf->Cell(300, 20, utf8_decode($v->produto_e), 1, 0, "C");
 		$pdf->Cell(80, 20, utf8_decode($v->qtde_compra), 1, 0, "C");
-		$pdf->Cell(80, 20, utf8_decode("R$ " . str_replace(".", ",",  $v->valor_un_e)), 1, 0, "C");
-		$pdf->Cell(80, 20, utf8_decode("R$ ". str_replace(".", ",",  $v->valor_un_e*$v->qtde_compra)), 1, 0, "C");
+		$pdf->Cell(80, 20, utf8_decode("R$ " . str_replace(".", ",",  $v->valor_un_c)), 1, 0, "C");
+		$pdf->Cell(80, 20, utf8_decode("R$ ". str_replace(".", ",",  $v->valor_un_c*$v->qtde_compra)), 1, 0, "C");
 		$pdf->Ln(25);    
 	}
 	$pdf->Cell(460, 20, utf8_decode("Total a Pagar"), 1, 0, "C");

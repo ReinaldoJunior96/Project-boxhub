@@ -73,7 +73,7 @@ switch ($_SESSION['user']) {
                         </thead>
                         <tbody>
                         <?php
-                        require_once('back/controllers/estoqueController.php');
+                        require_once('back/controllers/EstoqueController.php');
                         $view_estoque = new EstoqueController();
                         $all_estoque = $view_estoque->verEstoque();
                         foreach ($all_estoque as $v) {

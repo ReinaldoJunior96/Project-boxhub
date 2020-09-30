@@ -44,7 +44,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                 </nav>
                 <div class="mt-5">
                     <?php
-                    require_once 'back/controllers/estoqueController.php';
+                    require_once 'back/controllers/EstoqueController.php';
                     $p = new EstoqueController();
                     $produtos = $p->estoqueID($_GET['idp']);
                     foreach ($produtos as $v) {
