@@ -5,21 +5,21 @@
         </a>
     </div>
     <ul class="list-group list-group-flush">
-<!--        <a href="--><?//= ($_SESSION['user'] == 'compras.hvu') ? 'n_nota_fiscal.php' : '' ?><!--"-->
-<!--           class="--><?//= ($_SESSION['user'] != 'compras.hvu') ? 'isDisabled' : '' ?><!-- text-menu-color-2">-->
-<!--            <li class="list-group-item border-0">-->
-<!--                <i class="fas fa-cart-arrow-down"></i> Entrada-->
-<!--            </li>-->
-<!--        </a>-->
+        <a href="<?= ($_SESSION['user'] == 'compras.hvu') ? 'n_nota_fiscal.php' : '' ?>"
+           class="<?= ($_SESSION['user'] != 'compras.hvu') ? 'isDisabled' : '' ?> text-menu-color-2">
+            <li class="list-group-item border-0">
+                <i class="fas fa-cart-arrow-down"></i> Entrada
+            </li>
+        </a>
         <a href="nv_estoque.php" class="text-menu-color-2">
             <li class="list-group-item border-0"><i class="fas fa-box-open"></i> Estoque</li>
         </a>
-<!--        <a href="--><?//= ($_SESSION['user'] == 'compras.hvu') ? 'n_ordemcompra.php' : '' ?><!--"-->
-<!--           class="text-menu-color-2 --><?//= ($_SESSION['user'] != 'compras.hvu') ? 'isDisabled' : '' ?><!--">-->
-<!--            <li class="list-group-item border-0">-->
-<!--                <i class=" fas fa-shopping-bag"></i> Compras-->
-<!--            </li>-->
-<!--        </a>-->
+        <a href="<?= ($_SESSION['user'] == 'compras.hvu') ? 'n_ordemcompra.php' : '' ?>"
+           class="text-menu-color-2 <?= ($_SESSION['user'] != 'compras.hvu') ? 'isDisabled' : '' ?>">
+            <li class="list-group-item border-0">
+                <i class=" fas fa-shopping-bag"></i> Compras
+            </li>
+        </a>
         <div class="dropright">
             <li class="list-group-item border-0"
                 data-toggle="dropdown">

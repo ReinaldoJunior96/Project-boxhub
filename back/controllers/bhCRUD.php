@@ -63,17 +63,17 @@ class BhCRUD
 //			echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
 //		}
 //	}
-	public function delete_NF($id)
-	{
-		try {
-			$delete_prod = $this->conn->prepare("DELETE FROM  tbl_itens_nf WHERE id_nf='$id'");
-			$delete_prod->execute();
-			$delete_nf = $this->conn->prepare("DELETE FROM  tbl_NF WHERE id_nf='$id'");
-			$delete_nf->execute();
-		} catch (PDOException $erro) {
-			echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
-		}
-	}
+//	public function delete_NF($id)
+//	{
+//		try {
+//			$delete_prod = $this->conn->prepare("DELETE FROM  tbl_itens_nf WHERE id_nf='$id'");
+//			$delete_prod->execute();
+//			$delete_nf = $this->conn->prepare("DELETE FROM  tbl_NF WHERE id_nf='$id'");
+//			$delete_nf->execute();
+//		} catch (PDOException $erro) {
+//			echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
+//		}
+//	}
 	public function delete_prod_NF($id, $item_estoque, $qtde_nf)
 	{
 		try {
@@ -444,15 +444,15 @@ class BhCRUD
 //		$ver->execute();
 //		return $ver->fetchAll(PDO::FETCH_OBJ);
 //	}
-	public function deleteOrdem($id)
-	{
-		try {
-			$delete_ordem = $this->conn->prepare("DELETE FROM  tbl_ordem_compra WHERE id_ordem='$id'");
-			$delete_ordem->execute();
-		} catch (PDOException $erro) {
-			echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
-		}
-	}
+//	public function deleteOrdem($id)
+//	{
+//		try {
+//			$delete_ordem = $this->conn->prepare("DELETE FROM  tbl_ordem_compra WHERE id_ordem='$id'");
+//			$delete_ordem->execute();
+//		} catch (PDOException $erro) {
+//			echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
+//		}
+//	}
 //	public function addProdOdemCompra($produto, $ordemCompra,$qtdeCompra)
 //	{
 //		try {

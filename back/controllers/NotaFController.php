@@ -64,7 +64,32 @@ class NotaFController
             echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
     }
+    public function delete_NF($id)
+    {
+        try {
+            $searchProd = $this->conn->prepare("SELECT * FROM tbl_itens_nf WHERE id_nf='$id'");
+            $searchProd->execute();
+            $itens = $searchProd->fetchAll(PDO::FETCH_OBJ);
+            foreach ($itens as $v){
 
+                $qtde = $this->conn->prepare(/** @lang text */"SELECT * FROM tbl_estoque WHERE id_estoque='$v->item_nf'");
+                $qtde->execute();
+                $item = $qtde->fetchAll(PDO::FETCH_OBJ);
+                $qtdeNova = $item[0]->quantidade_e - $v->qtde_nf;
+                $alterar_estoque = /** @lang text */
+                    "UPDATE tbl_estoque SET quantidade_e=:quantidade WHERE id_estoque='$v->item_nf'";
+                $fazer_alteracao = $this->conn->prepare($alterar_estoque);
+                $fazer_alteracao->bindValue(':quantidade', $qtdeNova);
+                $fazer_alteracao->execute();
+            }
+            $delete_prod = $this->conn->prepare("DELETE FROM  tbl_itens_nf WHERE id_nf='$id'");
+            $delete_prod->execute();
+            $delete_nf = $this->conn->prepare("DELETE FROM  tbl_nf WHERE id_nf='$id'");
+            $delete_nf->execute();
+        } catch (PDOException $erro) {
+            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
+        }
+    }
 
     public function verificarNota($idnf)
     {
@@ -162,8 +187,7 @@ class NotaFController
 				INNER JOIN tbl_estoque ON tbl_itens_nf.item_nf = tbl_estoque.id_estoque
 				WHERE id_nf = '$nf'");
             $view_nf->execute();
-            $query_result = $view_nf->fetchAll(PDO::FETCH_OBJ);
-            return $query_result;
+            return $view_nf->fetchAll(PDO::FETCH_OBJ);
         } catch (PDOException $erro) {
             echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }

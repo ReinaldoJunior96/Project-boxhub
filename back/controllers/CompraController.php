@@ -1,25 +1,29 @@
 <?php
 require_once('conexao.php');
-require_once ('bhCRUD.php');
+require_once('bhCRUD.php');
 
-class CompraController{
+class CompraController
+{
     public $conn = null;
 
     function __construct()
     {
         $this->conn = PDOconectar::conectar();
     }
+
     public function cadOrdemCompra($forcenedor, $data)
     {
         try {
             $this->conn->beginTransaction();
-            $notaTemp = /** @lang text */ "INSERT INTO tbl_nf(numero_nf,fornecedor) VALUES (:numero_nf,:fornecedor)";
+            $notaTemp = /** @lang text */
+                "INSERT INTO tbl_nf(numero_nf,fornecedor) VALUES (:numero_nf,:fornecedor)";
             $sqlTemp = $this->conn->prepare($notaTemp);
-            $sqlTemp->bindValue(':numero_nf', rand(0,99999));
+            $sqlTemp->bindValue(':numero_nf', rand(0, 99999));
             $sqlTemp->bindValue(':fornecedor', $forcenedor);
             $sqlTemp->execute();
             $lastID = $this->conn->lastInsertId();
-            $query_Sql = /** @lang text */ "INSERT INTO tbl_ordem_compra(nome_f,data_c,id_fk_nf) VALUES (:nome_f,:data_c,:id_fk_nf)";
+            $query_Sql = /** @lang text */
+                "INSERT INTO tbl_ordem_compra(nome_f,data_c,id_fk_nf) VALUES (:nome_f,:data_c,:id_fk_nf)";
             $sql = $this->conn->prepare($query_Sql);
             $sql->bindValue(':nome_f', $forcenedor);
             $sql->bindValue(':data_c', $data);
@@ -33,11 +37,13 @@ class CompraController{
             echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
     }
+
     public function addProdCompra($produto, $ordemCompra, $qtdeCompra, $valorUn)
     {
         try {
             $this->conn->beginTransaction();
-            $query_Sql = /** @lang text */ "INSERT INTO tbl_items_compra(item_compra,ordem_compra_id,qtde_compra,valor_un_c) VALUES (:item_compra,:ordem_compra_id,:qtde_compra,:valor_un_c)";
+            $query_Sql = /** @lang text */
+                "INSERT INTO tbl_items_compra(item_compra,ordem_compra_id,qtde_compra,valor_un_c) VALUES (:item_compra,:ordem_compra_id,:qtde_compra,:valor_un_c)";
             $sql = $this->conn->prepare($query_Sql);
             $sql->bindValue(':item_compra', $produto);
             $sql->bindValue(':ordem_compra_id', $ordemCompra);
@@ -52,18 +58,43 @@ class CompraController{
             echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
     }
+
+    public function deleteOrdem($id)
+    {
+        try {
+            $deleteItens = $this->conn->prepare(/** @lang text */ "DELETE FROM  tbl_items_compra WHERE ordem_compra_id='$id'");
+            $deleteItens->execute();
+            $ordemSearch = self::verOrdem($id);
+            $dOrdem = $ordemSearch[0]->id_fk_nf;
+            $vrfNF = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_nf
+             WHERE id_nf='$dOrdem' AND status_nf = '0'");
+            $vrfNF->execute();
+            if ($vrfNF->rowCount() >= 1) {
+                require_once 'NotaFController.php';
+                $nf = new NotaFController();
+                $nf->delete_NF($ordemSearch[0]->id_fk_nf);
+            }
+            $delete_ordem = $this->conn->prepare(/** @lang text */ "DELETE FROM  tbl_ordem_compra WHERE id_ordem='$id'");
+            $delete_ordem->execute();
+        } catch (PDOException $erro) {
+            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
+        }
+    }
+
     public function verOrdens()
     {
         $ver = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_ordem_compra");
         $ver->execute();
         return $ver->fetchAll(PDO::FETCH_OBJ);
     }
+
     public function verOrdem($id)
     {
         $ver = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_ordem_compra WHERE id_ordem='$id'");
         $ver->execute();
         return $ver->fetchAll(PDO::FETCH_OBJ);
     }
+
     public function verOrdemTotal($idOrdem)
     {
         $ver = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_ordem_compra

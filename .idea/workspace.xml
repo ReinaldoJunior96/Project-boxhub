@@ -20,31 +20,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e287bc17-b257-466b-b138-3c26574c0691" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/fornecedores.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/controllers/CompraController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/CompraController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/controllers/NotaFController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/NotaFController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/controllers/bhCRUD.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/bhCRUD.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/controllers/compraController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/CompraController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/controllers/estoqueController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/EstoqueController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/controllers/nfController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/NotaFController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/estoque_r.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/estoque_r.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/n_ordem_compra.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/n_ordem_compra.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/n_prod_ordem_compra.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/n_prod_ordem_compra.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/n_produtos_nfr.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/n_produtos_nfr.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/nota_fiscal_r.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/nota_fiscal_r.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/d_nf_r.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/d_nf_r.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/d_ordem_compra.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/d_ordem_compra.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/componentes/menu.php" beforeDir="false" afterPath="$PROJECT_DIR$/componentes/menu.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/e_estoque.php" beforeDir="false" afterPath="$PROJECT_DIR$/e_estoque.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/group.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/n_fornecedores.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/n_nota_fiscal.php" beforeDir="false" afterPath="$PROJECT_DIR$/n_nota_fiscal.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/n_ordemcompra.php" beforeDir="false" afterPath="$PROJECT_DIR$/n_ordemcompra.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/n_prod_oc.php" beforeDir="false" afterPath="$PROJECT_DIR$/n_prod_oc.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/n_produtos_nota_fiscal.php" beforeDir="false" afterPath="$PROJECT_DIR$/n_produtos_nota_fiscal.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/n_relatorio.php" beforeDir="false" afterPath="$PROJECT_DIR$/n_relatorio.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/n_saida_setor.php" beforeDir="false" afterPath="$PROJECT_DIR$/n_saida_setor.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nv_estoque.php" beforeDir="false" afterPath="$PROJECT_DIR$/nv_estoque.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ordem_pdf.php" beforeDir="false" afterPath="$PROJECT_DIR$/ordem_pdf.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uemapet.sql" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,6 +83,8 @@
       <workItem from="1601428565572" duration="936000" />
       <workItem from="1601429590149" duration="336000" />
       <workItem from="1601430018376" duration="228000" />
+      <workItem from="1601576796730" duration="238000" />
+      <workItem from="1601598095917" duration="5623000" />
     </task>
     <servers />
   </component>
@@ -136,10 +120,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="255" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824@0.0.1536.824" timestamp="1601411931343" />
-    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1601217324260">
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1601577030802">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1601217324260" />
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1601577030802" />
     <state x="541" y="119" key="NewPhpClassDialog" timestamp="1601411872840">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

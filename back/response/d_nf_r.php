@@ -1,7 +1,7 @@
 <?php 
-require_once('../controllers/bhCRUD.php');
+require_once('../controllers/NotaFController.php');
 
-$delete_nf = new BhCRUD();
+$delete_nf = new NotaFController();
 $delete_nf->delete_NF($_GET['idnf']);
 echo "<script language=\"javascript\">window.history.back();</script>";
 
