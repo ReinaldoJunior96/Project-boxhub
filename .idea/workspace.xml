@@ -19,6 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="e287bc17-b257-466b-b138-3c26574c0691" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/fornecedores.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
@@ -46,6 +47,9 @@
       <change beforePath="$PROJECT_DIR$/ordem_pdf.php" beforeDir="false" afterPath="$PROJECT_DIR$/ordem_pdf.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/uemapet.sql" beforeDir="false" />
     </list>
+=======
+    <list default="true" id="e287bc17-b257-466b-b138-3c26574c0691" name="Default Changelist" comment="" />
+>>>>>>> Stashed changes
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -55,6 +59,11 @@
     <execution />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1gw2qiXPouIykEZcOE8bJymTjta" />
