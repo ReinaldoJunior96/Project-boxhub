@@ -40,9 +40,9 @@ switch ($_SESSION['user']) {
             <div class="">
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <?php
-                    require_once('back/controllers/bhCRUD.php');
-                    $dados_nf = new BhCRUD();
-                    $nf = $dados_nf->findID($_GET['idnf']);
+                    require_once('back/controllers/NotaFController.php');
+                    $dados_nf = new NotaFController();
+                    $nf = $dados_nf->verNF($_GET['idnf']);
                     foreach ($nf as $v) { ?>
                         <img src="images/document.png" class="img-fluid"
                              width="40">
@@ -76,8 +76,6 @@ switch ($_SESSION['user']) {
                             Lançamento: <?= date("d/m/Y", strtotime($v->data_lancamento)) ?></h6>
                         <h6><i class="fas fa-dollar-sign text-black-50"></i> Valor:
                             R$ <?= str_replace(".", ",", $v->valor_nf) ?></h6>
-                        <a class="text-primary" target="_blank"
-                           href="v_nota_fiscal.php?idnf=<?= $_GET['idnf'] ?>"><i class="fas fa-print"></i> Imprimir</a>
                     <?php } ?>
                     <hr class="bg-primary">
                 </div>
@@ -95,9 +93,9 @@ switch ($_SESSION['user']) {
                         </thead>
                         <tbody class="roboto-condensed text-black-50">
                         <?php
-                        require_once('back/controllers/bhCRUD.php');
-                        $nf = new BhCRUD();
-                        $ver_nf = $nf->ver_prod_NF($_GET['idnf']);
+                        require_once('back/controllers/NotaFController.php');
+                        $nf = new NotaFController();
+                        $ver_nf = $nf->verProdNF($_GET['idnf']);
                         foreach ($ver_nf as $v) {
                             ?>
                             <tr>

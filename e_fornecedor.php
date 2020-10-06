@@ -94,6 +94,19 @@ switch ($_SESSION['user']) {
                                            placeholder="E-mail" value="<?=$value->email_fornecedor?>" required="">
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-sm-3 col-form-label text-center">CNPJ/CPF</label>
+                                <div class="col-sm-5">
+                                    <input type="text" class="form-control" value="<?=$value->cnpj_f?>" name="cnpj_fornecedor" id="inputEmail4"
+                                           placeholder="CNPJ/CPF">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-sm-3 col-form-label text-center">Endereço</label>
+                                <div class="col-sm-5">
+                                    <textarea class="form-control" name="endereco_fornecedor" id="exampleFormControlTextarea1" rows="3"><?=$value->endereco_f?></textarea>
+                                </div>
+                            </div>
                             <div class="form-group row ">
                                 <div class="col-3  d-flex justify-content-center">
                                     <button type="submit" class="btn bg-primary text-white roboto-condensed mb-4">

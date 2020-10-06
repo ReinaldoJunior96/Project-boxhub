@@ -27,7 +27,7 @@ $s = new ConfigCRUD();
 <div class="container-fluid">
     <div class="row">
         <?php include_once "componentes/menu.php" ?>
-        <div class="col-9">
+        <div class="col-10">
             <nav class="navbar navbar-expand-lg navbar-light">
                 <!-- <a class="navbar-brand text-white roboto-condensed" href="#">
                     <i class="fas fa-box-open text-primary"></i>

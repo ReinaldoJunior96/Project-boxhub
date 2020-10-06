@@ -15,7 +15,7 @@ class CompraController{
             $this->conn->beginTransaction();
             $notaTemp = /** @lang text */ "INSERT INTO tbl_nf(numero_nf,fornecedor) VALUES (:numero_nf,:fornecedor)";
             $sqlTemp = $this->conn->prepare($notaTemp);
-            $sqlTemp->bindValue(':numero_nf', rand(0,99999));
+            $sqlTemp->bindValue(':numero_nf', 'temp'.rand(0,99999));
             $sqlTemp->bindValue(':fornecedor', $forcenedor);
             $sqlTemp->execute();
             $lastID = $this->conn->lastInsertId();
@@ -30,6 +30,21 @@ class CompraController{
             }
         } catch (PDOException $erro) {
             $this->conn->rollBack();
+            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
+        }
+    }
+    public function deleteOrdem($id)
+    {
+        try {
+            $search = self::verOrdem($id);
+            $idNF = $search[0]->id_fk_nf;
+            $deleteNF = $this->conn->prepare("DELETE FROM  tbl_nf WHERE id_nf='$idNF' AND status_nf='0'");
+            $deleteNF->execute();
+            $delete_ordem = $this->conn->prepare("DELETE FROM  tbl_ordem_compra WHERE id_ordem='$id'");
+            $delete_ordem->execute();
+            $deleteProdOrdem = $this->conn->prepare("DELETE FROM  tbl_items_compra WHERE ordem_compra_id='$id'");
+            $deleteProdOrdem->execute();
+        } catch (PDOException $erro) {
             echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
     }

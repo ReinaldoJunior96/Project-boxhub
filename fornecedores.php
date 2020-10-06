@@ -70,21 +70,34 @@ switch ($_SESSION['user']) {
                                     Fornecedor</label>
                                 <div class="col-sm-5">
                                     <input type="text" class="form-control" name="fornecedor" id="inputEmail4"
-                                           placeholder="Nome" required="">
+                                           placeholder="Nome" >
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="inputEmail3" class="col-sm-3 col-form-label text-center">Telefone(s)</label>
                                 <div class="col-sm-5">
                                     <input type="text" class="form-control" name="telefone_fornecedor" id="inputEmail4"
-                                           placeholder="Contato" required="">
+                                           placeholder="Contato" >
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="inputEmail3" class="col-sm-3 col-form-label text-center">E-mail</label>
                                 <div class="col-sm-5">
                                     <input type="email" class="form-control" name="email_fornecedor" id="inputEmail4"
-                                           placeholder="E-mail" required="">
+                                           placeholder="E-mail">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-sm-3 col-form-label text-center">CNPJ/CPF</label>
+                                <div class="col-sm-5">
+                                    <input type="text" class="form-control" name="cnpj_fornecedor" id="inputEmail4"
+                                           placeholder="CNPJ/CPF">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-sm-3 col-form-label text-center">Endereço</label>
+                                <div class="col-sm-5">
+                                    <textarea class="form-control" name="endereco_fornecedor" id="exampleFormControlTextarea1" rows="3"></textarea>
                                 </div>
                             </div>
                             <div class="form-group row ">
@@ -92,8 +105,8 @@ switch ($_SESSION['user']) {
                                     <button type="submit" class="btn bg-primary text-white roboto-condensed mb-4">
                                         Adicionar <i class="fas fa-plus"></i></button>
                                 </div>
-
                             </div>
+
 
                         </form>
                         <!-- Tabela Setores -->

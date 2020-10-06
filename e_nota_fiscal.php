@@ -63,9 +63,9 @@ switch ($_SESSION['user']) {
                 <div class="roboto-condensed">
                     <div class="container mt-3">
                         <?php
-                        require_once('back/controllers/bhCRUD.php');
-                        $new_nf = new BhCRUD();
-                        $ver_nf = $new_nf->findID($_GET['idnf']);
+                        require_once('back/controllers/NotaFController.php');
+                        $new_nf = new NotaFController();
+                        $ver_nf = $new_nf->verNF($_GET['idnf']);
                         foreach ($ver_nf as $v) {
                             ?>
                             <form method="POST" action="back/response/nota_fiscal_r.php">
@@ -94,7 +94,7 @@ switch ($_SESSION['user']) {
                                     <div class="form-group col-md-8">
                                         <label for="inputEmail4" class="exo">Fornecedor</label>
                                         <input type="text" class="form-control" value="<?= $v->fornecedor ?>"
-                                               name="fornecedor_nf" id="inputEmail4" placeholder="">
+                                               name="fornecedor_nf" id="inputEmail4" placeholder="" disabled>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="inputEmail4" class="exo">Valor (R$)</label>

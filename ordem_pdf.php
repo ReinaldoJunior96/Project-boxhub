@@ -18,15 +18,16 @@ if (empty($dados_ordem['0']->item_compra)) {
 // $pdf->Cell(0, 20, '', '', '1', '');
 // $pdf->Ln(30);
 	/*Parâmetros da função Cell(Tamanho da celula, Altura da celula, 'Texto', 'bordas', 'Quebra de linha', 'Alinhamento')*/
-	$pdf->SetFont('arial', 'B', 12);
+	$pdf->SetFont('arial', 'B', 20);
 	/*Parâmetros da função Cell(Espaço entre linhas)*/
 
 	$pdf->Image('images/logo.png', 385, 15, -200);
 	$pdf->Cell(0, 40, utf8_decode('Ordem de Compra'), '', '1', 'L');
-	$pdf->Cell(0, 0, utf8_decode('Cliente: ' . mb_strtoupper(@$dados_ordem['0']->nome_f, 'UTF-8')), '', '1', 'L');
+    $pdf->SetFont('arial', '', 10);
+	$pdf->Cell(0, 0, utf8_decode('Fornecedor: ' . mb_strtoupper(@$dados_ordem['0']->nome_f, 'UTF-8')), '', '1', 'L');
 	$date = date_create(@$dados_ordem['0']->data_c);
 	$pdf->SetFont('arial', '', 10);
-	$pdf->Cell(0, 40, utf8_decode('Data da Transação: ' . date_format(@$date, 'd/m/Y')), '', '1', 'L');
+	$pdf->Cell(0, 30, utf8_decode('Gerada em: ' . date_format(@$date, 'd/m/Y H:s:i')), '', '1', 'L');
 
 	$pdf->Ln(20);
 	$pdf->Cell(300, 20, utf8_decode("Produto / Material"), 1, 0, "C");

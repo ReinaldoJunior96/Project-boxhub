@@ -53,73 +53,73 @@ $s = new ConfigCRUD();
                         </div>
                     </div>
                 </nav>
-                <div class="">
-                    <div class="container">
-                        <form method="POST" action="back/response/nota_fiscal_r.php">
-                            <div class="form-row">
-                                <input type="hidden" name="tipo" value="new">
-                                <div class="form-group col-md-12">
-                                    <label for="inputEmail4" class="roboto-condensed">Nota Fiscal</label>
-                                    <input type="text" class="form-control" name="numero_nf" id="inputEmail4"
-                                           placeholder="Número">
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="inputEmail4" class="roboto-condensed">Data de Emissão</label>
-                                    <input type="date" class="form-control" name="datae_nf" id="inputEmail4"
-                                           placeholder="">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="inputPassword4" class="roboto-condensed">Data de Lançamento</label>
-                                    <input type="date" class="form-control" name="datal_nf" id="inputPassword4"
-                                           placeholder="">
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-8">
-                                    <label for="inputEmail4" class="roboto-condensed">Fornecedor</label>
-                                    <input type="text" class="form-control" name="fornecedor_nf" id="inputEmail4"
-                                           placeholder="">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <div class="col-auto">
-                                        <label for="inputEmail4" class="roboto-condensed">Valor</label>
-                                        <div class="input-group mb-2">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text bg-primary text-light roboto-condensed">
-                                                    R$
-                                                </div>
-
-                                            </div>
-                                            <input type="text" class="form-control" name="valor_nf" id=""
-                                                   placeholder="">
-                                        </div>
-                                        <small id="emailHelp" class="form-text text-muted">Utilize ponto no lugar da
-                                            vírgula.</small>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-sm-12">
-                                    <label for="exampleFormControlTextarea1" class="roboto-condensed">Observação</label>
-                                    <textarea class="form-control" name="obs_nf" id="exampleFormControlTextarea1"
-                                              rows="3"></textarea>
-                                </div>
-                            </div>
-                            <div class="form-group form-check">
-                                <input type="checkbox" required="" class="form-check-input" id="exampleCheck1">
-                                <label class="form-check-label roboto-condensed" for="exampleCheck1">Confirmo que
-                                    revisei os dados
-                                    inseridos</label>
-                            </div>
-                            <button type="submit" class="btn bg-primary col-sm-2 roboto-condensed text-white shadow ">
-                                Gerar NF <i
-                                        class="fas fa-plus ml-2"></i>
-                        </form>
-                    </div>
-                </div>
+<!--                <div class="">-->
+<!--                    <div class="container">-->
+<!--                        <form method="POST" action="back/response/nota_fiscal_r.php">-->
+<!--                            <div class="form-row">-->
+<!--                                <input type="hidden" name="tipo" value="new">-->
+<!--                                <div class="form-group col-md-12">-->
+<!--                                    <label for="inputEmail4" class="roboto-condensed">Nota Fiscal</label>-->
+<!--                                    <input type="text" class="form-control" name="numero_nf" id="inputEmail4"-->
+<!--                                           placeholder="Número">-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="form-row">-->
+<!--                                <div class="form-group col-md-6">-->
+<!--                                    <label for="inputEmail4" class="roboto-condensed">Data de Emissão</label>-->
+<!--                                    <input type="date" class="form-control" name="datae_nf" id="inputEmail4"-->
+<!--                                           placeholder="">-->
+<!--                                </div>-->
+<!--                                <div class="form-group col-md-6">-->
+<!--                                    <label for="inputPassword4" class="roboto-condensed">Data de Lançamento</label>-->
+<!--                                    <input type="date" class="form-control" name="datal_nf" id="inputPassword4"-->
+<!--                                           placeholder="">-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="form-row">-->
+<!--                                <div class="form-group col-md-8">-->
+<!--                                    <label for="inputEmail4" class="roboto-condensed">Fornecedor</label>-->
+<!--                                    <input type="text" class="form-control" name="fornecedor_nf" id="inputEmail4"-->
+<!--                                           placeholder="">-->
+<!--                                </div>-->
+<!--                                <div class="form-group col-md-4">-->
+<!--                                    <div class="col-auto">-->
+<!--                                        <label for="inputEmail4" class="roboto-condensed">Valor</label>-->
+<!--                                        <div class="input-group mb-2">-->
+<!--                                            <div class="input-group-prepend">-->
+<!--                                                <div class="input-group-text bg-primary text-light roboto-condensed">-->
+<!--                                                    R$-->
+<!--                                                </div>-->
+<!---->
+<!--                                            </div>-->
+<!--                                            <input type="text" class="form-control" name="valor_nf" id=""-->
+<!--                                                   placeholder="">-->
+<!--                                        </div>-->
+<!--                                        <small id="emailHelp" class="form-text text-muted">Utilize ponto no lugar da-->
+<!--                                            vírgula.</small>-->
+<!--                                    </div>-->
+<!---->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="form-row">-->
+<!--                                <div class="form-group col-sm-12">-->
+<!--                                    <label for="exampleFormControlTextarea1" class="roboto-condensed">Observação</label>-->
+<!--                                    <textarea class="form-control" name="obs_nf" id="exampleFormControlTextarea1"-->
+<!--                                              rows="3"></textarea>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="form-group form-check">-->
+<!--                                <input type="checkbox" required="" class="form-check-input" id="exampleCheck1">-->
+<!--                                <label class="form-check-label roboto-condensed" for="exampleCheck1">Confirmo que-->
+<!--                                    revisei os dados-->
+<!--                                    inseridos</label>-->
+<!--                            </div>-->
+<!--                            <button type="submit" class="btn bg-primary col-sm-2 roboto-condensed text-white shadow ">-->
+<!--                                Gerar NF <i-->
+<!--                                        class="fas fa-plus ml-2"></i>-->
+<!--                        </form>-->
+<!--                    </div>-->
+<!--                </div>-->
             </div>
             <div class="container mt-5">
                 <table id="example" class="table table-sm text-center roboto-condensed">
