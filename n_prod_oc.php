@@ -37,7 +37,7 @@ switch ($_SESSION['user']) {
 <div class="container-fluid">
     <div class="row">
         <?php include_once "componentes/menu.php" ?>
-        <div class="col-6">
+        <div class="col-7">
             <nav class="navbar navbar-expand-lg navbar-light">
                 <h5 class="text-primary roboto-condensed"><img src="images/shopping.png" class="img-fluid" width="40">
                     Compras</h5>
@@ -112,7 +112,7 @@ switch ($_SESSION['user']) {
                 </table>
             </div>
         </div>
-        <div class="col-4">
+        <div class="col-3">
             <div class="mt-3">
                 <h3 class="text-black-50 roboto-condensed">Items Adicionados</h3>
                 <hr>

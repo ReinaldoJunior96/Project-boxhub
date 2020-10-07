@@ -59,6 +59,10 @@ class CompraController{
             $sql->bindValue(':qtde_compra', $qtdeCompra);
             $sql->bindValue(':valor_un_c', $valorUn);
             $sql->execute();
+            $query_update = /** @lang text */ "UPDATE tbl_estoque SET  valor_un_e=:valor_un_e WHERE id_estoque='$produto'";
+            $editar_prod = $this->conn->prepare($query_update);
+            $editar_prod->bindValue(':valor_un_e', $valorUn);
+            $editar_prod->execute();
             if ($sql) {
                 $this->conn->commit();
             }
