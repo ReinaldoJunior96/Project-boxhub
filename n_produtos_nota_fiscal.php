@@ -45,7 +45,7 @@ switch ($_SESSION['user']) {
                     foreach ($nf as $v) { ?>
                         <img src="images/document.png" class="img-fluid"
                              width="40">
-                        <h5 class="text-primary roboto-condensed ml-2 mt-1"> Nota Fiscal Nº - <?= $v->numero_nf ?></h5>
+                        <h5 class="text-primary roboto-condensed ml-2 mt-1"> Nota Fiscal Nº - <?= $v->numero_nf ?> <a href="e_nota_fiscal.php?idnf=<?=$_GET['idnf']?>"><i class='fas fa-pen fa-1x color-icon-nf text-black-50'></i></a></h5>
                     <?php } ?>
 
                     <button class="navbar-toggler" type="button" data-toggle="collapse"

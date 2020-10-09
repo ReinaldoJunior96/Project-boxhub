@@ -81,8 +81,10 @@ $s = new ConfigCRUD();
                         <thead class="bg-shadow-it bg-nav">
                         <tr class="text-light ">
                             <th class=""></th>
-                            <th class="">Fornecedor</th>
-                            <th class="">Data</th>
+                            <th class="">Gerar NF</th>
+                            <th class="">Fornecedor / Ordem </th>
+                            <th class="">Criada em</th>
+
                             <th></th>
                         </tr>
                         </thead>
@@ -95,9 +97,10 @@ $s = new ConfigCRUD();
                             ?>
                             <tr>
                                 <td class=""><?= $v->id_ordem ?></td>
-                                <td class="text-primary"><a
-                                            href="n_prod_oc.php?id_ordem=<?= $v->id_ordem ?>"><?= $v->nome_f ?></a></td>
+                                <td class=""><a href="  n_produtos_nota_fiscal.php?idnf=<?= $v->id_fk_nf ?>">Ir para NF</a></td>
+                                <td class="text-primary"><a href="n_prod_oc.php?id_ordem=<?= $v->id_ordem ?>"><?= $v->nome_f ?></a></td>
                                 <td class=""><?= date("d/m/Y H:i:s", strtotime($v->data_c)) ?></td>
+
                                 <td><a href="back/response/d_ordem_compra.php?idordem=<?= $v->id_ordem ?>"><i
                                                 class='fas fa-trash text-danger'></i></a></td>
                             </tr>

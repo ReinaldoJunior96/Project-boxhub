@@ -22,7 +22,7 @@ if (empty($dados_ordem['0']->item_compra)) {
 	/*Parâmetros da função Cell(Espaço entre linhas)*/
 
 	$pdf->Image('images/logo.png', 385, 15, -200);
-	$pdf->Cell(0, 40, utf8_decode('Ordem de Compra'), '', '1', 'L');
+	$pdf->Cell(0, 40, utf8_decode('Ordem de Compra - ' . $_GET['id_ordem']), '', '1', 'L');
     $pdf->SetFont('arial', '', 10);
 	$pdf->Cell(0, 0, utf8_decode('Fornecedor: ' . mb_strtoupper(@$dados_ordem['0']->nome_f, 'UTF-8')), '', '1', 'L');
 	$date = date_create(@$dados_ordem['0']->data_c);
@@ -41,13 +41,13 @@ if (empty($dados_ordem['0']->item_compra)) {
 		$vTotal += $v->valor_un_c*$v->qtde_compra;
 		$pdf->Cell(300, 20, utf8_decode($v->produto_e), 1, 0, "C");
 		$pdf->Cell(80, 20, utf8_decode($v->qtde_compra), 1, 0, "C");
-		$pdf->Cell(80, 20, utf8_decode("R$ " . str_replace(".", ",",  $v->valor_un_c)), 1, 0, "C");
-		$pdf->Cell(80, 20, utf8_decode("R$ ". str_replace(".", ",",  $v->valor_un_c*$v->qtde_compra)), 1, 0, "C");
+		$pdf->Cell(80, 20, utf8_decode("R$ " . number_format($v->valor_un_c,2,',','.')), 1, 0, "C");
+		$pdf->Cell(80, 20, utf8_decode("R$ ". number_format($v->valor_un_c*$v->qtde_compra,2,',','.')), 1, 0, "C");
 		$pdf->Ln(25);    
 	}
 	$pdf->Cell(460, 20, utf8_decode("Total a Pagar"), 1, 0, "C");
 	$pdf->SetFont('arial', 'B', 12);
-	$pdf->Cell(80, 20, utf8_decode("R$ " . str_replace(".", ",",  $vTotal)), 1, 0, "C");
+	$pdf->Cell(80, 20, utf8_decode("R$ " . number_format($vTotal,2,',','.')), 1, 0, "C");
 	$pdf->Output($file, $tipo_pdf);
 
 }

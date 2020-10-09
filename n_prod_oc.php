@@ -124,7 +124,7 @@ switch ($_SESSION['user']) {
                     foreach ($dados_ordem as $value) {
                         ?>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <?= $value->produto_e ?> - <?= $value->qtde_compra ?> - <?= "R$ ".str_replace('.', ',', $value->valor_un_c) ?>
+                            <?= $value->produto_e ?> - <?= $value->qtde_compra ?> - <?= "R$ ".number_format($value->valor_un_c,2,',','.') ?>
                             <a href="back/response/d_prod_compra.php?idprod=<?= $value->id_item_compra ?>"><i
                                         class='fas fa-ban fa-lg' style='color: red;'></i></a>
                         </li>
