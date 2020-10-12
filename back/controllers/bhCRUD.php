@@ -4,12 +4,12 @@ require_once('conexao.php');
 class BhCRUD
 {
 
-	public $conn = null;
+    public $conn = null;
 
-	function __construct()
-	{
-		$this->conn = PDOconectar::conectar();
-	}
+    function __construct()
+    {
+        $this->conn = PDOconectar::conectar();
+    }
 
 //	public function insert($nf)
 //	{
@@ -101,17 +101,18 @@ class BhCRUD
 //		}
 //	}
 
-	public function index()
-	{
-		try {
-			$view_nf = $this->conn->prepare("SELECT * FROM tbl_nf");
-			$view_nf->execute();
-			$query_result = $view_nf->fetchAll(PDO::FETCH_OBJ);
-			return $query_result;
-		} catch (PDOException $erro) {
-			echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
-		}
-	}
+    public function index()
+    {
+        try {
+            $view_nf = $this->conn->prepare("SELECT * FROM tbl_nf
+                                                    INNER JOIN tbl_ordem_compra
+                                                ON tbl_nf.id_nf = tbl_ordem_compra.id_fk_nf");
+            $view_nf->execute();
+            return $view_nf->fetchAll(PDO::FETCH_OBJ);
+        } catch (PDOException $erro) {
+            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
+        }
+    }
 
 //	public function findID($id)
 //	{
@@ -124,17 +125,17 @@ class BhCRUD
 //			echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
 //		}
 //	}
-	public function estoque_anestesia()
-	{
-		try {
-			$view_estoque = $this->conn->prepare("SELECT * FROM tbl_estoque WHERE categoria_e='Anestesia'");
-			$view_estoque->execute();
-			$query_result = $view_estoque->fetchAll(PDO::FETCH_OBJ);
-			return $query_result;
-		} catch (PDOException $erro) {
-			echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
-		}
-	}
+    public function estoque_anestesia()
+    {
+        try {
+            $view_estoque = $this->conn->prepare("SELECT * FROM tbl_estoque WHERE categoria_e='Anestesia'");
+            $view_estoque->execute();
+            $query_result = $view_estoque->fetchAll(PDO::FETCH_OBJ);
+            return $query_result;
+        } catch (PDOException $erro) {
+            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
+        }
+    }
 //	public function addProd_nf($produto_nf)
 //	{
 //		try {
@@ -168,17 +169,17 @@ class BhCRUD
 //			echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
 //		}
 //	}
-	public function ver_NF($nf)
-	{
-		try {
-			$view_nf = $this->conn->prepare("SELECT * FROM tbl_nf WHERE id_nf = '$nf'");
-			$view_nf->execute();
-			$query_result = $view_nf->fetchAll(PDO::FETCH_OBJ);
-			return $query_result;
-		} catch (PDOException $erro) {
-			echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
-		}
-	}
+    public function ver_NF($nf)
+    {
+        try {
+            $view_nf = $this->conn->prepare("SELECT * FROM tbl_nf WHERE id_nf = '$nf'");
+            $view_nf->execute();
+            $query_result = $view_nf->fetchAll(PDO::FETCH_OBJ);
+            return $query_result;
+        } catch (PDOException $erro) {
+            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
+        }
+    }
 //	public function ver_prod_NF($nf)
 //	{
 //		try {
@@ -193,89 +194,89 @@ class BhCRUD
 //		}
 //	}
 
-	public function registrar_saida($saida)
-	{
-		try {
-			$this->conn->beginTransaction();
-			$query_Sql = "INSERT INTO tbl_saida(item_s,quantidade_s,setor_s,data_s,data_dia_s) VALUES (:item_s,:quantidade_s,:setor_s,:data_s,:data_dia_s)";
-			$sql = $this->conn->prepare($query_Sql);
-			$sql->bindValue(':item_s', $saida['produto']);
-			$sql->bindValue(':quantidade_s', $saida['quantidade']);
-			$sql->bindValue(':setor_s', $saida['setor']);
-			$sql->bindValue(':data_s', $saida['data']);
-			$sql->bindValue(':data_dia_s', date("Y-m-d H:i:s"));
-			$sql->execute();
-			$produto = $saida['produto'];
-			$qtde_antiga = $this->conn->prepare("SELECT * FROM tbl_estoque WHERE id_estoque='$produto'");
-			$qtde_antiga->execute();
-			$query_result = $qtde_antiga->fetchAll(PDO::FETCH_OBJ);
-			foreach ($query_result as $v) {
-				$qtde_antiga = $v->quantidade_e;
-				$qtde_nova = $qtde_antiga - $saida['quantidade'];
-			}
-			if ($saida['quantidade'] > $qtde_antiga) {
-				echo "<script language=\"javascript\">alert(\"Quantidade solicitada é maior que a quantidade em estoque\")</script>";
-			} else {
-				$alterar_estoque = "UPDATE tbl_estoque SET quantidade_e=:quantidade WHERE id_estoque='$produto'";
-				$fazer_alteracao = $this->conn->prepare($alterar_estoque);
-				$fazer_alteracao->bindValue(':quantidade', $qtde_nova);
-				$fazer_alteracao->execute();
-				if ($fazer_alteracao) {
-					$this->conn->commit();
-				}
-			}
-		} catch (PDOException $erro) {
-			$this->conn->rollBack();
-			echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
-		}
-	}
+    public function registrar_saida($saida)
+    {
+        try {
+            $this->conn->beginTransaction();
+            $query_Sql = "INSERT INTO tbl_saida(item_s,quantidade_s,setor_s,data_s,data_dia_s) VALUES (:item_s,:quantidade_s,:setor_s,:data_s,:data_dia_s)";
+            $sql = $this->conn->prepare($query_Sql);
+            $sql->bindValue(':item_s', $saida['produto']);
+            $sql->bindValue(':quantidade_s', $saida['quantidade']);
+            $sql->bindValue(':setor_s', $saida['setor']);
+            $sql->bindValue(':data_s', $saida['data']);
+            $sql->bindValue(':data_dia_s', date("Y-m-d H:i:s"));
+            $sql->execute();
+            $produto = $saida['produto'];
+            $qtde_antiga = $this->conn->prepare("SELECT * FROM tbl_estoque WHERE id_estoque='$produto'");
+            $qtde_antiga->execute();
+            $query_result = $qtde_antiga->fetchAll(PDO::FETCH_OBJ);
+            foreach ($query_result as $v) {
+                $qtde_antiga = $v->quantidade_e;
+                $qtde_nova = $qtde_antiga - $saida['quantidade'];
+            }
+            if ($saida['quantidade'] > $qtde_antiga) {
+                echo "<script language=\"javascript\">alert(\"Quantidade solicitada é maior que a quantidade em estoque\")</script>";
+            } else {
+                $alterar_estoque = "UPDATE tbl_estoque SET quantidade_e=:quantidade WHERE id_estoque='$produto'";
+                $fazer_alteracao = $this->conn->prepare($alterar_estoque);
+                $fazer_alteracao->bindValue(':quantidade', $qtde_nova);
+                $fazer_alteracao->execute();
+                if ($fazer_alteracao) {
+                    $this->conn->commit();
+                }
+            }
+        } catch (PDOException $erro) {
+            $this->conn->rollBack();
+            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
+        }
+    }
 
-	public function historico_saida()
-	{
-		try {
-			$view_nf = $this->conn->prepare("SELECT * FROM tbl_saida
+    public function historico_saida()
+    {
+        try {
+            $view_nf = $this->conn->prepare("SELECT * FROM tbl_saida
 				INNER JOIN tbl_estoque ON tbl_saida.item_s = tbl_estoque.id_estoque");
-			$view_nf->execute();
-			$query_result = $view_nf->fetchAll(PDO::FETCH_OBJ);
-			return $query_result;
-		} catch (PDOException $erro) {
-			echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
-		}
-	}
+            $view_nf->execute();
+            $query_result = $view_nf->fetchAll(PDO::FETCH_OBJ);
+            return $query_result;
+        } catch (PDOException $erro) {
+            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
+        }
+    }
 
-	public function filtro_historico($setor)
-	{
-		try {
-			$query_sql = $this->conn->prepare("SELECT * FROM tbl_saida
+    public function filtro_historico($setor)
+    {
+        try {
+            $query_sql = $this->conn->prepare("SELECT * FROM tbl_saida
 			INNER JOIN tbl_estoque ON tbl_saida.item_s = tbl_estoque.id_estoque WHERE setor_s='$setor'");
-			$query_sql->execute();
-			$query_result = $query_sql->fetchAll(PDO::FETCH_OBJ);
-			return $query_result;
-		} catch (PDOException $erro) {
-			echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
-		}
-	}
+            $query_sql->execute();
+            $query_result = $query_sql->fetchAll(PDO::FETCH_OBJ);
+            return $query_result;
+        } catch (PDOException $erro) {
+            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
+        }
+    }
 
-	public function cancelarSaida($id, $prod, $qtde)
-	{
-		try {
-			$ver_prod = $this->conn->prepare("SELECT * FROM tbl_estoque WHERE id_estoque=$prod");
-			$ver_prod->execute();
-			$query_result = $ver_prod->fetchAll(PDO::FETCH_OBJ);
-			foreach ($query_result as $p) {
-				$qtdeA = $p->quantidade_e;
-			}
-			$alterar_estoque = "UPDATE tbl_estoque SET quantidade_e=:quantidade WHERE id_estoque='$prod'";
-			$fazer_alteracao = $this->conn->prepare($alterar_estoque);
-			$fazer_alteracao->bindValue(':quantidade', $qtdeA + $qtde);
-			$fazer_alteracao->execute();
-			$delete_saida = $this->conn->prepare("DELETE FROM  tbl_saida WHERE id_saida='$id'");
-			$delete_saida->execute();
-		} catch (PDOException $erro) {
-			echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
-		}
-	}
-	/* função para relatorio */
+    public function cancelarSaida($id, $prod, $qtde)
+    {
+        try {
+            $ver_prod = $this->conn->prepare("SELECT * FROM tbl_estoque WHERE id_estoque=$prod");
+            $ver_prod->execute();
+            $query_result = $ver_prod->fetchAll(PDO::FETCH_OBJ);
+            foreach ($query_result as $p) {
+                $qtdeA = $p->quantidade_e;
+            }
+            $alterar_estoque = "UPDATE tbl_estoque SET quantidade_e=:quantidade WHERE id_estoque='$prod'";
+            $fazer_alteracao = $this->conn->prepare($alterar_estoque);
+            $fazer_alteracao->bindValue(':quantidade', $qtdeA + $qtde);
+            $fazer_alteracao->execute();
+            $delete_saida = $this->conn->prepare("DELETE FROM  tbl_saida WHERE id_saida='$id'");
+            $delete_saida->execute();
+        } catch (PDOException $erro) {
+            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
+        }
+    }
+    /* função para relatorio */
 //	public function pega_nome($item)
 //	{
 //		try {
@@ -306,109 +307,109 @@ class BhCRUD
 //		return $query_result;
 //	}
 
-	/* função para relatorio */
+    /* função para relatorio */
 
 
-
-
-	public function v_pedidos()
-	{
-		try {
-			$pedidossql = $this->conn->prepare("SELECT * FROM tbl_solicitacoes
+    public function v_pedidos()
+    {
+        try {
+            $pedidossql = $this->conn->prepare("SELECT * FROM tbl_solicitacoes
 				INNER JOIN tbl_estoque ON tbl_solicitacoes.item_req = tbl_estoque.id_estoque
 				WHERE status_req='0'");
-			$pedidossql->execute();
-			$query_result = $pedidossql->fetchAll(PDO::FETCH_OBJ);
-			return $query_result;
-		} catch (PDOException $erro) {
-			echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
-		}
-	}
-	public function aceitar_pedidos($id, $ide)
-	{
-		try {
-			$qtde_antiga = $this->conn->prepare("SELECT * FROM tbl_estoque WHERE id_estoque='$ide'");
-			$qtde_antiga->execute();
-			$v_qa = $qtde_antiga->fetchAll(PDO::FETCH_OBJ);
-			foreach ($v_qa as $q) {
-				$q_antiga = $q->quantidade_e;
-			}
-			$qtde_solicitada = $this->conn->prepare("SELECT * FROM tbl_solicitacoes WHERE id_req='$id'");
-			$qtde_solicitada->execute();
-			$v_qs = $qtde_solicitada->fetchAll(PDO::FETCH_OBJ);
-			foreach ($v_qs as $q) {
-				$q_solicitada = $q->qtde_req;
-			}
+            $pedidossql->execute();
+            $query_result = $pedidossql->fetchAll(PDO::FETCH_OBJ);
+            return $query_result;
+        } catch (PDOException $erro) {
+            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
+        }
+    }
 
-			$n_qtde = $q_antiga - $q_solicitada;
+    public function aceitar_pedidos($id, $ide)
+    {
+        try {
+            $qtde_antiga = $this->conn->prepare("SELECT * FROM tbl_estoque WHERE id_estoque='$ide'");
+            $qtde_antiga->execute();
+            $v_qa = $qtde_antiga->fetchAll(PDO::FETCH_OBJ);
+            foreach ($v_qa as $q) {
+                $q_antiga = $q->quantidade_e;
+            }
+            $qtde_solicitada = $this->conn->prepare("SELECT * FROM tbl_solicitacoes WHERE id_req='$id'");
+            $qtde_solicitada->execute();
+            $v_qs = $qtde_solicitada->fetchAll(PDO::FETCH_OBJ);
+            foreach ($v_qs as $q) {
+                $q_solicitada = $q->qtde_req;
+            }
 
-			$alterar_qtde = "UPDATE tbl_estoque SET quantidade_e=:quantidade_e WHERE id_estoque='$ide'";
-			$alterar_qtde = $this->conn->prepare($alterar_qtde);
-			$alterar_qtde->bindValue(':quantidade_e', $n_qtde);
-			$alterar_qtde->execute();
+            $n_qtde = $q_antiga - $q_solicitada;
 
-			$alterar_status = "UPDATE tbl_solicitacoes SET status_req=:status_req WHERE id_req='$id'";
-			$alterar_status = $this->conn->prepare($alterar_status);
-			$alterar_status->bindValue(':status_req', "1");
-			$alterar_status->execute();
+            $alterar_qtde = "UPDATE tbl_estoque SET quantidade_e=:quantidade_e WHERE id_estoque='$ide'";
+            $alterar_qtde = $this->conn->prepare($alterar_qtde);
+            $alterar_qtde->bindValue(':quantidade_e', $n_qtde);
+            $alterar_qtde->execute();
 
-			foreach ($v_qs as $i) {
-				echo "<pre>";
-				var_dump($i);
-				echo "<pre>";
-				$this->conn->beginTransaction();
-				$query_Sql = "INSERT INTO tbl_saida(item_s,quantidade_s,setor_s,data_s,data_dia_s) 
+            $alterar_status = "UPDATE tbl_solicitacoes SET status_req=:status_req WHERE id_req='$id'";
+            $alterar_status = $this->conn->prepare($alterar_status);
+            $alterar_status->bindValue(':status_req', "1");
+            $alterar_status->execute();
+
+            foreach ($v_qs as $i) {
+                echo "<pre>";
+                var_dump($i);
+                echo "<pre>";
+                $this->conn->beginTransaction();
+                $query_Sql = "INSERT INTO tbl_saida(item_s,quantidade_s,setor_s,data_s,data_dia_s) 
 				VALUES (:item_s,:quantidade_s,:setor_s,:data_s,:data_dia_s)";
-				$sql = $this->conn->prepare($query_Sql);
-				$sql->bindValue(':item_s', $ide);
-				$sql->bindValue(':quantidade_s', $i->qtde_req);
-				$sql->bindValue(':setor_s', $i->setor_req);
-				$sql->bindValue(':data_s', $i->data_req);
-				$sql->bindValue(':data_dia_s', date("Y-m-d"));
-				$sql->execute();
-				if ($sql) {
-					$this->conn->commit();
-				} else {
-					$this->conn->rollBack();
-				}
-			}
-		} catch (PDOException $erro) {
-			echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
-		}
-	}
-	public function recusar_pedidos($id)
-	{
-		try {
-			$alterar_status = "UPDATE tbl_solicitacoes SET status_req=:status_req WHERE id_req='$id'";
-			$alterar_status = $this->conn->prepare($alterar_status);
-			$alterar_status->bindValue(':status_req', "2");
-			$alterar_status->execute();
-		} catch (PDOException $erro) {
-			echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
-		}
-	}
+                $sql = $this->conn->prepare($query_Sql);
+                $sql->bindValue(':item_s', $ide);
+                $sql->bindValue(':quantidade_s', $i->qtde_req);
+                $sql->bindValue(':setor_s', $i->setor_req);
+                $sql->bindValue(':data_s', $i->data_req);
+                $sql->bindValue(':data_dia_s', date("Y-m-d"));
+                $sql->execute();
+                if ($sql) {
+                    $this->conn->commit();
+                } else {
+                    $this->conn->rollBack();
+                }
+            }
+        } catch (PDOException $erro) {
+            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
+        }
+    }
 
-	public function contar_notificacao()
-	{
-		$contar = $this->conn->prepare("SELECT * FROM tbl_estoque WHERE quantidade_e<=estoque_minimo_e");
-		$contar->execute();
-		$quantidade = $contar->rowCount();
-		return $quantidade;
-	}
+    public function recusar_pedidos($id)
+    {
+        try {
+            $alterar_status = "UPDATE tbl_solicitacoes SET status_req=:status_req WHERE id_req='$id'";
+            $alterar_status = $this->conn->prepare($alterar_status);
+            $alterar_status->bindValue(':status_req', "2");
+            $alterar_status->execute();
+        } catch (PDOException $erro) {
+            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
+        }
+    }
 
-	public function ver_notificacoes()
-	{
-		$ver = $this->conn->prepare("SELECT * FROM tbl_estoque WHERE quantidade_e<=estoque_minimo_e");
-		$ver->execute();
-		return $ver->fetchAll(PDO::FETCH_OBJ);
-	}
+    public function contar_notificacao()
+    {
+        $contar = $this->conn->prepare("SELECT * FROM tbl_estoque WHERE quantidade_e<=estoque_minimo_e");
+        $contar->execute();
+        $quantidade = $contar->rowCount();
+        return $quantidade;
+    }
 
-	public function login($user, $password)
-	{
-		$user = $this->conn->prepare("SELECT * FROM tbl_usuarios WHERE nome_user='$user' and password='$password'");
-		$user->execute();
-		return $user->rowCount();
-	}
+    public function ver_notificacoes()
+    {
+        $ver = $this->conn->prepare("SELECT * FROM tbl_estoque");
+        $ver->execute();
+        return $ver->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    public function login($user, $password)
+    {
+        $user = $this->conn->prepare("SELECT * FROM tbl_usuarios WHERE nome_user='$user' and password='$password'");
+        $user->execute();
+        return $user->rowCount();
+    }
 
 //	public function cadOrdemCompra($forcenedor, $data)
 //	{
@@ -471,13 +472,13 @@ class BhCRUD
 //			echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
 //		}
 //	}
-	public function deleteProdOrdem($id)
-	{
-		try {
-			$deleteProd = $this->conn->prepare("DELETE FROM tbl_items_compra WHERE id_item_compra='$id'");
-			$deleteProd->execute();
-		} catch (PDOException $erro) {
-			echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
-		}
-	}
+    public function deleteProdOrdem($id)
+    {
+        try {
+            $deleteProd = $this->conn->prepare("DELETE FROM tbl_items_compra WHERE id_item_compra='$id'");
+            $deleteProd->execute();
+        } catch (PDOException $erro) {
+            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
+        }
+    }
 }

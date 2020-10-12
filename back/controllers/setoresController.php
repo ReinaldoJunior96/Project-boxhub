@@ -14,7 +14,7 @@ class SetorController{
     public function verSetores()
     {
         try {
-            $view_setores = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_setores");
+            $view_setores = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_setores ORDER BY setor_s ASC");
             $view_setores->execute();
             return $view_setores->fetchAll(PDO::FETCH_OBJ);
         } catch (PDOException $erro) {
