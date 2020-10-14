@@ -13,16 +13,17 @@ class EstoqueController{
         try{
             $this->conn->beginTransaction();
             $query = /** @lang text */
-                "INSERT INTO tbl_estoque(produto_e,quantidade_e,valor_un_e,categoria_e,marca_e,unidade_e,estoque_minimo_e) 
-			VALUES (:produto_e,:quantidade_e,:valor_un_e,:categoria_e,:marca_e,:unidade_e,:estoque_minimo_e)";
+                "INSERT INTO tbl_estoque(principio_ativo,produto_e,quantidade_e,valor_un_e,estoque_minimo_e,apresentacao,concentracao,forma_farmaceutica) 
+			VALUES (:principio_ativo,:produto_e,:quantidade_e,:valor_un_e,:estoque_minimo_e,:apresentacao,:concentracao,:forma_farmaceutica)";
             $sql = $this->conn->prepare($query);
+            $sql->bindValue(':principio_ativo', $produto['p_ativo']);
             $sql->bindValue(':produto_e', $produto['produto']);
             $sql->bindValue(':quantidade_e', $produto['quantidade']);
             $sql->bindValue(':valor_un_e', $produto['valor']);
-            $sql->bindValue(':categoria_e', $produto['categoria']);
-            $sql->bindValue(':marca_e', $produto['marca']);
-            $sql->bindValue(':unidade_e', $produto['unidade']);
             $sql->bindValue(':estoque_minimo_e', $produto['estoque_minimo_e']);
+            $sql->bindValue(':apresentacao', $produto['apresentacao']);
+            $sql->bindValue(':concentracao', $produto['concentracao']);
+            $sql->bindValue(':forma_farmaceutica', $produto['forma_farmaceutica']);
             $sql->execute();
             if ($sql) {
                 $this->conn->commit();
@@ -36,24 +37,25 @@ class EstoqueController{
     {
         try {
             $this->conn->beginTransaction();
-            $query_update = /** @lang text */
-                "UPDATE tbl_estoque SET 
+            $query_update = /** @lang text */"UPDATE tbl_estoque SET 
+            principio_ativo=:principio_ativo,
 			produto_e=:produto_e,
 			quantidade_e=:quantidade_e,
 			valor_un_e=:valor_un_e,
-			categoria_e=:categoria_e,
-			marca_e=:marca_e,
-			unidade_e=:unidade_e,
-			estoque_minimo_e=:estoque_minimo_e
+			estoque_minimo_e=:estoque_minimo_e,
+			apresentacao=:apresentacao,
+			concentracao=:concentracao,
+			forma_farmaceutica=:forma_farmaceutica
 			WHERE id_estoque='$id'";
             $editar_prod = $this->conn->prepare($query_update);
+            $editar_prod->bindValue(':principio_ativo', $produto['p_ativo']);
             $editar_prod->bindValue(':produto_e', $produto['produto']);
             $editar_prod->bindValue(':quantidade_e', $produto['quantidade']);
             $editar_prod->bindValue(':valor_un_e', $produto['valor']);
-            $editar_prod->bindValue(':categoria_e', $produto['categoria']);
-            $editar_prod->bindValue(':marca_e', $produto['marca']);
-            $editar_prod->bindValue(':unidade_e', $produto['unidade']);
             $editar_prod->bindValue(':estoque_minimo_e', $produto['estoque_minimo_e']);
+            $editar_prod->bindValue(':apresentacao', $produto['apresentacao']);
+            $editar_prod->bindValue(':concentracao', $produto['concentracao']);
+            $editar_prod->bindValue(':forma_farmaceutica', $produto['forma_farmaceutica']);
             $editar_prod->execute();
             if ($editar_prod) {
                 $this->conn->commit();
@@ -116,5 +118,13 @@ class EstoqueController{
         return $query_result;
     }
 
-    /* função para relatorio */
+    public function destroyProduto($id)
+    {
+        try {
+            $deleteProduto = $this->conn->prepare(/** @lang text */ "DELETE FROM tbl_estoque WHERE id_estoque='$id'");
+            $deleteProduto->execute();
+        } catch (PDOException $erro) {
+            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
+        }
+    }
 }

@@ -27,7 +27,7 @@ switch ($_SESSION['user']) {
           integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <!-- Meu CSS -->
     <title class="roboto-condensed">Firebox</title>
-    <link rel="icon" type="imagem/png" href="../../images/fire.png" />
+    <link rel="icon" type="imagem/png" href="../../images/fire.png"/>
     <!-- <link rel="icon" class="rounded" href="images/icon-box.png" type="image/x-icon" /> -->
 </head>
 
@@ -91,26 +91,45 @@ switch ($_SESSION['user']) {
                                     </div>
                                 </div>
                                 <div class="form-row">
-                                    <div class="form-group col-md-8">
+                                    <div class="form-group col-md-3">
                                         <label for="inputEmail4" class="exo">Fornecedor</label>
                                         <select class="form-control" name="fornecedor_nf">
-                                            <option value="<?=$v->fornecedor?>"><?=$v->fornecedor?></option>
+                                            <option value="<?= $v->fornecedor ?>"><?= $v->fornecedor ?></option>
                                             <?php
-                                            include_once '../../back/controllers/fornecedorController.php';
+                                            require_once('../../back/controllers/FornecedorController.php');
                                             $f = new FornecedorController();
                                             $fornecedores = $f->verFornecedores();
-                                            foreach ($fornecedores as $listf){
-                                            ?>
-                                                <option value="<?=$listf->nome_fornecedor?>"><?=$listf->nome_fornecedor?></option>
+                                            foreach ($fornecedores as $listf) {
+                                                ?>
+                                                <option value="<?= $listf->nome_fornecedor ?>"><?= $listf->nome_fornecedor ?></option>
                                             <?php } ?>
                                         </select>
                                     </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="inputEmail4" class="exo">Valor (R$)</label>
+                                    <div class="form-group col-md-3">
+                                        <label for="inputEmail4" class="exo">Valor total dos produtos R$</label>
                                         <input type="text" class="form-control" value="<?= $v->valor_nf ?>"
                                                name="valor_nf" id=""
                                                placeholder="">
                                     </div>
+                                    <div class="form-group col-md-1">
+                                        <label for="inputEmail4" class="exo">Desconto</label>
+                                        <input type="text" class="form-control"
+                                               name="desconto" id=""
+                                               placeholder="">
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="inputEmail4" class="exo">Frete R$</label>
+                                        <input type="text" class="form-control"
+                                               name="desconto" id=""
+                                               placeholder="">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="inputEmail4" class="exo">Valor Total R$</label>
+                                        <input type="text" class="form-control"
+                                               name="valor_desc" id=""
+                                               placeholder="">
+                                    </div>
+
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-sm-12">
@@ -119,10 +138,18 @@ switch ($_SESSION['user']) {
                                                   rows="3"><?= $v->obs_nf ?></textarea>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn bg-primary text-white col-sm-2 roboto-condensed mt-1">Alterar <i
-                                            class="fas fa-pen"></i>
+                                <button type="submit" class="btn bg-primary text-white col-sm-2 roboto-condensed mt-1">
+                                    Alterar <i class="fas fa-pen"></i>
+                                </button>
                             </form>
+
+
                         <?php } ?>
+                        <a href="n_vencimento_parcelas.php?idnf=<?= $_GET['idnf'] ?>" style="" >
+                            <button type="submit"
+                                    class="btn bg-primary col-sm-2 roboto-condensed mt-1 float-right text-white">
+                                Vencimentos <i class="fas fa-calendar-week"></i></button>
+                        </a>
                     </div>
                 </div>
             </div>

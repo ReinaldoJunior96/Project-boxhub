@@ -15,7 +15,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
           integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <!-- Meu CSS -->
     <title class="roboto-condensed">Firebox</title>
-    <link rel="icon" type="imagem/png" href="../../images/fire.png" />
+    <link rel="icon" type="imagem/png" href="../../images/fire.png"/>
 </head>
 
 <body>
@@ -25,7 +25,8 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
         <div class="col-9">
             <div class="">
                 <nav class="navbar navbar-expand-lg navbar-light">
-                    <h5 class="text-primary roboto-condensed"><img src="../../images/box.png" alt="" class="img-fluid" width="40">
+                    <h5 class="text-primary roboto-condensed"><img src="../../images/box.png" alt="" class="img-fluid"
+                                                                   width="40">
                         Alterar</h5>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado"
@@ -53,37 +54,80 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                             <input type="hidden" name="edit" value="1">
                             <input type="hidden" name="id" value="<?= $_GET['idp'] ?>">
                             <div class="form-group row">
-                                <label for="inputEmail3" class="col-sm-2 col-form-label">Produto / Material</label>
+                                <label for="inputEmail3" class="col-sm-2 col-form-label">Principio Ativo</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="produto_e" value="<?= $v->produto_e ?>"  class="form-control" id="inputEmail3" required="">
+                                    <input type="text" name="p_ativo" value="<?= $v->principio_ativo ?>"
+                                           class="form-control" id="inputEmail3" required="">
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-sm-2 col-form-label">Nome Comercial /
+                                    Material</label>
+                                <div class="col-sm-6">
+                                    <input type='text' class='form-control' value="<?= $v->produto_e ?>"
+                                           name='produto_e' placeholder=''>
+                                </div>
+                                <label for="inputEmail3"
+                                       class="col-sm-2 col-form-label text-right">Concentração:</label>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control" value="<?= $v->concentracao ?>"
+                                           name="concentracao" id="inputEmail4">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-sm-2 col-form-label">Apresentação</label>
+                                <div class="col-sm-4">
+                                    <input type='text' class='form-control' value="<?= $v->apresentacao ?>"
+                                           name='apresentacao' placeholder=''>
+                                </div>
+                                <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Forma
+                                    Farmacêutica</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" value="<?= $v->forma_farmaceutica ?>"
+                                           name="forma_farmaceutica" id="inputEmail4"
+                                           placeholder="">
+                                </div>
+                            </div>
+
+                            <hr>
                             <div class="form-group row">
                                 <label for="inputEmail3" class="col-sm-2 col-form-label">Valor Unitário</label>
                                 <div class="col-sm-2">
                                     <?php if ($_SESSION['user'] == 'compras.hvu') { ?>
-                                        <input type='text' class='form-control' value="<?= $v->valor_un_e ?>" name='valor_un' placeholder='R$'>
+                                        <input type='text' class='form-control' value="<?= $v->valor_un_e ?>"
+                                               name='valor_un' placeholder='R$'>
                                         <small>Utilize ponto no lugar da vírgula</small>
                                     <?php } else { ?>
-                                        <input type='text' class='form-control ' value="*******" name='valor_un' placeholder=''
+                                        <input type='text' class='form-control ' value="*******" name='valor_un'
+                                               placeholder=''
                                                disabled>
                                     <?php } ?>
                                 </div>
                                 <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Quantidade</label>
                                 <div class="col-sm-2">
-                                    <input type="number" class="form-control" value="<?= $v->quantidade_e ?>" name="quantidade_e" id="inputEmail4"
+                                    <input type="number" class="form-control" value="<?= $v->quantidade_e ?>"
+                                           name="quantidade_e" id="inputEmail4"
                                            placeholder="">
                                 </div>
 
-                                <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Estoque Mínimo</label>
+                                <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Estoque
+                                    Mínimo</label>
                                 <div class="col-sm-2">
-                                    <input type="number" class="form-control" value="<?= $v->estoque_minimo_e ?>" name="estoque_minimo_e" id="inputEmail4"
+                                    <input type="number" class="form-control" value="<?= $v->estoque_minimo_e ?>"
+                                           name="estoque_minimo_e" id="inputEmail4"
                                            placeholder="">
                                 </div>
                             </div>
+
                             <button type="submit" class="btn bg-primary col-sm-2 roboto-condensed text-white">Alterar <i
                                         class="far fa-edit ml-2"></i>
+                            </button>
                         </form>
+                        <a href="../../back/response/estoque/d_produto.php?idp=<?= $_GET['idp'] ?>"
+                        <button type="button" class="btn btn-danger float-right text-white">Excluir
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                        </a>
                     <?php } ?>
                 </div>
             </div>

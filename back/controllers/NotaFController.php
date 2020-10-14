@@ -246,6 +246,45 @@ class NotaFController
             echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
     }
+    public function venciementoParcelas($data)
+    {
+        try {
+            $this->conn->beginTransaction();
+            $query_Sql = /** @lang text */
+                "INSERT INTO tbl_vencimento_boleto(nota_fiscal_id,vencimento) 
+                VALUES (:nota_fiscal_id,:vencimento)";
+            $sql = $this->conn->prepare($query_Sql);
+            $sql->bindValue(':nota_fiscal_id', $data['notaid']);
+            $sql->bindValue(':vencimento', $data['vencimento']);
+            $sql->execute();
+            if ($sql) {
+                $this->conn->commit();
+            }
+        } catch (PDOException $erro) {
+            $this->conn->rollBack();
+            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
+        }
+    }
+    public function buscarVencimentos($id)
+    {
+        try {
+            $viewVencimento = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_vencimento_boleto WHERE nota_fiscal_id = '$id'");
+            $viewVencimento->execute();
+            return $viewVencimento->fetchAll(PDO::FETCH_OBJ);
+        } catch (PDOException $erro) {
+            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
+        }
+    }
+    public function deleteVencimento($id)
+    {
+        try {
+            $deleteVencimento = $this->conn->prepare(/** @lang text */ "DELETE FROM tbl_vencimento_boleto WHERE id='$id'");
+            $deleteVencimento->execute();
+            return $deleteVencimento->fetchAll(PDO::FETCH_OBJ);
+        } catch (PDOException $erro) {
+            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
+        }
+    }
 
 
 }
