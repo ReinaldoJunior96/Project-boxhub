@@ -68,6 +68,16 @@ $s = new ConfigCRUD();
                                     </option>
                                 <?php } ?>
                             </select>
+                            <div class="form-inline mt-3">
+                                <div class="form-group mx-sm-3 mb-2">
+                                    <input type="radio" class="form-check-input" name="info_ne" value="0" id="exampleCheck1">
+                                    <label class="form-check-label" for="exampleCheck1">Nota Fiscal</label>
+                                </div>
+                                <div class="form-group mx-sm-3 mb-2">
+                                    <input type="radio" class="form-check-input" name="info_ne" value="1" id="exampleCheck2">
+                                    <label class="form-check-label" for="exampleCheck2">Nota de Entrega</label>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary text-white">Nova Ordem <i class="fas fa-plus"></i>
@@ -81,7 +91,7 @@ $s = new ConfigCRUD();
                         <thead class="bg-shadow-it bg-nav">
                         <tr class="text-light ">
                             <th class=""></th>
-                            <th class="">Gerar NF</th>
+                            <th class="">Nota</th>
                             <th class="">Fornecedor / Ordem </th>
                             <th class="">Criada em</th>
 
@@ -97,7 +107,7 @@ $s = new ConfigCRUD();
                             ?>
                             <tr>
                                 <td class=""><?= $v->id_ordem ?></td>
-                                <td class=""><a href="../notaf/n_produtos_nota_fiscal.php?idnf=<?= $v->id_fk_nf ?>">Ir para NF</a></td>
+                                <td class=""><a href="../notaf/n_produtos_nota_fiscal.php?idnf=<?= $v->id_fk_nf ?>">Entrar</a></td>
                                 <td class="text-primary"><a href="n_prod_oc.php?id_ordem=<?= $v->id_ordem ?>"><?= $v->nome_f ?></a></td>
                                 <td class=""><?= date("d/m/Y H:i:s", strtotime($v->data_c)) ?></td>
 

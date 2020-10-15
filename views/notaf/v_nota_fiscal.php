@@ -44,9 +44,11 @@ switch ($_SESSION['user']) {
                     $dados_nf = new NotaFController();
                     $nf = $dados_nf->verNF($_GET['idnf']);
                     foreach ($nf as $v) { ?>
-                        <img src="images/document.png" class="img-fluid"
+                        <img src="../../images/document.png" class="img-fluid"
                              width="40">
-                        <h5 class="text-primary roboto-condensed ml-2 mt-1"> Nota Fiscal Nº - <?= $v->numero_nf ?></h5>
+                        <h5 class="text-primary roboto-condensed ml-2 mt-1"> <?= ($v->nota_entrega == 1) ? 'NE ' : 'Nota Fiscal' ?>
+                            - <?= $v->numero_nf ?> <a href="e_nota_fiscal.php?idnf=<?= $_GET['idnf'] ?>"><i
+                                        class='fas fa-pen fa-1x color-icon-nf text-black-50'></i></a></h5>
                     <?php } ?>
 
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -75,7 +77,7 @@ switch ($_SESSION['user']) {
                         <h6><span class="far fa-calendar-alt text-black-50 "></span> Data de
                             Lançamento: <?= date("d/m/Y", strtotime($v->data_lancamento)) ?></h6>
                         <h6><i class="fas fa-dollar-sign text-black-50"></i> Valor:
-                            R$ <?= $v->valor_nf?></h6>
+                            R$ <?= $v->valor_nf ?></h6>
                     <?php } ?>
                     <hr class="bg-primary">
                 </div>

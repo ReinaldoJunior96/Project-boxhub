@@ -73,7 +73,7 @@ switch ($_SESSION['user']) {
                                 <input type="hidden" name="idnf" value="<?= $_GET['idnf'] ?>">
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
-                                        <label for="inputEmail4" class="exo">Número da NF</label>
+                                        <label for="inputEmail4" class="exo">Número NE/NF</label>
                                         <input type="text" class="form-control" value="<?= $v->numero_nf ?>"
                                                name="numero_nf" id="inputEmail4" placeholder="">
                                     </div>
@@ -134,6 +134,16 @@ switch ($_SESSION['user']) {
                                         <label for="exampleFormControlTextarea1">Observação</label>
                                         <textarea class="form-control" name="obs_nf" id="exampleFormControlTextarea1"
                                                   rows="3"><?= $v->obs_nf ?></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-inline mt-3">
+                                    <div class="form-group mx-sm-3 mb-2">
+                                        <input type="radio" class="form-check-input" <?=($v->nota_entrega == 0) ? 'checked': ''?> name="info_ne" value="0" id="exampleCheck1">
+                                        <label class="form-check-label" for="exampleCheck1">Nota Fiscal</label>
+                                    </div>
+                                    <div class="form-group mx-sm-3 mb-2">
+                                        <input type="radio" class="form-check-input" <?=($v->nota_entrega == 1) ? 'checked': ''?> name="info_ne" value="1" id="exampleCheck2">
+                                        <label class="form-check-label" for="exampleCheck2">Nota de Entrega</label>
                                     </div>
                                 </div>
                                 <hr>

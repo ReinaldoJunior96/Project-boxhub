@@ -9,14 +9,15 @@ class CompraController{
     {
         $this->conn = PDOconectar::conectar();
     }
-    public function cadOrdemCompra($forcenedor, $data)
+    public function cadOrdemCompra($forcenedor,$infoNE, $data)
     {
         try {
             $this->conn->beginTransaction();
-            $notaTemp = /** @lang text */ "INSERT INTO tbl_nf(numero_nf,fornecedor) VALUES (:numero_nf,:fornecedor)";
+            $notaTemp = /** @lang text */ "INSERT INTO tbl_nf(numero_nf,fornecedor,nota_entrega) VALUES (:numero_nf,:fornecedor,:nota_entrega)";
             $sqlTemp = $this->conn->prepare($notaTemp);
             $sqlTemp->bindValue(':numero_nf', 'temp'.rand(0,99999));
             $sqlTemp->bindValue(':fornecedor', $forcenedor);
+            $sqlTemp->bindValue(':nota_entrega', $infoNE);
             $sqlTemp->execute();
             $lastID = $this->conn->lastInsertId();
             $query_Sql = /** @lang text */ "INSERT INTO tbl_ordem_compra(nome_f,data_c,id_fk_nf) VALUES (:nome_f,:data_c,:id_fk_nf)";
