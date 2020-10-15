@@ -75,6 +75,9 @@ class NotaFController
 			data_lancamento=:data_lancamento,
 			fornecedor=:fornecedor,
 			valor_nf=:valor_nf,
+			desconto=:desconto,
+			frete=:frete,
+			valor_total=:valor_total,
 			obs_nf=:obs_nf
 			WHERE id_nf='$id'";
             $editar_nf = $this->conn->prepare($query);
@@ -83,6 +86,9 @@ class NotaFController
             $editar_nf->bindValue(':data_lancamento', $nf['data_l']);
             $editar_nf->bindValue(':fornecedor', $nf['fornecedor']);
             $editar_nf->bindValue(':valor_nf', $nf['valor']);
+            $editar_nf->bindValue(':desconto', $nf['desconto']);
+            $editar_nf->bindValue(':frete', $nf['frete']);
+            $editar_nf->bindValue(':valor_total', $nf['valor_total']);
             $editar_nf->bindValue(':obs_nf', $nf['obs']);
             $editar_nf->execute();
             if ($editar_nf) {

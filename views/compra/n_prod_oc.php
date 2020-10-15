@@ -37,6 +37,29 @@ switch ($_SESSION['user']) {
 <div class="container-fluid">
     <div class="row">
         <?php include_once "../componentes/menu.php" ?>
+        <div class="col-3">
+            <div class="mt-3">
+                <h3 class="text-black-50 roboto-condensed">Items Adicionados</h3>
+                <hr>
+                <ul class="list-group">
+                    <?php
+                    require_once('../../back/controllers/CompraController.php');
+                    $dados = new CompraController();
+                    $dados_ordem = $dados->verOrdemTotal($_GET['id_ordem']);
+                    $somaValor = 0;
+                    foreach ($dados_ordem as $value) {
+                        $somaValor += $value->valor_un_c * $value->qtde_compra;
+                        ?>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <?= $value->produto_e ?> - <?= $value->qtde_compra ?> - <?= "R$ ".number_format($value->valor_un_c,2,',','.') ?>
+                            <a href="../../back/response/compra/d_prod_compra.php?idprod=<?= $value->id_item_compra ?>"><i
+                                        class='fas fa-ban fa-lg' style='color: red;'></i></a>
+                        </li>
+                    <?php } ?>
+                    <li class="list-group-item active"><?= "R$ ".number_format($somaValor,2,',','.')?></li>
+                </ul>
+            </div>
+        </div>
         <div class="col-7">
             <nav class="navbar navbar-expand-lg navbar-light">
                 <h5 class="text-primary roboto-condensed"><img src="../../images/shopping.png" class="img-fluid" width="40">
@@ -77,7 +100,7 @@ switch ($_SESSION['user']) {
                     <thead class="bg-nav">
                     <tr class="text-light ">
                         <th class="">Produto / Material</th>
-                        <th>Quantidade Unitária (Compra)</th>
+                        <th>Qtde Un (Compra)</th>
                         <th class="">Valor Unitário</th>
                         <th></th>
                     </tr>
@@ -110,26 +133,6 @@ switch ($_SESSION['user']) {
                     <?php } ?>
                     </tbody>
                 </table>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="mt-3">
-                <h3 class="text-black-50 roboto-condensed">Items Adicionados</h3>
-                <hr>
-                <ul class="list-group">
-                    <?php
-                    require_once('../../back/controllers/CompraController.php');
-                    $dados = new CompraController();
-                    $dados_ordem = $dados->verOrdemTotal($_GET['id_ordem']);
-                    foreach ($dados_ordem as $value) {
-                        ?>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <?= $value->produto_e ?> - <?= $value->qtde_compra ?> - <?= "R$ ".number_format($value->valor_un_c,2,',','.') ?>
-                            <a href="../../back/response/compra/d_prod_compra.php?idprod=<?= $value->id_item_compra ?>"><i
-                                        class='fas fa-ban fa-lg' style='color: red;'></i></a>
-                        </li>
-                    <?php } ?>
-                </ul>
             </div>
         </div>
 

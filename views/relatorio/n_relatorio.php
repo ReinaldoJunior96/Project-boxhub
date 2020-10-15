@@ -118,8 +118,6 @@ $s = new ConfigCRUD();
                                 <tr>
                                     <th scope="col">Produto</th>
                                     <th scope="col">Quantidade Total</th>
-                                    <th scope="col">Valor Unitário</th>
-                                    <th scope="col">Valor Total</th>
                                     <th scope="col">Setor</th>
                                     <th scope="col">Data Inicial</th>
                                     <th scope="col">Data Final</th>
@@ -129,8 +127,6 @@ $s = new ConfigCRUD();
                                 <tr>
                                     <td><?= $produto->produto ?></td>
                                     <td><?= $quantidade_total ?></td>
-                                    <td>R$ <?= $produto->valor_un ?></td>
-                                    <td>R$ <?= $valor_total ?></td>
                                     <td><?= str_replace("-", " ", $_POST['setor']) ?></td>
                                     <td><?= date("d/m/Y", strtotime($_POST['dataI'])); ?></td>
                                     <td><?= date("d/m/Y", strtotime($_POST['dataF'])); ?></td>

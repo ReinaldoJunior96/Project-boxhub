@@ -8,7 +8,7 @@ if($attLogin->login($_POST['user'],$_POST['password']) == 1){
     $_SESSION['password'] = (!isset($_POST['password'])) ? NULL : $_POST['password'];
     header("location: ../../../index.php");
 }else{
-    header("location: ../../views/user/login.php");
+    header("location: ../../../views/user/login.php");
 }
 
 

@@ -7,16 +7,19 @@ $nf = array(
     'data_l' => $_POST['datal_nf'],
     'fornecedor' => $_POST['fornecedor_nf'],
     'valor' => $_POST['valor_nf'],
+    'desconto' => $_POST['desconto'],
+    'frete' => $_POST['frete'],
+    'valor_total' => $_POST['valor_total'],
     'obs' => $_POST['obs_nf'],
 );
 
 
 if ($_POST['tipo'] == 'edit') {
     $notaData->edit_NF($nf, $_POST['idnf']);
-    echo "<script language=\"javascript\">window.history.back();</script>";
+    //echo "<script language=\"javascript\">window.history.back();</script>";
 } elseif ($_POST['tipo'] == 'new') {
     $notaData->insert($nf);
-    echo "<script language=\"javascript\">window.history.back();</script>";
+    //echo "<script language=\"javascript\">window.history.back();</script>";
 }
 
 

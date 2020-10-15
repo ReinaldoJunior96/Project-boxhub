@@ -57,7 +57,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                                 <label for="inputEmail3" class="col-sm-2 col-form-label">Principio Ativo</label>
                                 <div class="col-sm-10">
                                     <input type="text" name="p_ativo" value="<?= $v->principio_ativo ?>"
-                                           class="form-control" id="inputEmail3" required="">
+                                           class="form-control" id="inputEmail3" >
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -118,16 +118,18 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                                            placeholder="">
                                 </div>
                             </div>
-
+                            <hr>
                             <button type="submit" class="btn bg-primary col-sm-2 roboto-condensed text-white">Alterar <i
                                         class="far fa-edit ml-2"></i>
                             </button>
+                            <a href="../../back/response/estoque/d_produto.php?idp=<?= $_GET['idp'] ?>"
+                            <button class="btn btn-danger float-right text-white">Excluir
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                            </a>
+                            <hr>
                         </form>
-                        <a href="../../back/response/estoque/d_produto.php?idp=<?= $_GET['idp'] ?>"
-                        <button type="button" class="btn btn-danger float-right text-white">Excluir
-                            <i class="fas fa-trash-alt"></i>
-                        </button>
-                        </a>
+
                     <?php } ?>
                 </div>
             </div>

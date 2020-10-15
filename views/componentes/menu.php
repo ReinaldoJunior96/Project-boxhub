@@ -27,9 +27,9 @@
             </li>
         </a>
 
-        <a href="<?= ($_SESSION['user'] == 'farma.hvu') ? '../relatorio/n_relatorio.php' : '' ?>"
-           class="<?= ($_SESSION['user'] != 'farma.hvu') ? 'isDisabled' : '' ?> text-menu-color-2">
-            <li class="list-group-item border-0 <?= ($_SESSION['user'] != 'farma.hvu') ? 'isDisabled' : '' ?>">
+        <a href="<?= ($_SESSION['user'] == 'farma.hvu' or $_SESSION['user'] == 'compras.hvu') ? '../relatorio/n_relatorio.php' : '' ?>"
+           class="<?= ($_SESSION['user'] == 'farma.hvu' or $_SESSION['user'] == 'compras.hvu') ? '' : 'isDisabled' ?> text-menu-color-2">
+            <li class="list-group-item border-0 <?= ($_SESSION['user'] == 'farma.hvu' or $_SESSION['user'] == 'compras.hvu') ? '' : 'isDisabled' ?>">
                 <i class=" fas fa-file-pdf"></i> Relatórios
             </li>
         </a>

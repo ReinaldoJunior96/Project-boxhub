@@ -34,7 +34,7 @@ $s = new ConfigCRUD();
                     <!-- <a class="navbar-brand text-white roboto-condensed" href="#">
                         <i class="fas fa-box-open text-primary"></i>
                     </a> -->
-                    <h5 class="text-primary roboto-condensed"><img src="images/document.png" class="img-fluid"
+                    <h5 class="text-primary roboto-condensed"><img src="../../images/document.png" class="img-fluid"
                                                                    width="40">
                         Entrada</h5>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"

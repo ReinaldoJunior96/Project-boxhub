@@ -61,7 +61,7 @@ class FornecedorController
     public function verFornecedores()
     {
         try {
-            $viewFornecedores = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_fornecedores");
+            $viewFornecedores = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_fornecedores ORDER BY nome_fornecedor ASC");
             $viewFornecedores->execute();
             return $viewFornecedores->fetchAll(PDO::FETCH_OBJ);
         } catch (PDOException $erro) {
