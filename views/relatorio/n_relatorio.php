@@ -27,13 +27,14 @@ $s = new ConfigCRUD();
 <div class="container-fluid">
     <div class="row">
         <?php include_once "../componentes/menu.php" ?>
-        <div class="col-9">
+        <div class="col-10">
             <div class="">
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <!-- <a class="navbar-brand text-white roboto-condensed" href="#">
                         <i class="fas fa-box-open text-primary"></i>
                     </a> -->
-                    <h5 class="text-primary roboto-condensed"><img src="../../images/report.png" class="img-fluid" width="40">
+                    <h5 class="text-primary roboto-condensed"><img src="../../images/report.png" class="img-fluid"
+                                                                   width="40">
                         Relatório</h5>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado"
@@ -61,7 +62,7 @@ $s = new ConfigCRUD();
                                     <?php
                                     require_once('../../back/controllers/EstoqueController.php');
                                     $estoque = new EstoqueController();
-                                    $ver_estoque = $estoque->verEstoque();
+                                    $ver_estoque = $estoque->verEstoqueFarmacia();
                                     foreach ($ver_estoque as $v) {
                                         ?>
                                         <?php echo "<option value=" . $v->id_estoque . ">$v->produto_e</option>" ?>
@@ -71,7 +72,8 @@ $s = new ConfigCRUD();
                             <label for="inputEmail3" class="col-sm-1 col-form-label text-right">Setor</label>
                             <div class="col-sm-4">
                                 <select class="form-control" id="exampleFormControlSelect1" name="setor">
-                                    <option></option>
+                                    <option selected></option>
+                                    <option value="todos">Todos os Setores</option>
                                     <?php
                                     require_once('../../back/controllers/configCRUD.php');
                                     $s = new ConfigCRUD();

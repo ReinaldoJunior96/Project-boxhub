@@ -7,7 +7,7 @@ require_once('../../back/controllers/configCRUD.php');
 $s = new ConfigCRUD();
 require_once('../../back/controllers/EstoqueController.php');
 $view_estoque = new EstoqueController();
-$all_estoque = $view_estoque->verEstoque();
+$all_estoque = $view_estoque->verEstoqueFarmacia();
 switch ($_SESSION['user']) {
     case 'farma.hvu':
         $permissao = 'disabled';
@@ -64,8 +64,7 @@ switch ($_SESSION['user']) {
                     </div>
                 </nav>
                 <div class="mt-2 roboto-condensed">
-                    <a href='vd_historico_saida.php' class='text-primary roboto-condensed'>
-                        Histórico de saída <i class='fas fa-history '></i></a>
+
                     <hr>
                     <div class="">
                         <?php foreach ($all_estoque as $value) { ?>

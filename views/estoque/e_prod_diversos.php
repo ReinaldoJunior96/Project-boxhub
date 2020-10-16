@@ -22,7 +22,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
 <div class="container-fluid">
     <div class="row">
         <?php include_once "../componentes/menu.php" ?>
-        <div class="col-10">
+        <div class="col-9">
             <div class="">
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <h5 class="text-primary roboto-condensed"><img src="../../images/box.png" alt="" class="img-fluid"
@@ -39,7 +39,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                         </ul>
                         <div class="form-inline my-2 my-lg-0">
                             <h6 class="text-black-50 roboto-condensed"><i
-                                        class="fas fa-user text-primary"></i> <?= $_SESSION['user'] ?></h6>
+                                    class="fas fa-user text-primary"></i> <?= $_SESSION['user'] ?></h6>
                         </div>
                     </div>
                 </nav>
@@ -54,42 +54,12 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                             <input type="hidden" name="edit" value="1">
                             <input type="hidden" name="id" value="<?= $_GET['idp'] ?>">
                             <div class="form-group row">
-                                <label for="inputEmail3" class="col-sm-2 col-form-label">Principio Ativo</label>
+                                <label for="inputEmail3" class="col-sm-2 col-form-label">Material</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="p_ativo" value="<?= $v->principio_ativo ?>"
-                                           class="form-control" id="inputEmail3">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="inputEmail3" class="col-sm-2 col-form-label">Nome Comercial /
-                                    Material</label>
-                                <div class="col-sm-6">
                                     <input type='text' class='form-control' value="<?= $v->produto_e ?>"
                                            name='produto_e' placeholder=''>
                                 </div>
-                                <label for="inputEmail3"
-                                       class="col-sm-2 col-form-label text-right">Concentração:</label>
-                                <div class="col-sm-2">
-                                    <input type="text" class="form-control" value="<?= $v->concentracao ?>"
-                                           name="concentracao" id="inputEmail4">
-                                </div>
                             </div>
-                            <div class="form-group row">
-                                <label for="inputEmail3" class="col-sm-2 col-form-label">Apresentação</label>
-                                <div class="col-sm-4">
-                                    <input type='text' class='form-control' value="<?= $v->apresentacao ?>"
-                                           name='apresentacao' placeholder=''>
-                                </div>
-                                <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Forma
-                                    Farmacêutica</label>
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" value="<?= $v->forma_farmaceutica ?>"
-                                           name="forma_farmaceutica" id="inputEmail4"
-                                           placeholder="">
-                                </div>
-                            </div>
-
-                            <hr>
                             <div class="form-group row">
                                 <label for="inputEmail3" class="col-sm-2 col-form-label">Valor Unitário</label>
                                 <div class="col-sm-2">
@@ -105,14 +75,9 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                                 </div>
                                 <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Quantidade</label>
                                 <div class="col-sm-2">
-                                    <?php if ($_SESSION['user'] == 'compras.hvu') { ?>
-                                        <input type="number" class="form-control" value="<?= $v->quantidade_e ?>"
-                                               name="quantidade_e" id="inputEmail4">
-                                    <?php } else { ?>
-                                        <input type="number" class="form-control" value="<?= $v->quantidade_e ?>"
-                                               name="quantidade_e" id="inputEmail4" disabled>
-                                    <?php } ?>
-
+                                    <input type="number" class="form-control" value="<?= $v->quantidade_e ?>"
+                                           name="quantidade_e" id="inputEmail4"
+                                           placeholder="">
                                 </div>
 
                                 <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Estoque
@@ -125,7 +90,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                             </div>
                             <hr>
                             <button type="submit" class="btn bg-primary col-sm-2 roboto-condensed text-white">Alterar <i
-                                        class="far fa-edit ml-2"></i>
+                                    class="far fa-edit ml-2"></i>
                             </button>
                             <a href="../../back/response/estoque/d_produto.php?idp=<?= $_GET['idp'] ?>"
                             <button class="btn btn-danger float-right text-white">Excluir
@@ -134,42 +99,9 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                             </a>
                             <hr>
                         </form>
+
                     <?php } ?>
                 </div>
-                <?php
-                if ($_SESSION['user'] == 'compras.hvu') {
-                require_once '../../back/controllers/EstoqueController.php';
-                $p = new EstoqueController();
-                $hist = $p->historicoProd($_GET['idp']);
-
-                ?>
-                <table class="table table-sm text-center">
-                    <thead>
-                    <tr>
-                        <th scope="col">Ordem</th>
-                        <th scope="col">Emissão</th>
-                        <th scope="col">Fornecedor</th>
-                        <th scope="col">Quantidade</th>
-                        <th scope="col">Valor Un</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-                    foreach ($hist as $historico) {
-                        $data = date_create($historico->data_emissao)
-                        ?>
-                        <tr>
-                            <th scope="row"><a href="../notaf/n_produtos_nota_fiscal.php?idnf=<?=$historico->id_nf?>"><?=$historico->numero_nf?></a></th>
-                            <td><?=date_format($data,'d/m/Y')?></td>
-                            <td><?=$historico->fornecedor?></td>
-                            <td><?=$historico->qtde_compra?></td>
-                            <td><?='R$ ' . number_format($historico->valor_un_c,'2',',','')?></td>
-                        </tr>
-                    <?php }
-                    } ?>
-                    </tbody>
-                </table>
-
             </div>
         </div>
     </div>

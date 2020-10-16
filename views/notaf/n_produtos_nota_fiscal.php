@@ -96,6 +96,22 @@ switch ($_SESSION['user']) {
                             R$ <?= $v->valor_nf ?></h6>
                         <a class="text-primary" href="v_nota_fiscal.php?idnf=<?= $_GET['idnf'] ?>"><i
                                     class="fas fa-print"></i> VerNF</a>
+                        <hr>
+                        <div class="">
+                            <div class="">
+
+                            </div>
+                            <div class="">
+                                
+                            </div>
+                            <a href="../../back/response/estoque/d_produto.php?idp=<?= $_GET['idp'] ?>"
+                            <button class="btn btn-danger text-right text-white">Excluir
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                            </a>
+                        </div>
+
+                        <hr>
                     <?php } ?>
                     <hr class="bg-primary">
                 </div>

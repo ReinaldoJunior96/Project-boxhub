@@ -11,15 +11,20 @@
                 <i class="fas fa-cart-arrow-down"></i> Entrada
             </li>
         </a>
-        <a href="../estoque/nv_estoque.php" class="text-menu-color-2">
-            <li class="list-group-item border-0"><i class="fas fa-box-open"></i> Estoque</li>
-        </a>
         <a href="<?= ($_SESSION['user'] == 'compras.hvu') ? '../compra/n_ordemcompra.php' : '' ?>"
            class="<?= ($_SESSION['user'] != 'compras.hvu') ? 'isDisabled' : '' ?> text-menu-color-2">
             <li class="list-group-item border-0">
                 <i class=" fas fa-shopping-bag"></i> Compras
             </li>
         </a>
+        <a href="../estoque/nv_estoque.php" class="text-menu-color-2">
+            <li class="list-group-item border-0"><i class="fas fa-clinic-medical"></i> Farmácia</li>
+        </a>
+        <a href="<?= ($_SESSION['user'] == 'compras.hvu') ? '../estoque/nv_prod_diversos.php' : '' ?>"
+           class="text-menu-color-2 <?= ($_SESSION['user'] == 'compras.hvu') ? '' : 'isDisabled' ?>">
+            <li class="list-group-item border-0"><i class="fas fa-boxes"></i> Produtos Diversos</li>
+        </a>
+
         <a href="<?= ($_SESSION['user'] == 'farma.hvu') ? '../saidasetor/s_data_setor.php' : '' ?>"
            class="<?= ($_SESSION['user'] == 'farma.hvu') ? '' : 'isDisabled' ?> text-menu-color-2">
             <li class="list-group-item border-0">

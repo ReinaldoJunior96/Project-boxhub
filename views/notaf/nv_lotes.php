@@ -1,7 +1,7 @@
 <?php
 session_start();
 if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
-    header("location: login.php");
+    header("location: ../user/login.php");
 }
 require_once('../../back/controllers/configCRUD.php');
 $s = new ConfigCRUD();
@@ -18,7 +18,6 @@ switch ($_SESSION['user']) {
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -32,7 +31,6 @@ switch ($_SESSION['user']) {
     <link rel="icon" type="imagem/png" href="../../images/fire.png"/>
     <!-- <link rel="icon" class="rounded" href="images/icon-box.png" type="image/x-icon" /> -->
 </head>
-
 <body>
 <div class="container-fluid">
     <div class="row">
@@ -40,9 +38,18 @@ switch ($_SESSION['user']) {
         <div class="col-10">
             <div class="">
                 <nav class="navbar navbar-expand-lg navbar-light">
-                    <h5 class="text-primary roboto-condensed">
-                        <img src="../../images/delivery-box.png" class="img-fluid" width="40">
-                        Setor de saída</h5>
+                    <?php
+                    require_once('../../back/controllers/NotaFController.php');
+                    $dados_nf = new NotaFController();
+                    $nf = $dados_nf->verNF($_GET['idnf']);
+                    foreach ($nf as $v) { ?>
+                        <img src="../../images/document.png" class="img-fluid"
+                             width="40">
+                        <h5 class="text-primary roboto-condensed ml-2 mt-1"> <?= ($v->nota_entrega == 1) ? 'NE ' : 'Nota Fiscal' ?>
+                            - <?= $v->numero_nf ?> <a href="e_nota_fiscal.php?idnf=<?= $_GET['idnf'] ?>"><i
+                                    class='fas fa-pen fa-1x color-icon-nf text-black-50'></i></a></h5>
+                    <?php } ?>
+
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado"
                             aria-expanded="false" aria-label="Alterna navegação">
@@ -55,50 +62,64 @@ switch ($_SESSION['user']) {
                         </ul>
                         <div class="form-inline my-2 my-lg-0">
                             <h6 class="text-black-50 roboto-condensed"><i
-                                        class="fas fa-user text-primary"></i> <?= $_SESSION['user'] ?></h6>
+                                    class="fas fa-user text-primary"></i> <?= $_SESSION['user'] ?></h6>
                         </div>
                     </div>
                 </nav>
-                <div class="mt-2 roboto-condensed">
-                    <form method="GET" action="n_saida_setor.php">
-                        <div class="form-group row">
-                            <label for="inputEmail3" class="col-sm-2 col-form-label">Data:</label>
-                            <div class="col-sm-10">
-                                <input type="date" name="data_s" class="form-control"
-                                       id="inputEmail3" required="">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="inputEmail3" class="col-sm-2 col-form-label">Setor:</label>
-                            <div class="col-sm-10">
-                                <select class="form-control form-control-lg" name="nomesetor">
-                                    <option selected></option>
-                                    <?php
-                                    include_once '../../back/controllers/setoresController.php';
-                                    $s = new SetorController();
-                                    $setores = $s->verSetores();
-                                    foreach ($setores as $values) {
-                                        ?>
-                                        <option value="<?= $values->setor_s ?>"><?= str_replace("-", " ", $values->setor_s) ?></option>
-                                    <?php } ?>
-                                </select>
-                            </div>
+                <div class="mt-1 roboto-condensed text-black-50">
+                    <?php
+                    require_once('../../back/controllers/NotaFController.php');
+                    $n = new NotaFController();
+                    $attNota = $n->verificarNota($_GET['idnf']);
+                    if ($attNota >= 1) {
+                        $text = "Existe uma ordem de compra associada a esta NF";
+                        $class = "";
+                        $link = "../../back/response/compra/import_from_ordem.php?idnf=" . $_GET['idnf'];
+                    } else {
+                        $text = "A ordem já foi importada";
+                        $class = "isDisabled";
+                        $link = "#";
+                    }
+                    ?>
+                    <p><?= $text ?><a href="<?= $link ?>" class="badge badge-danger text-white <?= $class ?>">importar
+                            agora!!</a></p>
+                    <?php
+                    foreach ($nf as $v) {
+                        ?>
+                        <h6><i class="fas fa-user-tag text-black-50"></i> Fornecedor: <?= $v->fornecedor ?></h6>
+
+                        <h6><span class="fas fa-calendar-alt text-black-50"></span> Data de
+                            Emissão: <?= date("d/m/Y", strtotime($v->data_emissao)) ?></h6>
+                        <h6><span class="far fa-calendar-alt text-black-50 "></span> Data de
+                            Lançamento: <?= date("d/m/Y", strtotime($v->data_lancamento)) ?></h6>
+                        <h6><i class="fas fa-dollar-sign text-black-50"></i> Valor:
+                            R$ <?= $v->valor_nf ?></h6>
+                        <div class="row">
+                            <a class="text-primary" href="v_nota_fiscal.php?idnf=<?= $_GET['idnf'] ?>"><i
+                                    class="fas fa-print"></i> VerNF</a>
+                            <a href="../../back/response/estoque/d_produto.php?idp=<?= $_GET['idp'] ?>"
+                            <button class="btn btn-danger float-right text-white">Excluir
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                            </a>
                         </div>
 
-                        <button type="submit" class="btn bg-primary col-sm-2 roboto-condensed text-white">Saída <i
-                                    class="fas fa-external-link-alt"></i></button>
-                        <a href="vd_historico_saida.php"
-                        <button type="" class="btn btn-primary float-right text-white"> Histórico de saída <i
-                                    class='fas fa-history '></i></button>
-                        </a>
-                    </form>
+                    <?php } ?>
+                    <hr class="bg-primary">
                 </div>
+                <?php
+                require_once('../../back/controllers/NotaFController.php');
+                $produtos = new NotaFController();
+                $ver_produtos = $produtos->verProdNF($_GET['idnf']);
+                foreach ($ver_produtos as $v) {
+                ?>
+
+                <?php } ?>
             </div>
         </div>
     </div>
 </div>
-<br>
-<br>
+
 
 <!-- JavaScript (Opcional) -->
 <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->

@@ -1,20 +1,22 @@
 <?php
 require_once('conexao.php');
 
-class EstoqueController{
+class EstoqueController
+{
     public $conn = null;
 
     function __construct()
     {
         $this->conn = PDOconectar::conectar();
     }
+
     public function newProduto($produto)
     {
-        try{
+        try {
             $this->conn->beginTransaction();
             $query = /** @lang text */
-                "INSERT INTO tbl_estoque(principio_ativo,produto_e,quantidade_e,valor_un_e,estoque_minimo_e,apresentacao,concentracao,forma_farmaceutica) 
-			VALUES (:principio_ativo,:produto_e,:quantidade_e,:valor_un_e,:estoque_minimo_e,:apresentacao,:concentracao,:forma_farmaceutica)";
+                "INSERT INTO tbl_estoque(principio_ativo,produto_e,quantidade_e,valor_un_e,estoque_minimo_e,apresentacao,concentracao,forma_farmaceutica,tipo) 
+			VALUES (:principio_ativo,:produto_e,:quantidade_e,:valor_un_e,:estoque_minimo_e,:apresentacao,:concentracao,:forma_farmaceutica,:tipo)";
             $sql = $this->conn->prepare($query);
             $sql->bindValue(':principio_ativo', $produto['p_ativo']);
             $sql->bindValue(':produto_e', $produto['produto']);
@@ -24,6 +26,7 @@ class EstoqueController{
             $sql->bindValue(':apresentacao', $produto['apresentacao']);
             $sql->bindValue(':concentracao', $produto['concentracao']);
             $sql->bindValue(':forma_farmaceutica', $produto['forma_farmaceutica']);
+            $sql->bindValue(':tipo', $produto['tipo']);
             $sql->execute();
             if ($sql) {
                 $this->conn->commit();
@@ -33,11 +36,13 @@ class EstoqueController{
             echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
     }
+
     public function edit_Produto($produto, $id)
     {
         try {
             $this->conn->beginTransaction();
-            $query_update = /** @lang text */"UPDATE tbl_estoque SET 
+            $query_update = /** @lang text */
+                "UPDATE tbl_estoque SET 
             principio_ativo=:principio_ativo,
 			produto_e=:produto_e,
 			quantidade_e=:quantidade_e,
@@ -65,10 +70,31 @@ class EstoqueController{
             echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
     }
-    public function verEstoque()
+    public function verEstoqueTotal()
     {
         try {
             $view_estoque = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_estoque");
+            $view_estoque->execute();
+            return $view_estoque->fetchAll(PDO::FETCH_OBJ);
+        } catch (PDOException $erro) {
+            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
+        }
+    }
+    public function verEstoqueFarmacia()
+    {
+        try {
+            $view_estoque = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_estoque WHERE tipo='0'");
+            $view_estoque->execute();
+            return $view_estoque->fetchAll(PDO::FETCH_OBJ);
+        } catch (PDOException $erro) {
+            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
+        }
+    }
+
+    public function verProdDiversos()
+    {
+        try {
+            $view_estoque = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_estoque WHERE tipo='material'");
             $view_estoque->execute();
             return $view_estoque->fetchAll(PDO::FETCH_OBJ);
         } catch (PDOException $erro) {
@@ -107,15 +133,21 @@ class EstoqueController{
             echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
     }
+
     public function pega_saida($item, $setor, $datai, $dataf)
     {
-        $sql_qtde = $this->conn->prepare("SELECT * FROM tbl_saida
-		WHERE item_s='$item'
-		AND setor_s='$setor'	
-		AND data_dia_s BETWEEN '$datai' AND '$dataf'");
+        if ($setor == 'todos') {
+            $sql_qtde = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_saida
+            WHERE item_s='$item'
+            AND data_dia_s BETWEEN '$datai' AND '$dataf'");
+        } else {
+            $sql_qtde = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_saida
+            WHERE item_s='$item'
+            AND setor_s='$setor'	
+            AND data_dia_s BETWEEN '$datai' AND '$dataf'");
+        }
         $sql_qtde->execute();
-        $query_result = $sql_qtde->fetchAll(PDO::FETCH_OBJ);
-        return $query_result;
+        return $sql_qtde->fetchAll(PDO::FETCH_OBJ);
     }
 
     public function destroyProduto($id)
@@ -123,6 +155,21 @@ class EstoqueController{
         try {
             $deleteProduto = $this->conn->prepare(/** @lang text */ "DELETE FROM tbl_estoque WHERE id_estoque='$id'");
             $deleteProduto->execute();
+        } catch (PDOException $erro) {
+            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
+        }
+    }
+
+    public function historicoProd($id)
+    {
+        try {
+            $view_estoque = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_items_compra
+                INNER JOIN tbl_ordem_compra ON tbl_items_compra.ordem_compra_id = tbl_ordem_compra.id_ordem
+                INNER JOIN tbl_nf ON tbl_ordem_compra.id_fk_nf = tbl_nf.id_nf
+                WHERE tbl_items_compra.item_compra='$id'
+                ORDER BY tbl_nf.data_emissao DESC");
+            $view_estoque->execute();
+            return $view_estoque->fetchAll(PDO::FETCH_OBJ);
         } catch (PDOException $erro) {
             echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }

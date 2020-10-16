@@ -27,7 +27,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
         <div class="col-10">
             <nav class="navbar navbar-expand-lg navbar-light">
                 <h5 class="text-primary roboto-condensed"><img src="../../images/box.png" class="img-fluid" width="40">
-                    Estoque</h5>
+                    Materiais Diversos</h5>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado"
                         aria-expanded="false" aria-label="Alterna navegação">
@@ -45,36 +45,13 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
             <div class=" roboto-condensed p-3">
                 <form method="POST" action="../../back/response/estoque/estoque_r.php">
                     <input type="hidden" name="new" value="1">
+                    <input type="hidden" name="tipo" value="material">
                     <div class="form-group row">
-                        <label for="inputEmail3" class="col-sm-2 col-form-label">Principio Ativo</label>
+                        <label for="inputEmail3" class="col-sm-2 col-form-label">Material</label>
                         <div class="col-sm-10">
-                            <input type="text" name="p_ativo" class="form-control" id="inputEmail3">
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="inputEmail3" class="col-sm-2 col-form-label">Nome Comercial</label>
-                        <div class="col-sm-7">
                             <input type='text' class='form-control ' name='produto_e' placeholder=''>
                         </div>
-                        <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Concentração(%):</label>
-                        <div class="col-sm-1">
-                            <input type="text" class="form-control" name="concentracao" id="inputEmail4" placeholder="">
-                        </div>
                     </div>
-                    <div class="form-group row">
-                        <label for="inputEmail3" class="col-sm-2 col-form-label">Apresentação</label>
-                        <div class="col-sm-4">
-                            <input type='text' class='form-control ' name='apresentacao' placeholder=''>
-                        </div>
-                        <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Forma Farmacêutica</label>
-                        <div class="col-sm-4">
-                            <input type="text" class="form-control" name="forma_farmaceutica" id="inputEmail4"
-                                   placeholder="">
-                        </div>
-                    </div>
-
-                    <hr>
                     <div class="form-group row">
                         <label for="inputEmail3" class="col-sm-2 col-form-label">Valor Unitário</label>
                         <div class="col-sm-2">
@@ -88,12 +65,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                         </div>
                         <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Quantidade</label>
                         <div class="col-sm-2">
-                            <?php if ($_SESSION['user'] == 'compras.hvu') { ?>
-                                <input type="number" class="form-control" name="quantidade_e" id="inputEmail4">
-                            <?php } else { ?>
-                                <input type='text' class='form-control ' name='valor_un' placeholder=''
-                                       disabled>
-                            <?php } ?>
+                            <input type="number" class="form-control" name="quantidade_e" id="inputEmail4">
                         </div>
                         <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Estoque Mínimo</label>
                         <div class="col-sm-2">
@@ -101,8 +73,8 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                                    placeholder="">
                         </div>
                     </div>
-                    <button type="submit" class="btn bg-primary shadow col-sm-2 exo mt-1 text-white">Novo Produto <i
-                                class="fas fa-plus ml-2"></i></button>
+                    <button type="submit" class="btn bg-primary shadow col-sm-2 exo mt-1 text-white">Cadastrar Material<i
+                            class="fas fa-plus ml-2"></i></button>
                 </form>
             </div>
             <hr>
@@ -110,9 +82,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                 <table id="example" class="table table-sm text-center roboto-condensed">
                     <thead class="bg-shadow-it bg-nav">
                     <tr class="text-light ">
-                        <th class="">Princípio Ativo</th>
-                        <th class="">Nome Comercial / Material</th>
-
+                        <th class="">Material</th>
                         <th class="">Quantidade</th>
                     </tr>
                     </thead>
@@ -120,13 +90,11 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                     <?php
                     require_once('../../back/controllers/EstoqueController.php');
                     $view_estoque = new EstoqueController();
-                    $all_estoque = $view_estoque->verEstoqueFarmacia();
+                    $all_estoque = $view_estoque->verProdDiversos();
                     foreach ($all_estoque as $v) {
                         ?>
                         <tr>
-                            <td><?= $v->principio_ativo ?></td>
-                            <?php echo "<td class='col-2'><a class='text-secondary' style='text-decoration: none' href=e_estoque.php?idp=" . $v->id_estoque . ">$v->produto_e</td>"; ?>
-
+                            <?php echo "<td class='col-2'><a class='text-secondary' style='text-decoration: none' href=e_prod_diversos.php?idp=" . $v->id_estoque . ">$v->produto_e</td>"; ?>
                             <td><?= $v->quantidade_e ?></td>
                         </tr>
                     <?php } ?>

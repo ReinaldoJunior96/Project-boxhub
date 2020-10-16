@@ -109,7 +109,7 @@ switch ($_SESSION['user']) {
                     <?php
                     require_once('../../back/controllers/EstoqueController.php');
                     $view_estoque = new EstoqueController();
-                    $all_estoque = $view_estoque->verEstoque();
+                    $all_estoque = $view_estoque->verEstoqueTotal();
                     foreach ($all_estoque as $v) {
                         ?>
                         <tr>
