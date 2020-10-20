@@ -51,7 +51,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                         <a class="nav-link" href="v_lote_validade.php?idp=<?= $_GET['idp'] ?>">Lote & Validade</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link disabled"
+                        <a class="nav-link"
                            href="v_prod_fornecedores.php?idp=<?= $_GET['idp'] ?>">Fornecedores</a>
                     </li>
                     <li class="nav-item">

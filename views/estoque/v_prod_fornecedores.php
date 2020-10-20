@@ -39,86 +39,63 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                         </ul>
                         <div class="form-inline my-2 my-lg-0">
                             <h6 class="text-black-50 roboto-condensed"><i
-                                    class="fas fa-user text-primary"></i> <?= $_SESSION['user'] ?></h6>
+                                        class="fas fa-user text-primary"></i> <?= $_SESSION['user'] ?></h6>
                         </div>
                     </div>
                 </nav>
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
-                        <a class="nav-link " href="e_estoque.php?idp=<?=$_GET['idp']?>">Produto</a>
+                        <a class="nav-link " href="e_estoque.php?idp=<?= $_GET['idp'] ?>">Produto</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="v_lote_validade.php?idp=<?=$_GET['idp']?>">Lote & Validade</a>
+                        <a class="nav-link" href="v_lote_validade.php?idp=<?= $_GET['idp'] ?>">Lote & Validade</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link disabled" href="v_prod_fornecedores.php?idp=<?=$_GET['idp']?>">Fornecedores</a>
+                        <a class="nav-link active"
+                           href="v_prod_fornecedores.php?idp=<?= $_GET['idp'] ?>">Fornecedores</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="v_prod_historico.php?idp=<?=$_GET['idp']?>">Histórico</a>
+                        <a class="nav-link" href="v_prod_historico.php?idp=<?= $_GET['idp'] ?>">Histórico</a>
                     </li>
                 </ul>
-                <?php
-                if ($_SESSION['user'] == 'compras.hvu') {
-                require_once '../../back/controllers/EstoqueController.php';
-                $p = new EstoqueController();
-                $hist = $p->historicoProd($_GET['idp']);
-                ?>
-                <div class=" mt-3">
-                    <div class="col-12">
-                        <table class="table table-sm text-center">
-                            <thead>
-                            <tr>
-                                <th scope="col">Ordem</th>
-                                <th scope="col">Emissão</th>
-                                <th scope="col">Fornecedor</th>
-                                <th scope="col">Quantidade</th>
-                                <th scope="col">Valor Un</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <?php
-                            foreach ($hist as $historico) {
-                                $data = date_create($historico->data_emissao)
-                                ?>
-                                <tr>
-                                    <th scope="row"><a
-                                            href="../notaf/n_produtos_nota_fiscal.php?idnf=<?= $historico->id_nf ?>"><?= $historico->numero_nf ?></a>
-                                    </th>
-                                    <td><?= date_format($data, 'd/m/Y') ?></td>
-                                    <td><?= $historico->fornecedor ?></td>
-                                    <td><?= $historico->qtde_compra ?></td>
-                                    <td><?= 'R$ ' . number_format($historico->valor_un_c, '2', ',', '') ?></td>
-                                </tr>
-                            <?php }
-                            } ?>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="col-3">
-                        <table class="table table-sm text-center">
-                            <thead>
-                            <tr>
-                                <th scope="col">Lote</th>
-                                <th scope="col">Validade</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <?php
-                            $lotes = new EstoqueController();
-                            $histLotes = $lotes->historicoLote($_GET['idp']);
-                            foreach ($histLotes as $lotes):
-                                $data = date_create($lotes->validade)
-                                ?>
-                                <tr>
-                                    <td><?= $lotes->lote ?></td>
-                                    <td><?= date_format($data, 'd/m/Y') ?></td>
+                <form class="form-inline mt-5" method="POST" action="../../back/response/estoque/n_prod_fornecedor.php">
+                    <input type="hidden" value="<?=$_GET['idp']?>" name="produto">
+                    <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Fornecedor</label>
+                    <select class="custom-select my-1 mr-sm-2 col-5" name="fornecedor" id="inlineFormCustomSelectPref">
+                        <option selected></option>
+                        <?php
+                        require_once('../../back/controllers/FornecedorController.php');
+                        $f = new FornecedorController();
+                        $fornecedores = $f->verFornecedores();
+                        foreach ($fornecedores as $listf) {
+                            ?>
+                            <option value="<?= $listf->id_fornecedor ?>"><?= $listf->nome_fornecedor ?></option>
+                        <?php } ?>
+                    </select>
+                    <button type="submit" class="btn btn-primary my-1 text-white shadow">Cadastrar</button>
+                </form>
 
-                                </tr>
-                            <?php endforeach; ?>
-                            </tbody>
-                        </table>
-                    </div>
+                <div class="mt-5">
+                    <h4 class="roboto-condensed text-secondary"><i class="fas fa-calendar-week"></i> Fornecedores</h4>
+                    <ul class="list-group">
+                        <?php
+                        require '../../back/controllers/EstoqueController.php';
+                        $forProdutor = new EstoqueController();
+                        $for = $forProdutor->searchFornecedorProduto($_GET['idp']);
+
+                        foreach ($for as $value) {
+                            ?>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <?=$value->nome_fornecedor?>
+                                <a href="../../back/response/estoque/d_fornecedor_prod.php?idpf=<?=$value->idfp?>">
+                                    <span class="badge badge-pill far fa-window-close text-danger float-right"> </span>
+                                </a>
+                            </li>
+                        <?php } ?>
+
+                    </ul>
                 </div>
+
             </div>
         </div>
     </div>

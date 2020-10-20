@@ -188,4 +188,47 @@ class EstoqueController
             echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
     }
+
+    public function fornecedorProduto($produto, $fornecedor)
+    {
+        try {
+            $this->conn->beginTransaction();
+            $query = /** @lang text */
+                "INSERT INTO tbl_prod_fornecedor(idfornecedor,idproduto) 
+			VALUES (:idfornecedor,:idproduto)";
+            $sql = $this->conn->prepare($query);
+            $sql->bindValue(':idfornecedor', $fornecedor);
+            $sql->bindValue(':idproduto', $produto);
+            $sql->execute();
+            if ($sql) {
+                $this->conn->commit();
+            }
+        } catch (PDOException $erro) {
+            $this->conn->rollBack();
+            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
+        }
+    }
+    public function searchFornecedorProduto($prod)
+    {
+        try {
+            $search = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_fornecedores
+                INNER JOIN tbl_prod_fornecedor ON tbl_fornecedores.id_fornecedor = tbl_prod_fornecedor.idfornecedor               
+                WHERE tbl_prod_fornecedor.idproduto='$prod'
+                ORDER BY tbl_fornecedores.nome_fornecedor ASC");
+            $search->execute();
+            return $search->fetchAll(PDO::FETCH_OBJ);
+        } catch (PDOException $erro) {
+            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
+        }
+    }
+
+    public function removeFornecedorProf($id)
+    {
+        try {
+            $delete = $this->conn->prepare(/** @lang text */ "DELETE FROM tbl_prod_fornecedor WHERE idfp='$id'");
+            $delete->execute();
+        } catch (PDOException $erro) {
+            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
+        }
+    }
 }

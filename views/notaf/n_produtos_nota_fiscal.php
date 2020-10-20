@@ -128,7 +128,7 @@ switch ($_SESSION['user']) {
                                 <tr>
                                     <td><?= $v->produto_e ?></td>
                                     <td><?= $v->qtde_nf ?></td>
-                                    <td>R$ <?= $v->valor_un_e ?></td>
+                                    <td>R$ <?=  $v->valor_un_e ?></td>
                                     <td>R$ <?= $v->valor_un_e*$v->qtde_nf ?></td>
                                     <?php echo "<td><a href=../../back/response/notaf/d_produto_nf.php?id_prod_nf=" . $v->id_itens . "&item_estoque=" . $v->item_nf . "&qtde_nf=" . $v->qtde_nf . "><i class='fas fa-trash text-danger'></i></a></td>" ?>
                                 </tr>
