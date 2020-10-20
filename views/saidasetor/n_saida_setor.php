@@ -75,6 +75,7 @@ switch ($_SESSION['user']) {
                                 <div class="form-group row">
                                     <label for="inputEmail3"
                                            class="col-sm-5 col-form-label text-right"><?= $value->produto_e ?></label>
+
                                     <label for="inputEmail3"
                                            class="col-sm-2 col-form-label text-right">Quantidade</label>
                                     <div class="col-sm-2">
@@ -86,6 +87,8 @@ switch ($_SESSION['user']) {
 
                                         </select>
                                     </div>
+                                    <label for="inputEmail3"
+                                           class="col-sm-2 col-form-label text-right">Em Estoque: <?=$value->quantidade_e?></label>
                                 </div>
                             <?php } ?>
                             <button type="submit" class="btn bg-primary col-sm-2 roboto-condensed text-white">Registrar
