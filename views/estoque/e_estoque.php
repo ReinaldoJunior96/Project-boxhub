@@ -43,7 +43,23 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                         </div>
                     </div>
                 </nav>
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="e_estoque.php?idp=<?= $_GET['idp'] ?>">Produto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="v_lote_validade.php?idp=<?= $_GET['idp'] ?>">Lote & Validade</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled"
+                           href="v_prod_fornecedores.php?idp=<?= $_GET['idp'] ?>">Fornecedores</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="v_prod_historico.php?idp=<?= $_GET['idp'] ?>">Histórico</a>
+                    </li>
+                </ul>
                 <div class="mt-5">
+
                     <?php
                     require_once '../../back/controllers/EstoqueController.php';
                     $p = new EstoqueController();
@@ -100,7 +116,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                                     <?php } else { ?>
                                         <input type='hidden' class='form-control ' value="*******" name='valor_un'
                                                placeholder=''
-                                               >
+                                        >
                                     <?php } ?>
                                 </div>
                                 <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Quantidade</label>
@@ -110,7 +126,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                                                name="quantidade_e" id="inputEmail4">
                                     <?php } else { ?>
                                         <input type="hidden" class="form-control" value="<?= $v->quantidade_e ?>"
-                                               name="quantidade_e" id="inputEmail4" >
+                                               name="quantidade_e" id="inputEmail4">
                                     <?php } ?>
 
                                 </div>
@@ -136,72 +152,10 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                         </form>
                     <?php } ?>
                 </div>
-                <?php
-                if ($_SESSION['user'] == 'compras.hvu') {
-                require_once '../../back/controllers/EstoqueController.php';
-                $p = new EstoqueController();
-                $hist = $p->historicoProd($_GET['idp']);
-
-                ?>
-                <div class="">
-                    <div class="col-8">
-                        <table class="table table-sm text-center">
-                            <thead>
-                            <tr>
-                                <th scope="col">Ordem</th>
-                                <th scope="col">Emissão</th>
-                                <th scope="col">Fornecedor</th>
-                                <th scope="col">Quantidade</th>
-                                <th scope="col">Valor Un</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <?php
-                            foreach ($hist as $historico) {
-                                $data = date_create($historico->data_emissao)
-                                ?>
-                                <tr>
-                                    <th scope="row"><a
-                                                href="../notaf/n_produtos_nota_fiscal.php?idnf=<?= $historico->id_nf ?>"><?= $historico->numero_nf ?></a>
-                                    </th>
-                                    <td><?= date_format($data, 'd/m/Y') ?></td>
-                                    <td><?= $historico->fornecedor ?></td>
-                                    <td><?= $historico->qtde_compra ?></td>
-                                    <td><?= 'R$ ' . number_format($historico->valor_un_c, '2', ',', '') ?></td>
-                                </tr>
-                            <?php }
-                            } ?>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="col-3">
-                        <table class="table table-sm text-center">
-                            <thead>
-                            <tr>
-                                <th scope="col">Lote</th>
-                                <th scope="col">Validade</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <?php
-                            $lotes = new EstoqueController();
-                            $histLotes = $lotes->historicoLote($_GET['idp']);
-                            foreach ($histLotes as $lotes):
-                            $data = date_create($lotes->validade)
-                            ?>
-                            <tr>
-                                <td><?= $lotes->lote ?></td>
-                                <td><?= date_format($data, 'd/m/Y') ?></td>
-
-                            </tr>
-                            <?php endforeach; ?>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 <!-- JavaScript (Opcional) -->
 <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->

@@ -146,7 +146,7 @@ $s = new ConfigCRUD();
                         ?>
                         <tr>
                             <?php echo "<td class=''><a class='text-primary' href=n_produtos_nota_fiscal.php?idnf=" . $v->id_nf . ">" . $v->numero_nf . "</a></td>" ?>
-                            <td><?=$v->id_ordem?></td>
+                            <td><a class='text-primary' href="../compra/n_prod_oc.php?id_ordem=<?=$v->id_ordem?>"</a><?=$v->id_ordem?></td>
                             <td><?= $v->fornecedor ?></td>
                             <td><?= date_format($data_emisao, 'd/m/Y') ?> </td>
                             <td><?= date_format($data_lancamento, 'd/m/Y') ?></td>

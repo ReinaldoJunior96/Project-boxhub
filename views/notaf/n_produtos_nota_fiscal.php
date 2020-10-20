@@ -93,60 +93,44 @@ switch ($_SESSION['user']) {
                         <h6><span class="far fa-calendar-alt text-black-50 "></span> Data de
                             Lançamento: <?= date("d/m/Y", strtotime($v->data_lancamento)) ?></h6>
                         <h6><i class="fas fa-dollar-sign text-black-50"></i> Valor:
-                            R$ <?= $v->valor_nf ?></h6>
-                        <a class="text-primary" href="v_nota_fiscal.php?idnf=<?= $_GET['idnf'] ?>"><i
-                                    class="fas fa-print"></i> VerNF</a>
-                        <div class="float-right">
-                                <a href="nv_lotes.php?idnf=<?=$_GET['idnf']?>"
-                                <button class="btn btn-primary text-right text-white">Lotes e Validades
-                                    <i class="fas fa-info-circle"></i>
-                                </button>
-                                </a>
-                        </div>
+                            R$ <?= $v->valor_total ?></h6>
+<!--                        <a class="text-primary" href="v_nota_fiscal.php?idnf=--><?//= $_GET['idnf'] ?><!--"><i-->
+<!--                                    class="fas fa-print"></i> VerNF</a>-->
+                            <a href="nv_lotes.php?idnf=<?= $_GET['idnf'] ?>"
+                            <button class="btn btn-primary text-right text-white">Lotes e Validades
+                                <i class="fas fa-info-circle"></i>
+                            </button>
+                            </a>
                     <?php } ?>
                     <hr class="bg-primary">
                 </div>
 
 
                 <div class="mt-1 roboto-condensed text-black-50">
-                    <div class="container mb-5">
-                        <table id="example" class="table table-sm text-center roboto-condensed">
-                            <thead class="bg-nav  text-white">
-                            <tr class="text-white">
-                                <th class="">Prod / Material</th>
-                                <th class="">Lote</th>
-                                <th class="">Validade</th>
+                    <div class="container mt-1">
+                        <table id="example" class="table table-sm roboto-condensed text-center ">
+                            <thead class="bg-shadow-it bg-nav">
+                            <tr class="text-light">
+                                <th class="">Produto / Material</th>
+                                <th class="">Quantidade</th>
+                                <th class="">Valor Unitário</th>
+                                <th class="">Valor Total</th>
                                 <th></th>
                             </tr>
                             </thead>
-                            <tbody class="text-black-50">
+                            <tbody class="roboto-condensed text-black-50">
                             <?php
                             require_once('../../back/controllers/NotaFController.php');
-                            $produtos = new NotaFController();
-                            $ver_produtos = $produtos->verProdNF($_GET['idnf']);
-                            foreach ($ver_produtos as $v) {
+                            $nf = new NotaFController();
+                            $ver_nf = $nf->verProdNF($_GET['idnf']);
+                            foreach ($ver_nf as $v) {
                                 ?>
                                 <tr>
-                                    <form method="POST" action="../../back/response/notaf/n_produtos_nfr.php">
-                                        <td>
-                                            <?= $v->produto_e ?>
-                                        </td>
-                                        <input type="hidden" name="id_item" value="<?= $v->id_itens ?>">
-                                        <td>
-                                            <input type="text" class="form-control" name="lote_pnf" id="inputPassword4"
-                                                   placeholder="" value="<?= $v->lote_e ?>">
-                                        </td>
-                                        <td>
-                                            <input type="date" class="form-control" name="validade_pnf"
-                                                   id="inputPassword4" placeholder=""
-                                                   value="<?= $v->validade_prod_nf ?>">
-                                        </td>
-                                        <td>
-                                            <button type="submit" class="btn border-0 bg-white mt-1">
-                                                <i class="fas fa-file-import text-secondary"></i>
-                                            </button>
-                                        </td>
-                                    </form>
+                                    <td><?= $v->produto_e ?></td>
+                                    <td><?= $v->qtde_nf ?></td>
+                                    <td>R$ <?= $v->valor_un_e ?></td>
+                                    <td>R$ <?= $v->valor_un_e*$v->qtde_nf ?></td>
+                                    <?php echo "<td><a href=../../back/response/notaf/d_produto_nf.php?id_prod_nf=" . $v->id_itens . "&item_estoque=" . $v->item_nf . "&qtde_nf=" . $v->qtde_nf . "><i class='fas fa-trash text-danger'></i></a></td>" ?>
                                 </tr>
                             <?php } ?>
                             </tbody>

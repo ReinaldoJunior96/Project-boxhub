@@ -7,7 +7,7 @@ $produto_nf = array(
 
 $edit = new NotaFController();
 $edit->editProfNF($produto_nf,$_POST['id_item']);
-echo "<script language=\"javascript\">window.history.back();</script>";
+//echo "<script language=\"javascript\">window.history.back();</script>";
 
 
 ?>

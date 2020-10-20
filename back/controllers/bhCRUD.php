@@ -213,6 +213,7 @@ class BhCRUD
             foreach ($query_result as $v) {
                 $qtde_antiga = $v->quantidade_e;
                 $qtde_nova = $qtde_antiga - $saida['quantidade'];
+                $produtoNome = $v->produto_e;
             }
             if ($saida['quantidade'] > $qtde_antiga) {
                 echo "<script language=\"javascript\">alert(\"Quantidade solicitada é maior que a quantidade em estoque\")</script>";
