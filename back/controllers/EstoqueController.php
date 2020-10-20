@@ -174,4 +174,18 @@ class EstoqueController
             echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
     }
+
+    public function historicoLote($idprod)
+    {
+        try {
+            $view_estoque = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_estoque
+                INNER JOIN tbl_nf_lotes ON tbl_estoque.id_estoque = tbl_nf_lotes.id_prod                
+                WHERE tbl_nf_lotes.id_prod='$idprod'
+                ORDER BY tbl_nf_lotes.validade DESC");
+            $view_estoque->execute();
+            return $view_estoque->fetchAll(PDO::FETCH_OBJ);
+        } catch (PDOException $erro) {
+            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
+        }
+    }
 }

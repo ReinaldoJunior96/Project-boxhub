@@ -47,7 +47,7 @@ switch ($_SESSION['user']) {
                              width="40">
                         <h5 class="text-primary roboto-condensed ml-2 mt-1"> <?= ($v->nota_entrega == 1) ? 'NE ' : 'Nota Fiscal' ?>
                             - <?= $v->numero_nf ?> <a href="e_nota_fiscal.php?idnf=<?= $_GET['idnf'] ?>"><i
-                                    class='fas fa-pen fa-1x color-icon-nf text-black-50'></i></a></h5>
+                                        class='fas fa-pen fa-1x color-icon-nf text-black-50'></i></a></h5>
                     <?php } ?>
 
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -62,7 +62,7 @@ switch ($_SESSION['user']) {
                         </ul>
                         <div class="form-inline my-2 my-lg-0">
                             <h6 class="text-black-50 roboto-condensed"><i
-                                    class="fas fa-user text-primary"></i> <?= $_SESSION['user'] ?></h6>
+                                        class="fas fa-user text-primary"></i> <?= $_SESSION['user'] ?></h6>
                         </div>
                     </div>
                 </nav>
@@ -81,8 +81,6 @@ switch ($_SESSION['user']) {
                         $link = "#";
                     }
                     ?>
-                    <p><?= $text ?><a href="<?= $link ?>" class="badge badge-danger text-white <?= $class ?>">importar
-                            agora!!</a></p>
                     <?php
                     foreach ($nf as $v) {
                         ?>
@@ -94,27 +92,76 @@ switch ($_SESSION['user']) {
                             Lançamento: <?= date("d/m/Y", strtotime($v->data_lancamento)) ?></h6>
                         <h6><i class="fas fa-dollar-sign text-black-50"></i> Valor:
                             R$ <?= $v->valor_nf ?></h6>
-                        <div class="row">
-                            <a class="text-primary" href="v_nota_fiscal.php?idnf=<?= $_GET['idnf'] ?>"><i
-                                    class="fas fa-print"></i> VerNF</a>
-                            <a href="../../back/response/estoque/d_produto.php?idp=<?= $_GET['idp'] ?>"
-                            <button class="btn btn-danger float-right text-white">Excluir
-                                <i class="fas fa-trash-alt"></i>
-                            </button>
-                            </a>
-                        </div>
 
                     <?php } ?>
                     <hr class="bg-primary">
                 </div>
-                <?php
-                require_once('../../back/controllers/NotaFController.php');
-                $produtos = new NotaFController();
-                $ver_produtos = $produtos->verProdNF($_GET['idnf']);
-                foreach ($ver_produtos as $v) {
-                ?>
+                <form method="POST" action="../../back/response/notaf/lotes_r.php">
+                    <input type='hidden' class='form-control ' name='idnf' value="<?=$_GET['idnf']?>" placeholder=''>
+                    <div class="form-group row">
+                        <label for="inputEmail3"
+                               class="col-sm-1 col-form-label">Produto</label>
+                        <div class="col-sm-3">
+                            <select class="form-control" name="prod_nf" required>
+                                <option selected></option>
+                                <?php
+                                require_once('../../back/controllers/NotaFController.php');
+                                $produtos = new NotaFController();
+                                $ver_produtos = $produtos->verProdNF($_GET['idnf']);
+                                foreach ($ver_produtos as $v):?>
+                                    <option value="<?=$v->id_estoque?>"><?= $v->produto_e ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputEmail3" class="col-sm-1 col-form-label">Lote</label>
+                        <div class="col-sm-3">
+                            <input type='text' class='form-control ' name='lote_prod_nf' placeholder=''>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputEmail3" class="col-sm-1 col-form-label">Validade</label>
+                        <div class="col-sm-3">
+                            <input type='date' class='form-control ' name='validade_prof_nf' placeholder=''>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn bg-primary shadow col-sm-2 exo mt-1 text-white">Adicionar <i
+                                class="fas fa-plus ml-2"></i></button>
+                </form>
+            </div>
+            <div class="mt-4 col-12 text-center">
+                <table class="table table-sm">
+                    <thead>
+                    <tr>
+                        <th scope="col">Produto</th>
+                        <th scope="col">Lote</th>
+                        <th scope="col">Validade</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    require_once '../../back/controllers/NotaFController.php';
+                    $nfProd = new NotaFController();
+                    $nfLotes = $nfProd->buscarLote($_GET['idnf']);
 
-                <?php } ?>
+                    foreach ($nfLotes as $prodLotes):
+                        $data = date_create($prodLotes->validade);
+                    ?>
+                    <tr>
+                        <td><?=$prodLotes->produto_e?></td>
+                        <td> <?=$prodLotes->lote?></td>
+                        <td> <?= date_format($data, "d/m/Y") ?></td>
+                        <td>
+                            <a href="../../back/response/notaf/d_lotes.php?idl=<?=$prodLotes->id_nf_lote?>">
+                                <span class="badge badge-pill far fa-window-close text-danger float-right"> </span>
+                            </a>
+                        </td>
+                    </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

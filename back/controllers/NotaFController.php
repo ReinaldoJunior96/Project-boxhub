@@ -223,7 +223,7 @@ class NotaFController
         try {
             $view_nf = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_itens_nf
 				INNER JOIN tbl_estoque ON tbl_itens_nf.item_nf = tbl_estoque.id_estoque
-				WHERE id_nf = '$nf'");
+				WHERE id_nf = '$nf' ORDER BY tbl_estoque.produto_e ASC");
             $view_nf->execute();
             $query_result = $view_nf->fetchAll(PDO::FETCH_OBJ);
             return $query_result;
@@ -289,6 +289,50 @@ class NotaFController
             $deleteVencimento = $this->conn->prepare(/** @lang text */ "DELETE FROM tbl_vencimento_boleto WHERE id='$id'");
             $deleteVencimento->execute();
             return $deleteVencimento->fetchAll(PDO::FETCH_OBJ);
+        } catch (PDOException $erro) {
+            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
+        }
+    }
+
+    public function cadLote($produto)
+    {
+        try {
+            $this->conn->beginTransaction();
+            $query_Sql = /** @lang text */
+                "INSERT INTO tbl_nf_lotes(id_nf,id_prod,lote,validade) 
+                VALUES (:id_nf,:id_prod,:lote,:validade)";
+            $sql = $this->conn->prepare($query_Sql);
+            $sql->bindValue(':id_nf', $produto['nf']);
+            $sql->bindValue(':id_prod', $produto['produto']);
+            $sql->bindValue(':lote', $produto['lote']);
+            $sql->bindValue(':validade', $produto['validade']);
+            $sql->execute();
+            if ($sql) {
+                $this->conn->commit();
+            }
+        } catch (PDOException $erro) {
+            $this->conn->rollBack();
+            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
+        }
+    }
+    public function deleteLote($id)
+    {
+        try {
+            $deleteL = $this->conn->prepare(/** @lang text */ "DELETE FROM tbl_nf_lotes WHERE id_nf_lote='$id'");
+            $deleteL->execute();
+            return $deleteL->fetchAll(PDO::FETCH_OBJ);
+        } catch (PDOException $erro) {
+            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
+        }
+    }
+    public function buscarLote($idnf)
+    {
+        try {
+            $viewlotes = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_estoque
+             INNER JOIN  tbl_nf_lotes ON tbl_nf_lotes.id_prod = tbl_estoque.id_estoque
+             WHERE tbl_nf_lotes.id_nf = '$idnf'");
+            $viewlotes->execute();
+            return $viewlotes->fetchAll(PDO::FETCH_OBJ);
         } catch (PDOException $erro) {
             echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }

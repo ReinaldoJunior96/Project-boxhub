@@ -4,7 +4,7 @@ include_once '../../controllers/configCRUD.php';
 
 date_default_timezone_set('America/Sao_Paulo');
 $s = new ConfigCRUD();
-$setor = $s->setor_id($_POST['setor_s']);
+$setor = $s->setor_id($_GET['setor_s']);
 foreach($setor as $v){$nome_setor = $v->setor_s;}
 
 $date = new DateTime();

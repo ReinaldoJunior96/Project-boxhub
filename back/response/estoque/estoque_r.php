@@ -21,6 +21,7 @@ if (@$_POST['new'] == 1) {
     echo "<script language=\"javascript\">window.history.back();</script>";
 } elseif (@$_POST['edit'] == 1) {
     $estoque->edit_Produto($produto, $_POST['id']);
+
     echo "<script language=\"javascript\">window.history.back();</script>";
 }
 ?>

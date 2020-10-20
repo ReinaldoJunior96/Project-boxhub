@@ -45,8 +45,9 @@ switch ($_SESSION['user']) {
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <h5 class="text-primary roboto-condensed"><img src="../../images/delivery-box.png" class="img-fluid"
                                                                    width="40">
-                        <?php $date = date_create($_GET['data_s']);?>
-                        Setor de saída: <?= str_replace("-", " ", $_GET['nomesetor']) ?> / data: <?=date_format($date,'d/m/Y')?></h5>
+                        <?php $date = date_create($_GET['data_s']); ?>
+                        Setor de saída: <?= str_replace("-", " ", $_GET['nomesetor']) ?> /
+                        data: <?= date_format($date, 'd/m/Y') ?></h5>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado"
                             aria-expanded="false" aria-label="Alterna navegação">
@@ -78,18 +79,12 @@ switch ($_SESSION['user']) {
                                     <label for="inputEmail3"
                                            class="col-sm-2 col-form-label text-right">Quantidade</label>
                                     <div class="col-sm-2">
-                                        <select class="form-control" name="saidaqte_p" required onChange="this.form.submit()">
+                                        <select class="form-control" name="saidaqte_p" required
+                                                onChange="this.form.submit()">
                                             <option selected></option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
-                                            <option value="7">7</option>
-                                            <option value="8">8</option>
-                                            <option value="9">9</option>
-                                            <option value="10">10</option>
+                                            <?php for ($i = 1; $i <= 100; $i++): ?>
+                                                <option value="<?=$i?>"><?=$i?></option>
+                                            <?php endfor ?>
 
                                         </select>
                                     </div>
