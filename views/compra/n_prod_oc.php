@@ -120,7 +120,7 @@ switch ($_SESSION['user']) {
                                 <td><input type="number" class="form-control" name="saidaqte_p" id="inputPassword4"
                                            placeholder="" style="text-align: center;"></td>
                                 <td><input type="text" class="form-control" required name="valor_un_c" id="inputPassword4"
-                                           placeholder="R$" value="<?= str_replace('.', ',', $v->valor_un_e) ?>"
+                                           placeholder="R$" value="<?= number_format( $v->valor_un_e,'2','.')?>"
                                            style="text-align: center;">
                                 </td>
                                 <td>
