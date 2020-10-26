@@ -51,7 +51,8 @@ switch ($_SESSION['user']) {
                         $somaValor += $value->valor_un_c * $value->qtde_compra;
                         ?>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <?= $value->produto_e ?> - <?= $value->qtde_compra ?> - <?= "R$ ".number_format($value->valor_un_c,2,',','.') ?>
+                            <?php $valorUNCompraDisplay = floatval($value->valor_un_c)?>
+                            <?= $value->produto_e ?> - <?= $value->qtde_compra ?> - <?= "R$ ". floatval($value->valor_un_c) ?>
                             <a href="../../back/response/compra/d_prod_compra.php?idprod=<?= $value->id_item_compra ?>"><i
                                         class='fas fa-ban fa-lg' style='color: red;'></i></a>
                         </li>
@@ -120,7 +121,7 @@ switch ($_SESSION['user']) {
                                 <td><input type="number" class="form-control" name="saidaqte_p" id="inputPassword4"
                                            placeholder="" style="text-align: center;"></td>
                                 <td><input type="text" class="form-control" required name="valor_un_c" id="inputPassword4"
-                                           placeholder="R$" value="<?= number_format( $v->valor_un_e,'2','.')?>"
+                                           placeholder="R$" value="<?= $v->valor_un_e?>"
                                            style="text-align: center;">
                                 </td>
                                 <td>

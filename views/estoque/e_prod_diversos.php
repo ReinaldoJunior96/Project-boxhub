@@ -68,7 +68,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                                                name='valor_un' placeholder='R$'>
                                         <small>Utilize ponto no lugar da vírgula</small>
                                     <?php } else { ?>
-                                        <input type='text' class='form-control ' value="*******" name='valor_un'
+                                        <input type='text' class='form-control ' value="<?= $v->valor_un_e ?>" name='valor_un'
                                                placeholder=''
                                                disabled>
                                     <?php } ?>

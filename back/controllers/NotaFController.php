@@ -34,6 +34,7 @@ class NotaFController
             echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
     }
+
     public function delete_NF($id)
     {
         try {
@@ -41,8 +42,8 @@ class NotaFController
             $itensNF->execute();
             $itens = $itensNF->fetchAll(PDO::FETCH_OBJ);
             /* Laço para diminuir a quantidade em estoque*/
-            foreach ($itens as $v){
-                self::deleteProdNF($v->id_itens,$v->item_nf,$v->qtde_nf);
+            foreach ($itens as $v) {
+                self::deleteProdNF($v->id_itens, $v->item_nf, $v->qtde_nf);
             }
             $deleteOrdem = $this->conn->prepare("DELETE FROM  tbl_ordem_compra WHERE id_fk_nf='$id'");
             $deleteOrdem->execute();
@@ -54,6 +55,7 @@ class NotaFController
             echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
     }
+
     public function verNF($id)
     {
         try {
@@ -64,6 +66,7 @@ class NotaFController
             echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
     }
+
     public function edit_NF($nf, $id)
     {
         try {
@@ -153,7 +156,7 @@ class NotaFController
             $sql->bindValue(':id_nf', $produto_nf['nf']);
             $sql->execute();
             $produto = $produto_nf['produto'];
-            $qtde_antiga = $this->conn->prepare(/** @lang text */"SELECT * FROM tbl_estoque WHERE id_estoque='$produto'");
+            $qtde_antiga = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_estoque WHERE id_estoque='$produto'");
             $qtde_antiga->execute();
             $query_result = $qtde_antiga->fetchAll(PDO::FETCH_OBJ);
             $qtde_nova = 0;
@@ -161,7 +164,8 @@ class NotaFController
                 $qtde_antiga = $v->quantidade_e;
                 $qtde_nova = $qtde_antiga + $produto_nf['quantidade'];
             }
-            $alterar_estoque = /** @lang text */ "UPDATE tbl_estoque SET quantidade_e=:quantidade WHERE id_estoque='$produto'";
+            $alterar_estoque = /** @lang text */
+                "UPDATE tbl_estoque SET quantidade_e=:quantidade WHERE id_estoque='$produto'";
             $fazer_alteracao = $this->conn->prepare($alterar_estoque);
             $fazer_alteracao->bindValue(':quantidade', $qtde_nova);
             $fazer_alteracao->execute();
@@ -173,6 +177,7 @@ class NotaFController
             echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
     }
+
     public function deleteProdNF($id, $item_estoque, $qtde_nf)
     {
         try {
@@ -199,6 +204,7 @@ class NotaFController
             echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
     }
+
     public function alterarStatus($idnf)
     {
         try {
@@ -218,12 +224,14 @@ class NotaFController
             echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
     }
+
     public function verProdNF($nf)
     {
         try {
-            $view_nf = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_itens_nf
-				INNER JOIN tbl_estoque ON tbl_itens_nf.item_nf = tbl_estoque.id_estoque
-				WHERE id_nf = '$nf' ORDER BY tbl_estoque.produto_e ASC");
+            $view_nf = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_items_compra
+            INNER JOIN tbl_ordem_compra ON tbl_items_compra.ordem_compra_id = tbl_ordem_compra.id_ordem
+            INNER JOIN tbl_estoque ON tbl_items_compra.item_compra = tbl_estoque.id_estoque
+            WHERE tbl_ordem_compra.id_fk_nf = '$nf'");
             $view_nf->execute();
             $query_result = $view_nf->fetchAll(PDO::FETCH_OBJ);
             return $query_result;
@@ -233,7 +241,7 @@ class NotaFController
     }
 
 
-    public function editProfNF($produto,$idprod)
+    public function editProfNF($produto, $idprod)
     {
         try {
             $this->conn->beginTransaction();
@@ -254,6 +262,7 @@ class NotaFController
             echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
     }
+
     public function venciementoParcelas($data)
     {
         try {
@@ -273,6 +282,7 @@ class NotaFController
             echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
     }
+
     public function buscarVencimentos($id)
     {
         try {
@@ -283,6 +293,7 @@ class NotaFController
             echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
     }
+
     public function deleteVencimento($id)
     {
         try {
@@ -315,6 +326,7 @@ class NotaFController
             echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
     }
+
     public function deleteLote($id)
     {
         try {
@@ -325,6 +337,7 @@ class NotaFController
             echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
     }
+
     public function buscarLote($idnf)
     {
         try {

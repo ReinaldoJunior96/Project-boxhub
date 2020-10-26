@@ -73,7 +73,7 @@ class EstoqueController
     public function verEstoqueTotal()
     {
         try {
-            $view_estoque = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_estoque");
+            $view_estoque = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_estoque WHERE produto_e!=''");
             $view_estoque->execute();
             return $view_estoque->fetchAll(PDO::FETCH_OBJ);
         } catch (PDOException $erro) {
@@ -83,7 +83,7 @@ class EstoqueController
     public function verEstoqueFarmacia()
     {
         try {
-            $view_estoque = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_estoque WHERE tipo='0' ORDER BY produto_e ASC");
+            $view_estoque = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_estoque WHERE tipo='0' AND produto_e!='' ORDER BY produto_e ASC");
             $view_estoque->execute();
             return $view_estoque->fetchAll(PDO::FETCH_OBJ);
         } catch (PDOException $erro) {

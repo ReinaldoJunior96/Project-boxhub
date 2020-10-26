@@ -31,7 +31,7 @@ endfor;
 
 
 
-
-    echo "<script language=\"javascript\">window.history.back();</script>";
+echo "<script language=\"javascript\">alert(\"Saída Registrada\")</script>";
+echo "<script language=\"javascript\">window.history.go(-2);</script>";
 
 ?>

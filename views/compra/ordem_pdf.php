@@ -41,13 +41,16 @@ if (empty($dados_ordem['0']->item_compra)) {
 		$vTotal += $v->valor_un_c*$v->qtde_compra;
 		$pdf->Cell(360, 20, utf8_decode($v->produto_e), 1, 0, "C");
 		$pdf->Cell(30, 20, utf8_decode($v->qtde_compra), 1, 0, "C");
-		$pdf->Cell(80, 20, utf8_decode("R$ " . number_format($v->valor_un_c,2,',','.')), 1, 0, "C");
-		$pdf->Cell(80, 20, utf8_decode("R$ ". number_format($v->valor_un_c*$v->qtde_compra,2,',','.')), 1, 0, "C");
+		$valorUNFloat = floatval($v->valor_un_c);
+        $valorTotalFloat = floatval($v->valor_un_c*$v->qtde_compra);
+		$pdf->Cell(80, 20, utf8_decode("R$ " . $valorUNFloat), 1, 0, "C");
+		$pdf->Cell(80, 20, utf8_decode("R$ ". number_format($valorTotalFloat,'2',',','.') ), 1, 0, "C");
 		$pdf->Ln(25);    
 	}
 	$pdf->Cell(470, 20, utf8_decode("Total a Pagar"), 1, 0, "C");
 	$pdf->SetFont('arial', 'B', 12);
-	$pdf->Cell(80, 20, utf8_decode("R$ " . number_format($vTotal,2,',','.')), 1, 0, "C");
+	$valorGeral = floatval($vTotal);
+	$pdf->Cell(80, 20, utf8_decode("R$ " . number_format($valorGeral,2,',','.')), 1, 0, "C");
     $pdf->Ln(125);
     $pdf->Cell(550, 20, utf8_decode("____________________________________________"), 0, 0, "C");
     $pdf->Ln(15);

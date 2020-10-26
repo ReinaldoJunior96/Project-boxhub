@@ -112,10 +112,10 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                                     <?php if ($_SESSION['user'] == 'compras.hvu') { ?>
                                         <input type='text' class='form-control' value="<?= $v->valor_un_e ?>"
                                                name='valor_un' placeholder='R$'>
-                                        <small>Utilize ponto no lugar da vírgula</small>
+                                        <small class="roboto-condensed">Ex: 24.23 / 1253.65 / 14256.25</small>
                                     <?php } else { ?>
-                                        <input type='hidden' class='form-control ' value="*******" name='valor_un'
-                                               placeholder=''
+                                        <input type='hidden' class='form-control ' name='valor_un'
+                                               placeholder='' value="<?= $v->valor_un_e ?>"
                                         >
                                     <?php } ?>
                                 </div>

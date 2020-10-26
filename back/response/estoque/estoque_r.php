@@ -1,13 +1,12 @@
 <?php
 require_once('../../controllers/EstoqueController.php');
 $estoque = new EstoqueController();
+$valorUNAtt = str_replace(',','.',@$_POST['valor_un']);
 $produto = array(
     'produto' => @$_POST['produto_e'],
     'p_ativo' => @$_POST['p_ativo'],
     'quantidade' => @$_POST['quantidade_e'],
-    'valor' => (@$_POST['valor_un'] == NULL)
-        ? number_format(0, 2, '.', '')
-        : number_format(@$_POST['valor_un'], 2, '.', ''),
+    'valor' => floatval(@$valorUNAtt),
     'estoque_minimo_e' => @$_POST['estoque_minimo_e'],
     'principio_ativo' => @$_POST['p_ativo'],
     'concentracao' => @$_POST['concentracao'],

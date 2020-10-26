@@ -115,7 +115,7 @@ switch ($_SESSION['user']) {
                                 <th class="">Quantidade</th>
                                 <th class="">Valor Unitário</th>
                                 <th class="">Valor Total</th>
-                                <th></th>
+
                             </tr>
                             </thead>
                             <tbody class="roboto-condensed text-black-50">
@@ -127,10 +127,10 @@ switch ($_SESSION['user']) {
                                 ?>
                                 <tr>
                                     <td><?= $v->produto_e ?></td>
-                                    <td><?= $v->qtde_nf ?></td>
-                                    <td>R$ <?=  $v->valor_un_e ?></td>
-                                    <td>R$ <?= $v->valor_un_e*$v->qtde_nf ?></td>
-                                    <?php echo "<td><a href=../../back/response/notaf/d_produto_nf.php?id_prod_nf=" . $v->id_itens . "&item_estoque=" . $v->item_nf . "&qtde_nf=" . $v->qtde_nf . "><i class='fas fa-trash text-danger'></i></a></td>" ?>
+                                    <td><?= $v->qtde_compra ?></td>
+                                    <td>R$ <?=  $v->valor_un_c ?></td>
+                                    <td>R$ <?= $v->qtde_compra*$v->valor_un_c ?></td>
+<!--                                    --><?php //echo "<td><a href=../../back/response/notaf/d_produto_nf.php?id_prod_nf=" . $v->id_itens . "&item_estoque=" . $v->item_nf . "&qtde_nf=" . $v->qtde_nf . "><i class='fas fa-trash text-danger'></i></a></td>" ?>
                                 </tr>
                             <?php } ?>
                             </tbody>
