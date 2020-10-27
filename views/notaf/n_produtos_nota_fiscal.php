@@ -72,17 +72,16 @@ switch ($_SESSION['user']) {
                     $n = new NotaFController();
                     $attNota = $n->verificarNota($_GET['idnf']);
                     if ($attNota >= 1) {
-                        $text = "Existe uma ordem de compra associada a esta NF";
+                        $text = "Adicione a quantidade comprada ao estoque";
                         $class = "";
                         $link = "../../back/response/compra/import_from_ordem.php?idnf=" . $_GET['idnf'];
                     } else {
-                        $text = "A ordem já foi importada";
+                        $text = "Quantidade já foi lançada";
                         $class = "isDisabled";
                         $link = "#";
                     }
                     ?>
-                    <p><?= $text ?><a href="<?= $link ?>" class="badge badge-danger text-white <?= $class ?>">importar
-                            agora!!</a></p>
+                    <p><?= $text ?><a href="<?= $link ?>" class="badge badge-danger text-white <?= $class ?>">Lançar Quantidade</a></p>
                     <?php
                     foreach ($nf as $v) {
                         ?>
