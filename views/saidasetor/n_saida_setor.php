@@ -34,6 +34,11 @@ switch ($_SESSION['user']) {
     <title class="roboto-condensed">Firebox</title>
     <link rel="icon" type="imagem/png" href="../../images/fire.png"/>
     <!-- <link rel="icon" class="rounded" href="images/icon-box.png" type="image/x-icon" /> -->
+    <style>
+        #tabela {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -64,7 +69,7 @@ switch ($_SESSION['user']) {
                         </div>
                     </div>
                 </nav>
-                <div class="mt-2 roboto-condensed container">
+                <div class="mt-2 roboto-condensed container" id="tabela">
                     <div class="">
                         <form method="POST" action="../../back/response/saidasetor/n_saida_r.php">
                             <input type="hidden" name="data_s" value="<?= $_GET['data_s'] ?>">
@@ -148,6 +153,11 @@ switch ($_SESSION['user']) {
                 localStorage.removeItem('firstLoad');
         }
     })();
+</script>
+<script type='text/javascript'>
+    $(document).ready(function () {
+        $('#tabela').css("display", "block");
+    });
 </script>
 </body>
 
