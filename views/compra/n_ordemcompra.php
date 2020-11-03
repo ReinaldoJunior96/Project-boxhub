@@ -21,6 +21,11 @@ $s = new ConfigCRUD();
     <title class="roboto-condensed">Firebox</title>
     <link rel="icon" type="imagem/png" href="../../images/fire.png"/>
     <!-- <link rel="icon" class="rounded" href="images/icon-box.png" type="image/x-icon" /> -->
+    <style>
+        #tabela{
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -32,7 +37,8 @@ $s = new ConfigCRUD();
                 <!-- <a class="navbar-brand text-white roboto-condensed" href="#">
                     <i class="fas fa-box-open text-primary"></i>
                 </a> -->
-                <h5 class="text-primary roboto-condensed"><img src="../../images/shopping.png" class="img-fluid" width="40">
+                <h5 class="text-primary roboto-condensed"><img src="../../images/shopping.png" class="img-fluid"
+                                                               width="40">
                     Compras</h5>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado"
@@ -70,11 +76,13 @@ $s = new ConfigCRUD();
                             </select>
                             <div class="form-inline mt-3">
                                 <div class="form-group mx-sm-3 mb-2">
-                                    <input type="radio" class="form-check-input" name="info_ne" value="0" id="exampleCheck1" required>
+                                    <input type="radio" class="form-check-input" name="info_ne" value="0"
+                                           id="exampleCheck1" required>
                                     <label class="form-check-label" for="exampleCheck1">Nota Fiscal</label>
                                 </div>
                                 <div class="form-group mx-sm-3 mb-2">
-                                    <input type="radio" class="form-check-input" name="info_ne" value="1" id="exampleCheck2" required>
+                                    <input type="radio" class="form-check-input" name="info_ne" value="1"
+                                           id="exampleCheck2" required>
                                     <label class="form-check-label" for="exampleCheck2">Nota de Entrega</label>
                                 </div>
                             </div>
@@ -85,39 +93,40 @@ $s = new ConfigCRUD();
                 </form>
             </div>
             <hr>
-            <div class="">
-                <div class="container mt-1">
-                    <table id="example" class="table table-sm text-center roboto-condensed">
-                        <thead class="bg-shadow-it bg-nav">
-                        <tr class="text-light ">
-                            <th class="">Ordem C</th>
-                            <th class="">NE / NF</th>
-                            <th class="">Fornecedor / Ordem </th>
-                            <th class="">Criada em</th>
+            <div class="container mt-1" id="tabela">
+                <table id="example" class="table table-sm text-center roboto-condensed">
+                    <thead class="bg-shadow-it bg-nav">
+                    <tr class="text-light ">
+                        <th class="">Ordem C</th>
+                        <th class="">NE / NF</th>
+                        <th class="">Fornecedor / Ordem</th>
+                        <th class="">Criada em</th>
 
-                            <th></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody class="text-black-50">
+                    <?php
+                    include '../../back/controllers/CompraController.php';
+                    $view_ordens = new CompraController();
+                    $all_ordens = $view_ordens->verOrdens();
+                    foreach ($all_ordens as $v) {
+                        ?>
+                        <tr>
+                            <td class=""><?= $v->id_ordem ?></td>
+                            <td class=""><a
+                                        href="../notaf/n_produtos_nota_fiscal.php?idnf=<?= $v->id_fk_nf ?>"><?= $v->id_fk_nf ?></a>
+                            </td>
+                            <td class="text-primary"><a
+                                        href="n_prod_oc.php?id_ordem=<?= $v->id_ordem ?>"><?= $v->nome_f ?></a></td>
+                            <td class=""><?= date("d/m/Y H:i:s", strtotime($v->data_c)) ?></td>
+
+                            <td><a href="../../back/response/compra/d_ordem_compra.php?idordem=<?= $v->id_ordem ?>"><i
+                                            class='fas fa-trash text-danger'></i></a></td>
                         </tr>
-                        </thead>
-                        <tbody class="text-black-50">
-                        <?php
-                        include '../../back/controllers/CompraController.php';
-                        $view_ordens = new CompraController();
-                        $all_ordens = $view_ordens->verOrdens();
-                        foreach ($all_ordens as $v) {
-                            ?>
-                            <tr>
-                                <td class=""><?= $v->id_ordem ?></td>
-                                <td class=""><a href="../notaf/n_produtos_nota_fiscal.php?idnf=<?= $v->id_fk_nf ?>"><?= $v->id_fk_nf ?></a></td>
-                                <td class="text-primary"><a href="n_prod_oc.php?id_ordem=<?= $v->id_ordem ?>"><?= $v->nome_f ?></a></td>
-                                <td class=""><?= date("d/m/Y H:i:s", strtotime($v->data_c)) ?></td>
-
-                                <td><a href="../../back/response/compra/d_ordem_compra.php?idordem=<?= $v->id_ordem ?>"><i
-                                                class='fas fa-trash text-danger'></i></a></td>
-                            </tr>
-                        <?php } ?>
-                        </tbody>
-                    </table>
-                </div>
+                    <?php } ?>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -167,6 +176,11 @@ $s = new ConfigCRUD();
                 localStorage.removeItem('firstLoad');
         }
     })();
+</script>
+<script type='text/javascript'>
+    $(document).ready(function () {
+        $('#tabela').css("display", "block");
+    });
 </script>
 </body>
 

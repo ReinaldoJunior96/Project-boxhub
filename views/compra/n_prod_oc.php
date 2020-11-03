@@ -31,6 +31,11 @@ switch ($_SESSION['user']) {
     <title class="roboto-condensed">Firebox</title>
     <link rel="icon" type="imagem/png" href="../../images/fire.png"/>
     <!-- <link rel="icon" class="rounded" href="images/icon-box.png" type="image/x-icon" /> -->
+    <style>
+        #tabela {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -51,19 +56,21 @@ switch ($_SESSION['user']) {
                         $somaValor += $value->valor_un_c * $value->qtde_compra;
                         ?>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <?php $valorUNCompraDisplay = floatval($value->valor_un_c)?>
-                            <?= $value->produto_e ?> - <?= $value->qtde_compra ?> - <?= "R$ ". floatval($value->valor_un_c) ?>
+                            <?php $valorUNCompraDisplay = floatval($value->valor_un_c) ?>
+                            <?= $value->produto_e ?> - <?= $value->qtde_compra ?>
+                            - <?= "R$ " . floatval($value->valor_un_c) ?>
                             <a href="../../back/response/compra/d_prod_compra.php?idprod=<?= $value->id_item_compra ?>"><i
                                         class='fas fa-ban fa-lg' style='color: red;'></i></a>
                         </li>
                     <?php } ?>
-                    <li class="list-group-item active"><?= "R$ ".number_format($somaValor,2,',','.')?></li>
+                    <li class="list-group-item active"><?= "R$ " . number_format($somaValor, 2, ',', '.') ?></li>
                 </ul>
             </div>
         </div>
         <div class="col-7">
             <nav class="navbar navbar-expand-lg navbar-light">
-                <h5 class="text-primary roboto-condensed"><img src="../../images/shopping.png" class="img-fluid" width="40">
+                <h5 class="text-primary roboto-condensed"><img src="../../images/shopping.png" class="img-fluid"
+                                                               width="40">
                     Compras</h5>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado"
@@ -96,44 +103,46 @@ switch ($_SESSION['user']) {
                         <i class="fas fa-print"></i> Imprimir Ordem
                     </a>
                 </div>
-
-                <table id="example" class="table table-sm text-center roboto-condensed">
-                    <thead class="bg-nav">
-                    <tr class="text-light ">
-                        <th class="">Produto / Material</th>
-                        <th>Qtde Un (Compra)</th>
-                        <th class="">Valor Unitário</th>
-                        <th></th>
-                    </tr>
-                    </thead>
-                    <tbody class="text-black-50 ">
-                    <?php
-                    require_once('../../back/controllers/EstoqueController.php');
-                    $view_estoque = new EstoqueController();
-                    $all_estoque = $view_estoque->verEstoqueTotal();
-                    foreach ($all_estoque as $v) {
-                        ?>
-                        <tr>
-                            <form method="POST" action="../../back/response/compra/n_prod_ordem_compra.php">
-                                <input type="hidden" name="produto_c" value="<?= $v->id_estoque ?>">
-                                <input type="hidden" name="ordem" value="<?= $_GET['id_ordem'] ?>">
-                                <td class=""><?= $v->produto_e ?></td>
-                                <td><input type="number" class="form-control" name="saidaqte_p" id="inputPassword4"
-                                           placeholder="" style="text-align: center;"></td>
-                                <td><input type="text" class="form-control" required name="valor_un_c" id="inputPassword4"
-                                           placeholder="R$" value="<?= $v->valor_un_e?>"
-                                           style="text-align: center;">
-                                </td>
-                                <td>
-                                    <button type="submit" class="btn roboto-condensed text-white mt-1">
-                                        <i class="fas fa-file-import text-secondary"></i>
-                                    </button>
-                                </td>
-                            </form>
+                <div class="" id="tabela">
+                    <table id="example" class="table table-sm text-center roboto-condensed">
+                        <thead class="bg-nav">
+                        <tr class="text-light ">
+                            <th class="">Produto / Material</th>
+                            <th>Qtde Un (Compra)</th>
+                            <th class="">Valor Unitário</th>
+                            <th></th>
                         </tr>
-                    <?php } ?>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody class="text-black-50 ">
+                        <?php
+                        require_once('../../back/controllers/EstoqueController.php');
+                        $view_estoque = new EstoqueController();
+                        $all_estoque = $view_estoque->verEstoqueTotal();
+                        foreach ($all_estoque as $v) {
+                            ?>
+                            <tr>
+                                <form method="POST" action="../../back/response/compra/n_prod_ordem_compra.php">
+                                    <input type="hidden" name="produto_c" value="<?= $v->id_estoque ?>">
+                                    <input type="hidden" name="ordem" value="<?= $_GET['id_ordem'] ?>">
+                                    <td class=""><?= $v->produto_e ?></td>
+                                    <td><input type="number" class="form-control" name="saidaqte_p" id="inputPassword4"
+                                               placeholder="" style="text-align: center;"></td>
+                                    <td><input type="text" class="form-control" required name="valor_un_c"
+                                               id="inputPassword4"
+                                               placeholder="R$" value="<?= $v->valor_un_e ?>"
+                                               style="text-align: center;">
+                                    </td>
+                                    <td>
+                                        <button type="submit" class="btn roboto-condensed text-white mt-1">
+                                            <i class="fas fa-file-import text-secondary"></i>
+                                        </button>
+                                    </td>
+                                </form>
+                            </tr>
+                        <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
 
@@ -185,6 +194,11 @@ switch ($_SESSION['user']) {
                 localStorage.removeItem('firstLoad');
         }
     })();
+</script>
+<script type='text/javascript'>
+    $(document).ready(function () {
+        $('#tabela').css("display", "block");
+    });
 </script>
 </body>
 

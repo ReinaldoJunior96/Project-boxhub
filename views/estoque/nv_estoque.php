@@ -19,6 +19,11 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
     <title class="roboto-condensed">Firebox</title>
     <link rel="icon" type="imagem/png" href="../../images/fire.png"/>
     <!-- <link rel="icon" class="rounded" href="images/icon-box.png" type="image/x-icon" /> -->
+    <style>
+        #tabela{
+            display: none;
+        }
+    </style>
 </head>
 <body>
 <div class="container-fluid">
@@ -106,7 +111,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                 </form>
             </div>
             <hr>
-            <div class="container mt-5 ">
+            <div class="container mt-5 " id="tabela">
                 <table id="example" class="table table-sm text-center roboto-condensed">
                     <thead class="bg-shadow-it bg-nav">
                     <tr class="text-light ">
@@ -186,6 +191,11 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                 localStorage.removeItem('firstLoad');
         }
     })();
+</script>
+<script type='text/javascript'>
+    $(document).ready(function () {
+        $('#tabela').css("display", "block");
+    });
 </script>
 </body>
 
