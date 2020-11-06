@@ -90,6 +90,16 @@ class EstoqueController
             echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
     }
+    public function verEstoqueFarmaciaSaida()
+    {
+        try {
+            $view_estoque = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_estoque WHERE tipo='0' AND produto_e != '' AND quantidade_e != '' ORDER BY produto_e ASC");
+            $view_estoque->execute();
+            return $view_estoque->fetchAll(PDO::FETCH_OBJ);
+        } catch (PDOException $erro) {
+            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
+        }
+    }
 
     public function verProdDiversos()
     {

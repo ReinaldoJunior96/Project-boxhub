@@ -1,7 +1,8 @@
 <?php
 include_once '../../controllers/bhCRUD.php';
 include_once '../../controllers/configCRUD.php';
-
+$new_saida = new BhCRUD();
+$date = new DateTime();
 date_default_timezone_set('America/Sao_Paulo');
 //$s = new ConfigCRUD();
 //$setor = $s->setor_id($_GET['setor_s']);
@@ -13,8 +14,7 @@ $saida = array(
     'setor' => $_POST['setor_s'],
     'data' => $_POST['data_s']
 );
-$new_saida = new BhCRUD();
-$date = new DateTime();
+
 for ($i = 0; $i < count($saida['produto']); $i++):
     if (!empty($saida['produto'][$i]) AND !empty($saida['quantidade'][$i])):
         $vrrSaida = array(

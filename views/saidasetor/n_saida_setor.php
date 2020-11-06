@@ -7,7 +7,7 @@ require_once('../../back/controllers/configCRUD.php');
 $s = new ConfigCRUD();
 require_once('../../back/controllers/EstoqueController.php');
 $view_estoque = new EstoqueController();
-$all_estoque = $view_estoque->verEstoqueFarmacia();
+$all_estoque = $view_estoque->verEstoqueFarmaciaSaida();
 switch ($_SESSION['user']) {
     case 'farma.hvu':
         $permissao = 'disabled';
@@ -84,17 +84,12 @@ switch ($_SESSION['user']) {
                                     <label for="inputEmail3"
                                            class="col-sm-2 col-form-label text-right">Quantidade</label>
                                     <div class="col-sm-2">
-                                        <select class="form-control" name="saidaqte_p[]">
-                                            <option selected></option>
-                                            <?php for ($i = 1; $i <= 100; $i++): ?>
-                                                <option value="<?= $i ?>"><?= $i ?></option>
-                                            <?php endfor ?>
-
-                                        </select>
+                                        <input type="number" name="saidaqte_p[]">
                                     </div>
                                     <label for="inputEmail3"
                                            class="col-sm-2 col-form-label text-right">Em Estoque: <?=$value->quantidade_e?></label>
                                 </div>
+                                <hr>
                             <?php } ?>
                             <button type="submit" class="btn bg-primary col-sm-2 roboto-condensed text-white">Registrar
                                 Saída

@@ -30,6 +30,11 @@ switch ($_SESSION['user']) {
     <title class="roboto-condensed">Firebox</title>
     <link rel="icon" type="imagem/png" href="images/fire.png" />
     <!-- <link rel="icon" class="rounded" href="images/icon-box.png" type="image/x-icon" /> -->
+    <style>
+        #tabela {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -86,7 +91,7 @@ switch ($_SESSION['user']) {
                             </div>
                         </form>
                     </div>
-                    <div class="">
+                    <div class="" id="tabela">
                         <table id="example" class="table table-sm roboto-condensed">
                             <thead class="bg-shadow-it bg-nav">
                             <tr class="text-light text-center">
@@ -163,7 +168,7 @@ switch ($_SESSION['user']) {
         });
     });
 </script>
-<!-- <script type='text/javascript'>
+<script type='text/javascript'>
     (function() {
         if (window.localStorage) {
             if (!localStorage.getItem('firstLoad')) {
@@ -173,7 +178,12 @@ switch ($_SESSION['user']) {
                 localStorage.removeItem('firstLoad');
         }
     })();
-</script> -->
+</script>
+<script type='text/javascript'>
+    $(document).ready(function () {
+        $('#tabela').css("display", "block");
+    });
+</script>
 </body>
 
 </html>
