@@ -57,8 +57,9 @@ switch ($_SESSION['user']) {
                         ?>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <?php $valorUNCompraDisplay = floatval($value->valor_un_c) ?>
-                            <?= $value->produto_e ?> - <?= $value->qtde_compra ?>
-                            - <?= "R$ " . floatval($value->valor_un_c) ?>
+                            <?= $value->produto_e ?> - <?= "Q " . $value->qtde_compra ?>
+                            - <?= "T(R$) " . $value->qtde_compra * $valorUNCompraDisplay ?>
+
                             <a href="../../back/response/compra/d_prod_compra.php?idprod=<?= $value->id_item_compra ?>"><i
                                         class='fas fa-ban fa-lg' style='color: red;'></i></a>
                         </li>
