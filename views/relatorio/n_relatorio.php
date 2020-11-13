@@ -55,22 +55,8 @@ $s = new ConfigCRUD();
                 <div class="mt-2 roboto-condensed">
                     <form method="POST" action="">
                         <div class="form-group row">
-                            <label for="inputEmail3" class="col-sm-2 col-form-label">Produto / Material</label>
-                            <div class="col-sm-4">
-                                <select class="form-control" id="exampleFormControlSelect1" name="id_produto">
-                                    <option value=""></option>
-                                    <?php
-                                    require_once('../../back/controllers/EstoqueController.php');
-                                    $estoque = new EstoqueController();
-                                    $ver_estoque = $estoque->verEstoqueFarmacia();
-                                    foreach ($ver_estoque as $v) {
-                                        ?>
-                                        <?php echo "<option value=" . $v->id_estoque . ">$v->produto_e</option>" ?>
-                                    <?php } ?>
-                                </select>
-                            </div>
-                            <label for="inputEmail3" class="col-sm-1 col-form-label text-right">Setor</label>
-                            <div class="col-sm-4">
+                            <label for="inputEmail3" class="col-sm-2 col-form-label ">Setor</label>
+                            <div class="col-sm-9">
                                 <select class="form-control" id="exampleFormControlSelect1" name="setor">
                                     <option selected></option>
                                     <option value="todos">Todos os Setores</option>
@@ -99,50 +85,45 @@ $s = new ConfigCRUD();
                         <button type="submit" class="btn bg-secondary text-white  col-2">Gerar
                             <i class="fas fa-sticky-note"></i></button>
                     </form>
-                    <div class="container mt-2 roboto-condensed">
-                        <?php
-                        require_once('../../back/controllers/EstoqueController.php');
-                        $p = new EstoqueController();
-                        if (!empty($_POST['id_produto']) and !empty($_POST['setor']) and !empty($_POST['dataI']) and !empty($_POST['dataF'])) {
-                            $search_prod = $p->pega_nome($_POST['id_produto']);/* Pega o produto no estoque */
-                            $pega_saida = $p->pega_saida($_POST['id_produto'], $_POST['setor'], $_POST['dataI'], $_POST['dataF']);/* Pega o produto no estoque */
-                            $produto = (object)$search_prod;
-                            $saida = (object)$pega_saida;
-                            $quantidade_total = 0;
-                            foreach ($saida as $a) {
-                                $quantidade_total += $a->quantidade_s;
-                            }
-                            @$valor_total = @$quantidade_total * @$produto->valor_un;
-
-                            ?>
-                            <table class="table table-hover text-center animated zoomIn">
-                                <thead>
-                                <tr>
-                                    <th scope="col">Produto</th>
-                                    <th scope="col">Quantidade Total</th>
-                                    <th scope="col">Setor</th>
-                                    <th scope="col">Data Inicial</th>
-                                    <th scope="col">Data Final</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td><?= $produto->produto ?></td>
-                                    <td><?= $quantidade_total ?></td>
-                                    <td><?= str_replace("-", " ", $_POST['setor']) ?></td>
-                                    <td><?= date("d/m/Y", strtotime($_POST['dataI'])); ?></td>
-                                    <td><?= date("d/m/Y", strtotime($_POST['dataF'])); ?></td>
-                                </tr>
-                                </tbody>
-                            </table>
-
-                            <?php
-                        } elseif (empty($_POST['id_produto']) and !empty($_POST['setor']) and empty($_POST['dataI']) and empty($_POST['dataF'])) {
-                            // $r->relatorio1($_POST['setor'], true);
-
+                    <?php
+                    require_once('../../back/controllers/EstoqueController.php');
+                    $viewRelatorio = new EstoqueController();
+                    $relatorio = (@$_POST['setor'] == 'todos')
+                        ? $viewRelatorio->relatorioGeral(@$_POST['dataI'], @$_POST['dataF'])
+                        : $viewRelatorio->relatorio(@$_POST['setor'], @$_POST['dataI'], @$_POST['dataF']);
+                    $dados = array(
+                        'nomep' => array(),
+                        'produtos' => array(),
+                        'quantidade' => array(),
+                    );
+                    foreach ($relatorio as $v):
+                        if (array_search($v->item_s, $dados['produtos']) != false) {
+                            $chave = array_search($v->item_s, $dados['produtos']);
+                            $qtdeAntiga = $dados['quantidade'][$chave];
+                            $dados['quantidade'][$chave] = $qtdeAntiga + $v->quantidade_s;
+                        } else {
+                            array_push($dados['produtos'], $v->item_s);
+                            array_push($dados['quantidade'], $v->quantidade_s);
+                            array_push($dados['nomep'], $v->produto_e);
                         }
-                        ?>
-                    </div>
+                    endforeach;
+                    ?>
+                    <table class="table mt-5">
+                        <thead>
+                        <tr>
+                            <th scope="col">Produto</th>
+                            <th scope="col">Quantidade</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php for ($i = 0; $i < count($dados['produtos']); $i++): ?>
+                            <tr>
+                                <td><?= $dados['nomep'][$i] ?></td>
+                                <td><?= $dados['quantidade'][$i] ?></td>
+                            </tr>
+                        <?php endfor; ?>
+                        </tbody>
+                    </table>
 
                 </div>
             </div>

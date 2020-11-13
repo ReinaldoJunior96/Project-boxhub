@@ -70,6 +70,7 @@ class EstoqueController
             echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
     }
+
     public function verEstoqueTotal()
     {
         try {
@@ -80,6 +81,7 @@ class EstoqueController
             echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
     }
+
     public function verEstoqueFarmacia()
     {
         try {
@@ -90,6 +92,7 @@ class EstoqueController
             echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
     }
+
     public function verEstoqueFarmaciaSaida()
     {
         try {
@@ -160,6 +163,32 @@ class EstoqueController
         return $sql_qtde->fetchAll(PDO::FETCH_OBJ);
     }
 
+    public function relatorio($setor, $dataI, $dataF)
+    {
+        try {
+            $query_sql = $this->conn->prepare("SELECT * FROM tbl_saida
+            INNER JOIN tbl_estoque ON tbl_saida.item_s = tbl_estoque.id_estoque
+            WHERE setor_s='$setor'
+            AND data_dia_s BETWEEN '$dataI' AND '$dataF' ORDER BY item_s ASC");
+            $query_sql->execute();
+            return $query_sql->fetchAll(PDO::FETCH_OBJ);
+        } catch (PDOException $erro) {
+            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
+        }
+    }
+    public function relatorioGeral($dataI, $dataF)
+    {
+        try {
+            $query_sql = $this->conn->prepare("SELECT * FROM tbl_saida
+            INNER JOIN tbl_estoque ON tbl_saida.item_s = tbl_estoque.id_estoque
+            WHERE data_dia_s BETWEEN '$dataI' AND '$dataF' ORDER BY item_s ASC");
+            $query_sql->execute();
+            return $query_sql->fetchAll(PDO::FETCH_OBJ);
+        } catch (PDOException $erro) {
+            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
+        }
+    }
+
     public function destroyProduto($id)
     {
         try {
@@ -218,6 +247,7 @@ class EstoqueController
             echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
     }
+
     public function searchFornecedorProduto($prod)
     {
         try {
