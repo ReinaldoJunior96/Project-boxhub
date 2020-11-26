@@ -22,7 +22,7 @@
         </a>
         <a href="<?= ($_SESSION['user'] == 'compras.hvu') ? '../estoque/nv_prod_diversos.php' : '' ?>"
            class="text-menu-color-2 <?= ($_SESSION['user'] == 'compras.hvu') ? '' : 'isDisabled' ?>">
-            <li class="list-group-item border-0"><i class="fas fa-boxes"></i> Produtos Diversos</li>
+            <li class="list-group-item border-0"><i class="fas fa-boxes"></i> Almoxarifado</li>
         </a>
 
         <a href="<?= ($_SESSION['user'] == 'farma.hvu') ? '../saidasetor/s_data_setor.php' : '' ?>"
