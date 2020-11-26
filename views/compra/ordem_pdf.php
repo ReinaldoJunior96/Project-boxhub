@@ -31,7 +31,7 @@ if (empty($dados_ordem['0']->item_compra)) {
     */
 
 
-    $pdf->setDados('42', $dados_ordem['0']->nome_f, $dados_ordem['0']->data_c);
+    $pdf->setDados($_GET['id_ordem'], $dados_ordem['0']->nome_f, $dados_ordem['0']->data_c);
     $pdf->SetFont('arial', '', 10);
 
     $pdf->Cell(360, 20, utf8_decode("Produto / Material"), 1, 0, "C");

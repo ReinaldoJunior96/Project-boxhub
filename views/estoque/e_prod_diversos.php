@@ -43,6 +43,21 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                         </div>
                     </div>
                 </nav>
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="e_estoque.php?idp=<?= $_GET['idp'] ?>">Produto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="v_lote_validade.php?idp=<?= $_GET['idp'] ?>">Lote & Validade</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           href="v_prod_fornecedores.php?idp=<?= $_GET['idp'] ?>">Fornecedores</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="v_prod_historico.php?idp=<?= $_GET['idp'] ?>">Histórico</a>
+                    </li>
+                </ul>
                 <div class="mt-5">
                     <?php
                     require_once '../../back/controllers/EstoqueController.php';
