@@ -25,8 +25,8 @@
             <li class="list-group-item border-0"><i class="fas fa-boxes"></i> Almoxarifado</li>
         </a>
 
-        <a href="<?= ($_SESSION['user'] == 'farma.hvu') ? '../saidasetor/s_data_setor.php' : '' ?>"
-           class="<?= ($_SESSION['user'] == 'farma.hvu') ? '' : 'isDisabled' ?> text-menu-color-2">
+        <a href="<?= ($_SESSION['user'] == 'farma.hvu' or $_SESSION['user'] == 'compras.hvu') ? '../saidasetor/s_data_setor.php' : '' ?>"
+           class="<?= ($_SESSION['user'] == 'farma.hvu' or $_SESSION['user'] == 'compras.hvu') ? '' : 'isDisabled' ?> text-menu-color-2">
             <li class="list-group-item border-0">
                 <i class="fas fa-external-link-alt"></i> Saída
             </li>
