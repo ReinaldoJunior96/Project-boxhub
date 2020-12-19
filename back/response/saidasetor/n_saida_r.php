@@ -1,7 +1,7 @@
 <?php
-include_once '../../controllers/bhCRUD.php';
 include_once '../../controllers/configCRUD.php';
-$new_saida = new BhCRUD();
+include_once  ('../../controllers/EstoqueController.php');
+$new_saida = new EstoqueController();
 $date = new DateTime();
 date_default_timezone_set('America/Sao_Paulo');
 //$s = new ConfigCRUD();
@@ -21,7 +21,7 @@ for ($i = 0; $i < count($saida['produto']); $i++):
             'produto' => $saida['produto'][$i],
             'quantidade' => $saida['quantidade'][$i],
             'setor' => $_POST['setor_s'],
-            'data' => $_POST['data_s']
+            'data' => $_POST['data_s'].date('H:i:s')
         );
         $new_saida->registrar_saida($vrrSaida);
 

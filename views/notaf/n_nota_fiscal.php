@@ -142,8 +142,8 @@ $s = new ConfigCRUD();
                     </thead>
                     <tbody class="text-black-50">
                     <?php
-                    require_once('../../back/controllers/bhCRUD.php');
-                    $view_nf = new BhCRUD();
+                    require_once ('../../back/controllers/NotaFController.php');
+                    $view_nf = new NotaFController();
                     $allnf = $view_nf->index();
                     foreach ($allnf as $v) {
                         $data_emisao = date_create($v->data_emissao);

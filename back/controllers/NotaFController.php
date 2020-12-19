@@ -1,5 +1,6 @@
 <?php
 require_once('conexao.php');
+require_once ('EstoqueController.php');
 
 class NotaFController
 {
@@ -38,18 +39,18 @@ class NotaFController
     public function delete_NF($id)
     {
         try {
-            $itensNF = $this->conn->prepare("SELECT * FROM tbl_itens_nf WHERE id_nf='$id'");
+            $itensNF = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_itens_nf WHERE id_nf='$id'");
             $itensNF->execute();
             $itens = $itensNF->fetchAll(PDO::FETCH_OBJ);
             /* Laço para diminuir a quantidade em estoque*/
             foreach ($itens as $v) {
                 self::deleteProdNF($v->id_itens, $v->item_nf, $v->qtde_nf);
             }
-            $deleteOrdem = $this->conn->prepare("DELETE FROM  tbl_ordem_compra WHERE id_fk_nf='$id'");
+            $deleteOrdem = $this->conn->prepare(/** @lang text */ "DELETE FROM  tbl_ordem_compra WHERE id_fk_nf='$id'");
             $deleteOrdem->execute();
-            $delete_prod = $this->conn->prepare("DELETE FROM  tbl_itens_nf WHERE id_nf='$id'");
+            $delete_prod = $this->conn->prepare(/** @lang text */ "DELETE FROM  tbl_itens_nf WHERE id_nf='$id'");
             $delete_prod->execute();
-            $delete_nf = $this->conn->prepare("DELETE FROM  tbl_nf WHERE id_nf='$id'");
+            $delete_nf = $this->conn->prepare(/** @lang text */ "DELETE FROM  tbl_nf WHERE id_nf='$id'");
             $delete_nf->execute();
         } catch (PDOException $erro) {
             echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
@@ -59,7 +60,7 @@ class NotaFController
     public function verNF($id)
     {
         try {
-            $find_nf = $this->conn->prepare("SELECT * FROM tbl_nf WHERE id_nf='$id'");
+            $find_nf = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_nf WHERE id_nf='$id'");
             $find_nf->execute();
             return $find_nf->fetchAll(PDO::FETCH_OBJ);
         } catch (PDOException $erro) {
@@ -156,10 +157,11 @@ class NotaFController
             $sql->bindValue(':id_nf', $produto_nf['nf']);
             $sql->execute();
             $produto = $produto_nf['produto'];
-            $qtde_antiga = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_estoque WHERE id_estoque='$produto'");
-            $qtde_antiga->execute();
-            $query_result = $qtde_antiga->fetchAll(PDO::FETCH_OBJ);
+            $qtde_antiga_sql = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_estoque WHERE id_estoque='$produto'");
+            $qtde_antiga_sql->execute();
+            $query_result = $qtde_antiga_sql->fetchAll(PDO::FETCH_OBJ);
             $qtde_nova = 0;
+            $qtde_antiga = 0;
             foreach ($query_result as $v) {
                 $qtde_antiga = $v->quantidade_e;
                 $qtde_nova = $qtde_antiga + $produto_nf['quantidade'];
@@ -169,8 +171,25 @@ class NotaFController
             $fazer_alteracao = $this->conn->prepare($alterar_estoque);
             $fazer_alteracao->bindValue(':quantidade', $qtde_nova);
             $fazer_alteracao->execute();
+
             if ($fazer_alteracao) {
                 $this->conn->commit();
+                /* transacao */
+                date_default_timezone_set('America/Sao_Paulo');
+                $hora = new DateTime();
+                $transacao = array(
+                    'produto' => $produto_nf['produto'],
+                    'data' => date("Y-m-d H:i:s"),
+                    'tipo' => 'Entrada',
+                    'estoqueini' => $qtde_antiga,
+                    'quantidade' => $produto_nf['quantidade'],
+                    'estoquefi' => $qtde_nova,
+                    'cancelada' => ' ',
+                );
+
+                $registrarTransaocao = new EstoqueController();
+                $registrarTransaocao->transacaoRegistro($transacao);
+
             }
         } catch (PDOException $erro) {
             $this->conn->rollBack();
@@ -182,20 +201,23 @@ class NotaFController
     {
         try {
             $this->conn->beginTransaction();
-            $qtde_antiga = $this->conn->prepare("SELECT * FROM tbl_estoque WHERE id_estoque='$item_estoque'");
-            $qtde_antiga->execute();
-            $query_result = $qtde_antiga->fetchAll(PDO::FETCH_OBJ);
+            $qtde_antigasql = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_estoque WHERE id_estoque='$item_estoque'");
+            $qtde_antigasql->execute();
+            $query_result = $qtde_antigasql->fetchAll(PDO::FETCH_OBJ);
+            $qtde_nova = 0;
+            $qtde_antiga = 0;
             foreach ($query_result as $v) {
                 $qtde_antiga = $v->quantidade_e;
                 $qtde_nova = $qtde_antiga - $qtde_nf;
             }
-            $query = "UPDATE tbl_estoque SET 
+            $query = /** @lang text */
+                "UPDATE tbl_estoque SET 
 			quantidade_e=:quantidade_e
 			WHERE id_estoque='$item_estoque'";
             $editar_nf = $this->conn->prepare($query);
             $editar_nf->bindValue(':quantidade_e', $qtde_nova);
             $editar_nf->execute();
-            $delete_prod = $this->conn->prepare("DELETE FROM  tbl_itens_nf WHERE id_itens='$id'");
+            $delete_prod = $this->conn->prepare(/** @lang text */ "DELETE FROM  tbl_itens_nf WHERE id_itens='$id'");
             $delete_prod->execute();
             if ($delete_prod) {
                 $this->conn->commit();
@@ -233,8 +255,7 @@ class NotaFController
             INNER JOIN tbl_estoque ON tbl_items_compra.item_compra = tbl_estoque.id_estoque
             WHERE tbl_ordem_compra.id_fk_nf = '$nf'");
             $view_nf->execute();
-            $query_result = $view_nf->fetchAll(PDO::FETCH_OBJ);
-            return $query_result;
+            return $view_nf->fetchAll(PDO::FETCH_OBJ);
         } catch (PDOException $erro) {
             echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
@@ -346,6 +367,19 @@ class NotaFController
              WHERE tbl_nf_lotes.id_nf = '$idnf'");
             $viewlotes->execute();
             return $viewlotes->fetchAll(PDO::FETCH_OBJ);
+        } catch (PDOException $erro) {
+            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
+        }
+    }
+
+    public function index()
+    {
+        try {
+            $view_nf = $this->conn->prepare(/** @lang text */"SELECT * FROM tbl_nf
+                                                    INNER JOIN tbl_ordem_compra
+                                                ON tbl_nf.id_nf = tbl_ordem_compra.id_fk_nf");
+            $view_nf->execute();
+            return $view_nf->fetchAll(PDO::FETCH_OBJ);
         } catch (PDOException $erro) {
             echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }

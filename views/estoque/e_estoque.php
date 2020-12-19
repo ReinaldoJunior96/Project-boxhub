@@ -57,6 +57,9 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                     <li class="nav-item">
                         <a class="nav-link" href="v_prod_historico.php?idp=<?= $_GET['idp'] ?>">Histórico</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="v_transacoes.php?idp=<?= $_GET['idp'] ?>">Transações</a>
+                    </li>
                 </ul>
                 <div class="mt-5">
 

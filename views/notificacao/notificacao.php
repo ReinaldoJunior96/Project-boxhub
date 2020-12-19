@@ -4,9 +4,9 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
     header("location: ../user/login.php");
 }
 require_once('../../back/controllers/configCRUD.php');
-require_once('../../back/controllers/bhCRUD.php');
+require_once('../../back/controllers/EstoqueController.php');
 $s = new ConfigCRUD();
-$f = new BhCRUD();
+$f = new EstoqueController();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

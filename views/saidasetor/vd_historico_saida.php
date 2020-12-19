@@ -104,9 +104,9 @@ switch ($_SESSION['user']) {
                             </thead>
                             <tbody>
                             <?php
-                            require_once('../../back/controllers/bhCRUD.php');
-                            $view_historico = new BhCRUD();
-                            // $historico = $view_historico->historico_saida();
+                            require_once('../../back/controllers/EstoqueController.php');
+                            $view_historico = new EstoqueController();
+                            $historico = 0;
                             if (empty($_POST['filtro'])) {
                                 $historico = $view_historico->historico_saida();
                             } elseif (!empty($_POST['filtro'])) {
@@ -118,7 +118,7 @@ switch ($_SESSION['user']) {
                                     <td><?= $v->produto_e ?></td>
                                     <td><?= $v->quantidade_s ?></td>
                                     <td><?= str_replace("-", " ", $v->setor_s) ?></td>
-                                    <td><?= date("d/m/Y H:i:s", strtotime($v->data_s)); ?></td>
+                                    <td><?= date("d/m/Y H:i:s", strtotime($v->data_dia_s)); ?></td>
                                     <?php echo "<td><a href=../../back/response/saidasetor/d_saida_r.php?idsaida=" . $v->id_saida . "&prod=" . $v->item_s . "&qtde=" . $v->quantidade_s . "><i class='fas fa-ban fa-lg' style='color: red;'></i></a></td>" ?>
                                 </tr>
                             <?php } ?>

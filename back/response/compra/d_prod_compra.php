@@ -1,6 +1,6 @@
 <?php
-require_once('../../controllers/bhCRUD.php');
-$deleteProd= new BhCRUD();
+require_once('../../controllers/CompraController.php');
+$deleteProd= new CompraController();
 $deleteProd->deleteProdOrdem($_GET['idprod']);
 echo "<script language=\"javascript\">window.history.back();</script>";
 

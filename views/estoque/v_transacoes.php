@@ -22,7 +22,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
 <div class="container-fluid">
     <div class="row">
         <?php include_once "../componentes/menu.php" ?>
-        <div class="col-9">
+        <div class="col-10">
             <div class="">
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <h5 class="text-primary roboto-condensed"><img src="../../images/box.png" alt="" class="img-fluid"
@@ -39,86 +39,66 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                         </ul>
                         <div class="form-inline my-2 my-lg-0">
                             <h6 class="text-black-50 roboto-condensed"><i
-                                    class="fas fa-user text-primary"></i> <?= $_SESSION['user'] ?></h6>
+                                        class="fas fa-user text-primary"></i> <?= $_SESSION['user'] ?></h6>
                         </div>
                     </div>
                 </nav>
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
-                        <a class="nav-link active" href="e_estoque.php?idp=<?= $_GET['idp'] ?>">Produto</a>
+                        <a class="nav-link" href="e_estoque.php?idp=<?= $_GET['idp'] ?>">Produto</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="v_lote_validade.php?idp=<?= $_GET['idp'] ?>">Lote & Validade</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"
-                           href="v_prod_fornecedores.php?idp=<?= $_GET['idp'] ?>">Fornecedores</a>
+                        <a class="nav-link" href="v_prod_fornecedores.php?idp=<?= $_GET['idp'] ?>">Fornecedores</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="v_prod_historico.php?idp=<?= $_GET['idp'] ?>">Histórico</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="v_transacoes.php?idp=<?= $_GET['idp'] ?>">Transações</a>
+                        <a class="nav-link active" href="v_transacoes.php?idp=<?= $_GET['idp'] ?>">Transações</a>
                     </li>
                 </ul>
-                <div class="mt-5">
-                    <?php
-                    require_once '../../back/controllers/EstoqueController.php';
-                    $p = new EstoqueController();
-                    $produtos = $p->estoqueID($_GET['idp']);
-                    foreach ($produtos as $v) {
-                        ?>
-                        <form method="POST" action="../../back/response/estoque/estoque_r.php">
-                            <input type="hidden" name="edit" value="1">
-                            <input type="hidden" name="id" value="<?= $_GET['idp'] ?>">
-                            <div class="form-group row">
-                                <label for="inputEmail3" class="col-sm-2 col-form-label">Material</label>
-                                <div class="col-sm-10">
-                                    <input type='text' class='form-control' value="<?= $v->produto_e ?>"
-                                           name='produto_e' placeholder=''>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="inputEmail3" class="col-sm-2 col-form-label">Valor Unitário</label>
-                                <div class="col-sm-2">
-                                    <?php if ($_SESSION['user'] == 'compras.hvu') { ?>
-                                        <input type='text' class='form-control' value="<?= $v->valor_un_e ?>"
-                                               name='valor_un' placeholder='R$'>
-                                        <small>Utilize ponto no lugar da vírgula</small>
-                                    <?php } else { ?>
-                                        <input type='text' class='form-control ' value="<?= $v->valor_un_e ?>" name='valor_un'
-                                               placeholder=''
-                                               disabled>
-                                    <?php } ?>
-                                </div>
-                                <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Quantidade</label>
-                                <div class="col-sm-2">
-                                    <input type="number" class="form-control" value="<?= $v->quantidade_e ?>"
-                                           name="quantidade_e" id="inputEmail4"
-                                           placeholder="">
-                                </div>
+                <?php
+                if ($_SESSION['user'] == 'compras.hvu') {
+                require_once '../../back/controllers/EstoqueController.php';
+                $p = new EstoqueController();
+                $hist = $p->searchTransacoes($_GET['idp']);
+                ?>
+                <div class=" mt-3">
+                    <div class="col-12">
+                        <table class="table table-sm text-center">
+                            <thead>
+                            <tr>
+                                <th scope="col">Data</th>
+                                <th scope="col">Tipo</th>
+                                <th scope="col">Estoque Inicial</th>
+                                <th scope="col">Quantidade</th>
+                                <th scope="col">Estoque Final</th>
+                                <th scope="col">Saída Cancelada</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php
+                            foreach ($hist as $historico) {
+                                $data = date_create($historico->data_t);
+                                $dataCancelamento = date_create($historico->cancelada_t);
 
-                                <label for="inputEmail3" class="col-sm-2 col-form-label text-right">Estoque
-                                    Mínimo</label>
-                                <div class="col-sm-2">
-                                    <input type="number" class="form-control" value="<?= $v->estoque_minimo_e ?>"
-                                           name="estoque_minimo_e" id="inputEmail4"
-                                           placeholder="">
-                                </div>
-                            </div>
-                            <hr>
-                            <button type="submit" class="btn bg-primary col-sm-2 roboto-condensed text-white">Alterar <i
-                                    class="far fa-edit ml-2"></i>
-                            </button>
-                            <a href="../../back/response/estoque/d_produto.php?idp=<?= $_GET['idp'] ?>"
-                            <button class="btn btn-danger float-right text-white">Excluir
-                                <i class="fas fa-trash-alt"></i>
-                            </button>
-                            </a>
-                            <hr>
-                        </form>
-
-                    <?php } ?>
+                                ?>
+                                <tr>
+                                    <td scope="row"><?= date_format($data, 'd/m/Y H:i:s') ?></td>
+                                    <td><?= $historico->tipo_t ?></td>
+                                    <td><?= $historico->estoqueini_t ?></td>
+                                    <td><?= $historico->quantidade_t ?></td>
+                                    <td><?= $historico->estoquefi_t ?></td>
+                                    <td><?= $historico->cancelada_t ?></td>
+                                </tr>
+                            <?php }
+                            } ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

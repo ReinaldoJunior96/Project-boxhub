@@ -1,6 +1,6 @@
 <?php
-include '../../controllers/bhCRUD.php';
-$attLogin = new BhCRUD();
+include '../../controllers/UsuarioController.php';
+$attLogin = new UsuarioController();
 if($attLogin->login($_POST['user'],$_POST['password']) == 1){
     session_cache_expire(1440);
     session_start();

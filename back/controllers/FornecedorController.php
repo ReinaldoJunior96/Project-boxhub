@@ -9,9 +9,10 @@ class FornecedorController
     {
         $this->conn = PDOconectar::conectar();
     }
-        public function novoFornecedor($fornecedor)
+
+    public function novoFornecedor($fornecedor)
     {
-        try{
+        try {
             $this->conn->beginTransaction();
             $query = /** @lang text */
                 "INSERT INTO tbl_fornecedores(nome_fornecedor,contato_fornecedor,email_fornecedor,endereco_f,cnpj_f) 
@@ -31,6 +32,7 @@ class FornecedorController
             echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
     }
+
     public function editFornecedor($fornecedor, $id)
     {
         try {
@@ -58,6 +60,7 @@ class FornecedorController
             echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
     }
+
     public function verFornecedores()
     {
         try {
@@ -79,16 +82,7 @@ class FornecedorController
             echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
     }
-    public function verFornecedorString($nome)
-    {
-        try {
-            $viewFornecedor = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_fornecedores WHERE nome_f='$nome'");
-            $viewFornecedor->execute();
-            return $viewFornecedor->fetchAll(PDO::FETCH_OBJ);
-        } catch (PDOException $erro) {
-            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
-        }
-    }
+
     public function destroyFornecedor($id)
     {
         try {
