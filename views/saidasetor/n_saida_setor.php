@@ -74,26 +74,26 @@ switch ($_SESSION['user']) {
                         <form method="POST" action="../../back/response/saidasetor/n_saida_r.php">
                             <input type="hidden" name="data_s" value="<?= $_GET['data_s'] ?>">
                             <input type="hidden" name="setor_s" value="<?= $_GET['nomesetor'] ?>">
-
+                            <input type="hidden" name="user" value="<?= $_SESSION['user'] ?>">
                             <?php foreach ($all_estoque as $value) { ?>
                                 <input type="hidden" name="produto_s[]" value="<?= $value->id_estoque ?>">
                                 <div class="form-group row">
                                     <label for="inputEmail3"
                                            class="col-sm-5 col-form-label text-right"><?= $value->produto_e ?></label>
-
                                     <label for="inputEmail3"
                                            class="col-sm-2 col-form-label text-right">Quantidade</label>
                                     <div class="col-sm-2">
                                         <input type="number" name="saidaqte_p[]">
                                     </div>
                                     <label for="inputEmail3"
-                                           class="col-sm-2 col-form-label text-right">Em Estoque: <?=$value->quantidade_e?></label>
+                                           class="col-sm-2 col-form-label text-right">Em
+                                        Estoque: <?= $value->quantidade_e ?></label>
                                 </div>
                                 <hr>
                             <?php } ?>
                             <button type="submit" class="btn bg-primary col-sm-2 roboto-condensed text-white">Registrar
                                 Saída
-                                <i   class="far fa-edit ml-2"></i>
+                                <i class="far fa-edit ml-2"></i>
                         </form>
                     </div>
                 </div>

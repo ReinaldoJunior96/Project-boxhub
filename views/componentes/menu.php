@@ -6,13 +6,13 @@
     </div>
     <ul class="list-group list-group-flush">
         <a href="<?= ($_SESSION['user'] == 'compras.hvu') ? '../notaf/n_nota_fiscal.php' : '' ?>"
-           class="<?= ($_SESSION['user'] != 'compras.hvu') ? 'isDisabled' : '' ?> text-menu-color-2">
+           class="<?= ($_SESSION['user'] == 'compras.hvu') ? '' : 'isDisabled' ?> text-menu-color-2">
             <li class="list-group-item border-0">
                 <i class="fas fa-cart-arrow-down"></i> Entrada
             </li>
         </a>
         <a href="<?= ($_SESSION['user'] == 'compras.hvu') ? '../compra/n_ordemcompra.php' : '' ?>"
-           class="<?= ($_SESSION['user'] != 'compras.hvu') ? 'isDisabled' : '' ?> text-menu-color-2">
+           class="<?= ($_SESSION['user'] == 'compras.hvu') ? '' : 'isDisabled' ?> text-menu-color-2">
             <li class="list-group-item border-0">
                 <i class=" fas fa-shopping-bag"></i> Compras
             </li>
@@ -25,20 +25,18 @@
             <li class="list-group-item border-0"><i class="fas fa-boxes"></i> Almoxarifado</li>
         </a>
 
-        <a href="<?= ($_SESSION['user'] == 'farma.hvu' or $_SESSION['user'] == 'compras.hvu') ? '../saidasetor/s_data_setor.php' : '' ?>"
-           class="<?= ($_SESSION['user'] == 'farma.hvu' or $_SESSION['user'] == 'compras.hvu') ? '' : 'isDisabled' ?> text-menu-color-2">
+        <a href="../saidasetor/s_data_setor.php" class="text-menu-color-2">
             <li class="list-group-item border-0">
                 <i class="fas fa-external-link-alt"></i> Saída
             </li>
         </a>
 
-        <a href="<?= ($_SESSION['user'] == 'farma.hvu' or $_SESSION['user'] == 'compras.hvu') ? '../relatorio/n_relatorio.php' : '' ?>"
-           class="<?= ($_SESSION['user'] == 'farma.hvu' or $_SESSION['user'] == 'compras.hvu') ? '' : 'isDisabled' ?> text-menu-color-2">
-            <li class="list-group-item border-0 <?= ($_SESSION['user'] == 'farma.hvu' or $_SESSION['user'] == 'compras.hvu') ? '' : 'isDisabled' ?>">
+        <a href="../relatorio/n_relatorio.php" class="text-menu-color-2">
+            <li class="list-group-item border-0 ">
                 <i class=" fas fa-file-pdf"></i> Relatórios
             </li>
         </a>
-        <a href="../notificacao/notificacao.php" class="text-menu-color-2">
+        <!--<a href="../notificacao/notificacao.php" class="text-menu-color-2">
             <li class="list-group-item border-0">
                 <i class=" fas fa-bell"></i>
                 Notificações
@@ -46,15 +44,14 @@
             <i class="fas fa-exclamation-triangle text-primary"></i>
         </span>
             </li>
-        </a>
-        <a href="<?= ($_SESSION['user'] == 'farma.hvu') ? '../setores/n_setores.php' : '' ?>"
-           class="<?= ($_SESSION['user'] != 'farma.hvu') ? 'isDisabled' : '' ?> text-menu-color-2">
-            <li class="list-group-item border-0 <?= ($_SESSION['user'] != 'farma.hvu') ? 'isDisabled' : '' ?>">
+        </a>-->
+        <a href="../setores/n_setores.php" class="text-menu-color-2">
+            <li class="list-group-item border-0">
                 <i class="fas fa-project-diagram"></i> Setores
             </li>
         </a>
         <a href="<?= ($_SESSION['user'] == 'compras.hvu') ? '../fornecedores/fornecedores.php' : '' ?>"
-           class="<?= ($_SESSION['user'] != 'compras.hvu') ? 'isDisabled' : '' ?> text-menu-color-2">
+           class="<?= ($_SESSION['user'] == 'compras.hvu') ? '' : 'isDisabled' ?> text-menu-color-2">
             <li class="list-group-item border-0">
                 <i class="fas fa-users"></i> Fornecedores
             </li>

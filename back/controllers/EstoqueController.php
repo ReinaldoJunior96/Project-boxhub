@@ -83,6 +83,7 @@ class EstoqueController
                         'quantidade' => ($produto['quantidade'] >= $qtde_antiga) ? $produto['quantidade'] - $qtde_antiga : $qtde_antiga - $produto['quantidade'],
                         'estoquefi' => $produto['quantidade'],
                         'cancelada' => ' ',
+                        'user' => $produto['user']
                     );
                     $registrarTransaocao = new EstoqueController();
                     $registrarTransaocao->transacaoRegistro($transacao);
@@ -279,7 +280,7 @@ class EstoqueController
             $tranSQL->bindValue(':quantidade_t', $dados['quantidade']);
             $tranSQL->bindValue(':estoquefi_t', $dados['estoquefi']);
             $tranSQL->bindValue(':cancelada_t', $dados['cancelada']);
-            $tranSQL->bindValue(':realizadapor_t', NULL);
+            $tranSQL->bindValue(':realizadapor_t', $dados['user']);
             $tranSQL->execute();
             if ($tranSQL) {
                 $this->conn->commit();
@@ -315,7 +316,7 @@ class EstoqueController
             $sql->bindValue(':quantidade_s', $saida['quantidade']);
             $sql->bindValue(':setor_s', $saida['setor']);
             $sql->bindValue(':data_s', $saida['data']);
-            $sql->bindValue(':data_dia_s', date("Y-m-d H:i:s"));
+            $sql->bindValue(':data_dia_s', $saida['data']);
             $sql->execute();
             $produto = $saida['produto'];
             $qtde_antiga = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_estoque WHERE id_estoque='$produto'");
@@ -348,9 +349,11 @@ class EstoqueController
                         'quantidade' => $saida['quantidade'],
                         'estoquefi' => $qtde_nova,
                         'cancelada' => ' ',
+                        'user' => $saida['user']
                     );
                     $registrarTransaocao = new EstoqueController();
                     $registrarTransaocao->transacaoRegistro($transacao);
+                    echo "<script language=\"javascript\">alert(\"Saída Registrada\")</script>";
                 }
             }
         } catch (PDOException $erro) {
@@ -364,6 +367,20 @@ class EstoqueController
         try {
             $view_nf = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_saida
 				INNER JOIN tbl_estoque ON tbl_saida.item_s = tbl_estoque.id_estoque 
+				ORDER BY tbl_saida.id_saida DESC LIMIT 0,5000");
+            $view_nf->execute();
+            return $view_nf->fetchAll(PDO::FETCH_OBJ);
+        } catch (PDOException $erro) {
+            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
+        }
+    }
+
+    public function filtro_historico($setor)
+    {
+        try {
+            $view_nf = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_saida
+				INNER JOIN tbl_estoque ON tbl_saida.item_s = tbl_estoque.id_estoque 
+				WHERE setor_s = '$setor'
 				ORDER BY tbl_saida.id_saida DESC LIMIT 0,500");
             $view_nf->execute();
             return $view_nf->fetchAll(PDO::FETCH_OBJ);
@@ -372,7 +389,7 @@ class EstoqueController
         }
     }
 
-    public function cancelarSaida($id, $prod, $qtde)
+    public function cancelarSaida($id, $prod, $qtde, $user)
     {
         try {
             $ver_prod = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_estoque WHERE id_estoque=$prod");
@@ -400,6 +417,7 @@ class EstoqueController
                 'quantidade' => $qtde,
                 'estoquefi' => $qtdeA + $qtde,
                 'cancelada' => 'Sim',
+                'user' => $user
             );
             $registrarTransaocao = new EstoqueController();
             $registrarTransaocao->transacaoRegistro($transacao);

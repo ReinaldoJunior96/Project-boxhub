@@ -185,6 +185,7 @@ class NotaFController
                     'quantidade' => $produto_nf['quantidade'],
                     'estoquefi' => $qtde_nova,
                     'cancelada' => ' ',
+                    'user' => 'compras.hvu'
                 );
 
                 $registrarTransaocao = new EstoqueController();

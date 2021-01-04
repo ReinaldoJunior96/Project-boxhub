@@ -61,7 +61,6 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                     </li>
                 </ul>
                 <?php
-                if ($_SESSION['user'] == 'compras.hvu') {
                 require_once '../../back/controllers/EstoqueController.php';
                 $p = new EstoqueController();
                 $hist = $p->searchTransacoes($_GET['idp']);
@@ -77,6 +76,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                                 <th scope="col">Quantidade</th>
                                 <th scope="col">Estoque Final</th>
                                 <th scope="col">Saída Cancelada</th>
+                                <th scope="col">Realizada Por</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -84,7 +84,6 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                             foreach ($hist as $historico) {
                                 $data = date_create($historico->data_t);
                                 $dataCancelamento = date_create($historico->cancelada_t);
-
                                 ?>
                                 <tr>
                                     <td scope="row"><?= date_format($data, 'd/m/Y H:i:s') ?></td>
@@ -93,9 +92,9 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                                     <td><?= $historico->quantidade_t ?></td>
                                     <td><?= $historico->estoquefi_t ?></td>
                                     <td><?= $historico->cancelada_t ?></td>
+                                    <td><?= $historico->realizadapor_t ?></td>
                                 </tr>
-                            <?php }
-                            } ?>
+                            <?php }?>
                             </tbody>
                         </table>
                     </div>

@@ -28,7 +28,7 @@ switch ($_SESSION['user']) {
           integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <!-- Meu CSS -->
     <title class="roboto-condensed">Firebox</title>
-    <link rel="icon" type="imagem/png" href="images/fire.png" />
+    <link rel="icon" type="imagem/png" href="images/fire.png"/>
     <!-- <link rel="icon" class="rounded" href="images/icon-box.png" type="image/x-icon" /> -->
     <style>
         #tabela {
@@ -47,7 +47,8 @@ switch ($_SESSION['user']) {
                     <!-- <a class="navbar-brand text-white roboto-condensed" href="#">
                         <i class="fas fa-box-open text-primary"></i>
                     </a> -->
-                    <h5 class="text-primary roboto-condensed"><img src="../../images/history.png" class="img-fluid" width="40">
+                    <h5 class="text-primary roboto-condensed"><img src="../../images/history.png" class="img-fluid"
+                                                                   width="40">
                         Histórico</h5>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado"
@@ -118,8 +119,8 @@ switch ($_SESSION['user']) {
                                     <td><?= $v->produto_e ?></td>
                                     <td><?= $v->quantidade_s ?></td>
                                     <td><?= str_replace("-", " ", $v->setor_s) ?></td>
-                                    <td><?= date("d/m/Y H:i:s", strtotime($v->data_dia_s)); ?></td>
-                                    <?php echo "<td><a href=../../back/response/saidasetor/d_saida_r.php?idsaida=" . $v->id_saida . "&prod=" . $v->item_s . "&qtde=" . $v->quantidade_s . "><i class='fas fa-ban fa-lg' style='color: red;'></i></a></td>" ?>
+                                    <td><?= ($v->data_s == '0000-00-00 00:00:00') ? date("d/m/Y H:i:s", strtotime($v->data_dia_s)) : date("d/m/Y H:i:s", strtotime($v->data_s)) ?></td>
+                                    <?php echo "<td><a href=../../back/response/saidasetor/d_saida_r.php?idsaida=" . $v->id_saida . "&prod=" . $v->item_s . "&qtde=" . $v->quantidade_s . "&user=" . $_SESSION['user'] . "><i class='fas fa-ban fa-lg' style='color: red;'></i></a></td>" ?>
                                 </tr>
                             <?php } ?>
                             </tbody>
@@ -169,7 +170,7 @@ switch ($_SESSION['user']) {
     });
 </script>
 <script type='text/javascript'>
-    (function() {
+    (function () {
         if (window.localStorage) {
             if (!localStorage.getItem('firstLoad')) {
                 localStorage['firstLoad'] = true;

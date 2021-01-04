@@ -71,6 +71,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                         ?>
                         <form method="POST" action="../../back/response/estoque/estoque_r.php">
                             <input type="hidden" name="edit" value="1">
+                            <input type="hidden" name="user" value="<?=$_SESSION['user']?>">
                             <input type="hidden" name="id" value="<?= $_GET['idp'] ?>">
                             <div class="form-group row">
                                 <label for="inputEmail3" class="col-sm-2 col-form-label">Principio Ativo</label>

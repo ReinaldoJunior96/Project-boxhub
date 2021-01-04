@@ -13,6 +13,7 @@ $produto = array(
     'apresentacao' => @$_POST['apresentacao'],
     'forma_farmaceutica' => @$_POST['forma_farmaceutica'],
     'tipo' => (@$_POST['tipo'] == NULL) ? '0' : @$_POST['tipo'],
+    'user' => $_POST['user']
 );
 
 if (@$_POST['new'] == 1) {
