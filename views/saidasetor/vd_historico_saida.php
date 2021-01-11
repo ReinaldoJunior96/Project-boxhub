@@ -109,9 +109,9 @@ switch ($_SESSION['user']) {
                             $view_historico = new EstoqueController();
                             $historico = 0;
                             if (empty($_POST['filtro'])) {
-                                $historico = $view_historico->historico_saida();
+                                $historico = $view_historico->historicoSaida();
                             } elseif (!empty($_POST['filtro'])) {
-                                $historico = $view_historico->filtro_historico($_POST['filtro']);
+                                $historico = $view_historico->filtroHistorico($_POST['filtro']);
                             }
                             foreach ($historico as $v) {
                                 ?>

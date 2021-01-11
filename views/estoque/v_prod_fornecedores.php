@@ -61,44 +61,47 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                         <a class="nav-link" href="v_transacoes.php?idp=<?= $_GET['idp'] ?>">Transações</a>
                     </li>
                 </ul>
-                <form class="form-inline mt-5" method="POST" action="../../back/response/estoque/n_prod_fornecedor.php">
-                    <input type="hidden" value="<?=$_GET['idp']?>" name="produto">
-                    <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Fornecedor</label>
-                    <select class="custom-select my-1 mr-sm-2 col-5" name="fornecedor" id="inlineFormCustomSelectPref">
-                        <option selected></option>
-                        <?php
-                        require_once('../../back/controllers/FornecedorController.php');
-                        $f = new FornecedorController();
-                        $fornecedores = $f->verFornecedores();
-                        foreach ($fornecedores as $listf) {
-                            ?>
-                            <option value="<?= $listf->id_fornecedor ?>"><?= $listf->nome_fornecedor ?></option>
-                        <?php } ?>
-                    </select>
-                    <button type="submit" class="btn btn-primary my-1 text-white shadow">Cadastrar</button>
-                </form>
+                <?php if ($_SESSION['user'] == 'compras.hvu'): ?>
+                    <form class="form-inline mt-5" method="POST"
+                          action="../../back/response/estoque/n_prod_fornecedor.php">
+                        <input type="hidden" value="<?= $_GET['idp'] ?>" name="produto">
+                        <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Fornecedor</label>
+                        <select class="custom-select my-1 mr-sm-2 col-5" name="fornecedor"
+                                id="inlineFormCustomSelectPref">
+                            <option selected></option>
+                            <?php
+                            require_once('../../back/controllers/FornecedorController.php');
+                            $f = new FornecedorController();
+                            $fornecedores = $f->verFornecedores();
+                            foreach ($fornecedores as $listf) {
+                                ?>
+                                <option value="<?= $listf->id_fornecedor ?>"><?= $listf->nome_fornecedor ?></option>
+                            <?php } ?>
+                        </select>
+                        <button type="submit" class="btn btn-primary my-1 text-white shadow">Cadastrar</button>
+                    </form>
 
-                <div class="mt-5">
-                    <h4 class="roboto-condensed text-secondary"><i class="fas fa-calendar-week"></i> Fornecedores</h4>
-                    <ul class="list-group">
-                        <?php
-                        require '../../back/controllers/EstoqueController.php';
-                        $forProdutor = new EstoqueController();
-                        $for = $forProdutor->searchFornecedorProduto($_GET['idp']);
+                    <div class="mt-5">
+                        <h4 class="roboto-condensed text-secondary"><i class="fas fa-calendar-week"></i> Fornecedores
+                        </h4>
+                        <ul class="list-group">
+                            <?php
+                            require '../../back/controllers/EstoqueController.php';
+                            $forProdutor = new EstoqueController();
+                            $for = $forProdutor->searchFornecedorProduto($_GET['idp']);
 
-                        foreach ($for as $value) {
-                            ?>
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <?=$value->nome_fornecedor?>
-                                <a href="../../back/response/estoque/d_fornecedor_prod.php?idpf=<?=$value->idfp?>">
-                                    <span class="badge badge-pill far fa-window-close text-danger float-right"> </span>
-                                </a>
-                            </li>
-                        <?php } ?>
-
-                    </ul>
-                </div>
-
+                            foreach ($for as $value) {
+                                ?>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <?= $value->nome_fornecedor ?>
+                                    <a href="../../back/response/estoque/d_fornecedor_prod.php?idpf=<?= $value->idfp ?>">
+                                        <span class="badge badge-pill far fa-window-close text-danger float-right"> </span>
+                                    </a>
+                                </li>
+                            <?php } ?>
+                        </ul>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>

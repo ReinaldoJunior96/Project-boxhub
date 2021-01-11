@@ -25,7 +25,7 @@ for ($i = 0; $i < count($saida['produto']); $i++):
             'data' => date('Y-m-d', strtotime($_POST['data_s'])) . " " . $horarioEntrada->format('H:i:s'),
             'user' => $_POST['user'],
         );
-        $new_saida->registrar_saida($vrrSaida);
+        $new_saida->registrarSaida($vrrSaida);
     endif;
 endfor;
 

@@ -90,7 +90,7 @@ $s = new ConfigCRUD();
                     $viewRelatorio = new EstoqueController();
                     $relatorio = (@$_POST['setor'] == 'todos')
                         ? $viewRelatorio->relatorioGeral(@$_POST['dataI'], @$_POST['dataF'])
-                        : $viewRelatorio->relatorio(@$_POST['setor'], @$_POST['dataI'], @$_POST['dataF']);
+                        : $viewRelatorio->gerarRelatorio(@$_POST['setor'], @$_POST['dataI'], @$_POST['dataF']);
                     $dados = array(
                         'nomep' => array(),
                         'produtos' => array(),
