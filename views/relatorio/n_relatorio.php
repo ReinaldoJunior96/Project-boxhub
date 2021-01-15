@@ -96,6 +96,7 @@ $s = new ConfigCRUD();
                         'produtos' => array(),
                         'quantidade' => array(),
                     );
+
                     foreach ($relatorio as $v):
                         if (array_search($v->item_s, $dados['produtos']) != false) {
                             $chave = array_search($v->item_s, $dados['produtos']);
@@ -103,8 +104,8 @@ $s = new ConfigCRUD();
                             $dados['quantidade'][$chave] = $qtdeAntiga + $v->quantidade_s;
                         } else {
                             array_push($dados['produtos'], $v->item_s);
-                            array_push($dados['quantidade'], $v->quantidade_s);
                             array_push($dados['nomep'], $v->produto_e);
+                            array_push($dados['quantidade'], $v->quantidade_s);
                         }
                     endforeach;
                     ?>

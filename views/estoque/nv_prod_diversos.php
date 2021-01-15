@@ -51,6 +51,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                 <form method="POST" action="../../back/response/estoque/estoque_r.php">
                     <input type="hidden" name="new" value="1">
                     <input type="hidden" name="tipo" value="material">
+                    <input type="hidden" name="user" value="<?= $_SESSION['user'] ?>">
                     <div class="form-group row">
                         <label for="inputEmail3" class="col-sm-2 col-form-label">Material</label>
                         <div class="col-sm-10">

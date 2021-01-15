@@ -3,7 +3,7 @@ require_once('../../controllers/EstoqueController.php');
 $estoque = new EstoqueController();
 $valorUNAtt = str_replace(',', '.', @$_POST['valor_un']);
 $produto = array(
-    'produto' => @$_POST['produto_e'],
+    'produto' => trim(@$_POST['produto_e']),
     'p_ativo' => @$_POST['p_ativo'],
     'quantidade' => @$_POST['quantidade_e'],
     'valor' => floatval(@$valorUNAtt),
@@ -13,7 +13,7 @@ $produto = array(
     'apresentacao' => @$_POST['apresentacao'],
     'forma_farmaceutica' => @$_POST['forma_farmaceutica'],
     'tipo' => (@$_POST['tipo'] == NULL) ? '0' : @$_POST['tipo'],
-    'user' => $_POST['user']
+    'user' => @$_POST['user']
 );
 
 if (@$_POST['new'] == 1) {
