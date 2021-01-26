@@ -347,7 +347,6 @@ class EstoqueController
                     );
                     $registrarTransaocao = new EstoqueController();
                     $registrarTransaocao->transacaoRegistro($transacao);
-                    echo "<script language=\"javascript\">alert(\"Saída Registrada\")</script>";
                 }
             }
         } catch (PDOException $erro) {

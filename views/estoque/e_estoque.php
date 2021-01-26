@@ -62,7 +62,6 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                     </li>
                 </ul>
                 <div class="mt-5">
-
                     <?php
                     require_once '../../back/controllers/EstoqueController.php';
                     $p = new EstoqueController();

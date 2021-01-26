@@ -114,7 +114,6 @@ switch ($_SESSION['user']) {
                                 <th class="">Quantidade</th>
                                 <th class="">Valor Unitário</th>
                                 <th class="">Valor Total</th>
-
                             </tr>
                             </thead>
                             <tbody class="roboto-condensed text-black-50">

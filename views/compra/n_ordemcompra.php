@@ -101,7 +101,6 @@ $s = new ConfigCRUD();
                         <th class="">NE / NF</th>
                         <th class="">Fornecedor / Ordem</th>
                         <th class="">Criada em</th>
-
                         <th></th>
                     </tr>
                     </thead>

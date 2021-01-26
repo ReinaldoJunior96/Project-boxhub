@@ -28,7 +28,7 @@ for ($i = 0; $i < count($saida['produto']); $i++):
         $new_saida->registrarSaida($vrrSaida);
     endif;
 endfor;
-
+echo "<script language=\"javascript\">alert(\"Saída Registrada\")</script>";
 
 
 echo "<script language=\"javascript\">window.history.go(-2);</script>";

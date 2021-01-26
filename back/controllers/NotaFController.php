@@ -129,6 +129,7 @@ class NotaFController
         WHERE tbl_ordem_compra.id_fk_nf = '$idnf' AND tbl_nf.status_nf = 0");
         $importOrdem->execute();
         $dados = $importOrdem->fetchAll(PDO::FETCH_OBJ);
+        self::alterarStatus($idnf);
         foreach ($dados as $v) {
             $produto = array(
                 'produto' => $v->item_compra,
@@ -139,7 +140,6 @@ class NotaFController
             );
             self::addProdNf($produto);
         }
-        self::alterarStatus($idnf);
     }
 
     public function addProdNf($produto_nf)
@@ -187,7 +187,6 @@ class NotaFController
                     'cancelada' => ' ',
                     'user' => 'compras.hvu'
                 );
-
                 $registrarTransaocao = new EstoqueController();
                 $registrarTransaocao->transacaoRegistro($transacao);
 
