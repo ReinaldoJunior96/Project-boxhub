@@ -5,5 +5,4 @@ $delete_saida = new EstoqueController();
 $delete_saida->cancelarSaida($_GET['idsaida'],$_GET['prod'],$_GET['qtde'],$_GET['user']);
 echo "<script language=\"javascript\">window.history.back();</script>";
 
-
 ?>

@@ -68,7 +68,7 @@ switch ($_SESSION['user']) {
                 </nav>
                 <div class="">
                     <div class="container">
-                        <form method="post" action="">
+                        <form method="GET" action="">
 
                             <div class="form-group row">
                                 <label for="inputEmail3" class="col-sm-3 col-form-label">Qual setor você
@@ -108,10 +108,10 @@ switch ($_SESSION['user']) {
                             require_once('../../back/controllers/EstoqueController.php');
                             $view_historico = new EstoqueController();
                             $historico = 0;
-                            if (empty($_POST['filtro'])) {
+                            if (empty($_GET['filtro'])) {
                                 $historico = $view_historico->historicoSaida();
-                            } elseif (!empty($_POST['filtro'])) {
-                                $historico = $view_historico->filtroHistorico($_POST['filtro']);
+                            } elseif (!empty($_GET['filtro'])) {
+                                $historico = $view_historico->filtroHistorico($_GET['filtro']);
                             }
                             foreach ($historico as $v) {
                                 ?>

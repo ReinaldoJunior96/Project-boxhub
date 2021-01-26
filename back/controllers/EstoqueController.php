@@ -412,6 +412,7 @@ class EstoqueController
                 'user' => $user
             );
             self::transacaoRegistro($transacao);
+
         } catch (PDOException $erro) {
             echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
