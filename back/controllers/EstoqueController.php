@@ -290,7 +290,7 @@ class EstoqueController
         try {
             $search = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_transacoes           
                 WHERE produto_t='$prod'
-                ORDER BY data_t DESC LIMIT 0,30");
+                ORDER BY data_t DESC LIMIT 0,500");
             $search->execute();
             return $search->fetchAll(PDO::FETCH_OBJ);
         } catch (PDOException $erro) {
