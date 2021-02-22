@@ -69,7 +69,6 @@ switch ($_SESSION['user']) {
                 <div class="">
                     <div class="container">
                         <form method="GET" action="">
-
                             <div class="form-group row">
                                 <label for="inputEmail3" class="col-sm-3 col-form-label">Qual setor você
                                     deseja?</label>

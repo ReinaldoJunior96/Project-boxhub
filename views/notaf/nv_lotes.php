@@ -47,7 +47,7 @@ switch ($_SESSION['user']) {
                              width="40">
                         <h5 class="text-primary roboto-condensed ml-2 mt-1"> <?= ($v->nota_entrega == 1) ? 'NE ' : 'Nota Fiscal' ?>
                             - <?= $v->numero_nf ?> <a href="e_nota_fiscal.php?idnf=<?= $_GET['idnf'] ?>"><i
-                                        class='fas fa-pen fa-1x color-icon-nf text-black-50'></i></a></h5>
+                                    class='fas fa-pen fa-1x color-icon-nf text-black-50'></i></a></h5>
                     <?php } ?>
 
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -62,7 +62,7 @@ switch ($_SESSION['user']) {
                         </ul>
                         <div class="form-inline my-2 my-lg-0">
                             <h6 class="text-black-50 roboto-condensed"><i
-                                        class="fas fa-user text-primary"></i> <?= $_SESSION['user'] ?></h6>
+                                    class="fas fa-user text-primary"></i> <?= $_SESSION['user'] ?></h6>
                         </div>
                     </div>
                 </nav>
@@ -127,7 +127,7 @@ switch ($_SESSION['user']) {
                         </div>
                     </div>
                     <button type="submit" class="btn bg-primary shadow col-sm-2 exo mt-1 text-white">Adicionar <i
-                                class="fas fa-plus ml-2"></i></button>
+                            class="fas fa-plus ml-2"></i></button>
                 </form>
             </div>
             <div class="mt-4 col-12 text-center">
@@ -148,17 +148,17 @@ switch ($_SESSION['user']) {
 
                     foreach ($nfLotes as $prodLotes):
                         $data = date_create($prodLotes->validade);
-                    ?>
-                    <tr>
-                        <td><?=$prodLotes->produto_e?></td>
-                        <td> <?=$prodLotes->lote?></td>
-                        <td> <?= date_format($data, "d/m/Y") ?></td>
-                        <td>
-                            <a href="../../back/response/notaf/d_lotes.php?idl=<?=$prodLotes->id_nf_lote?>">
-                                <span class="badge badge-pill far fa-window-close text-danger float-right"> </span>
-                            </a>
-                        </td>
-                    </tr>
+                        ?>
+                        <tr>
+                            <td><?=$prodLotes->produto_e?></td>
+                            <td> <?=$prodLotes->lote?></td>
+                            <td> <?= date_format($data, "d/m/Y") ?></td>
+                            <td>
+                                <a href="../../back/response/notaf/d_lotes.php?idl=<?=$prodLotes->id_nf_lote?>">
+                                    <span class="badge badge-pill far fa-window-close text-danger float-right"> </span>
+                                </a>
+                            </td>
+                        </tr>
                     <?php endforeach; ?>
                     </tbody>
                 </table>
